@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondoregistro"
+    tools:context=".AnadirUsuario">
+
+    <LinearLayout
+        android:layout_width="268dp"
+        android:layout_height="460dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/txtRegistrarNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:ems="10"
+            android:hint="Nombre Usuario"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textColorHint="@color/grisClaro" />
+
+        <EditText
+            android:id="@+id/txtRegistrarPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:hint="Contraseña"
+            android:inputType="text|textPassword"
+            android:textAlignment="center"
+            android:textColorHint="@color/grisClaro" />
+
+        <EditText
+            android:id="@+id/txtRepetirPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Repetir Contraseña"
+            android:inputType="text|textPassword"
+            android:textAlignment="center"
+            android:textColorHint="@color/grisClaro" />
+
+        <EditText
+            android:id="@+id/txtRegistrarCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:ems="10"
+            android:hint="Correo Electronico"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textColorHint="@color/grisClaro" />
+
+        <Button
+            android:id="@+id/btnRegistrarUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="70dp"
+            android:background="@color/moradoLogo"
+            android:text="Entrar"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:minHeight="0dp"
+            android:includeFontPadding="false"
+
+            android:textSize="14sp"
+            app:layout_constraintWidth_percent="0.7"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

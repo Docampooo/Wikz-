@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mn_inicio"
+        android:icon="@drawable/ic_inicio"
+        android:title="Inicio" />
+
+    <item
+            android:id="@+id/mn_buscar"
+            android:icon="@drawable/ic_buscar"
+            android:title="Buscar"/>
+
+    <item
+        android:id="@+id/mn_actividad"
+        android:icon="@drawable/ic_actividad"
+        android:title="Actividad" />
+
+    <item
+        android:id="@+id/mn_perfil"
+        android:icon="@drawable/ic_perfil"
+        android:title="Perfil" />
+
+    <item
+        android:id="@+id/mn_mensajes"
+        android:icon="@drawable/ic_mensajes"
+        android:title="Mensajes" />
+
+</menu>
