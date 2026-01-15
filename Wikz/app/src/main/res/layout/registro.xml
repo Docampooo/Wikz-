@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/registro">
 
     <ImageView
         android:id="@+id/imageView"
@@ -15,17 +16,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/fondoregistro" />
+        app:srcCompat="@drawable/registro" />
 
     <LinearLayout
-        android:layout_width="255dp"
-        android:layout_height="466dp"
+        android:layout_width="276dp"
+        android:layout_height="449dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.502">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/ivLogoWikz"
@@ -62,17 +63,17 @@
             android:layout_height="35dp"
             android:layout_marginTop="50dp"
             android:background="@color/moradoLogo"
-            android:text="Log In"
-            android:textAlignment="center"
-
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="13sp"
+            android:includeFontPadding="false"
+            android:minHeight="0dp"
 
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
-            android:minHeight="0dp"
-            android:includeFontPadding="false"
+            android:text="Log In"
+
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
 
             app:layout_constraintWidth_percent="0.7" />
 
@@ -82,17 +83,17 @@
             android:layout_height="35dp"
             android:layout_marginTop="10dp"
             android:background="@color/moradoLogo"
+            android:includeFontPadding="false"
+
+            android:minHeight="0dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
             android:text="Sign Up"
 
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="13sp"
-
-            android:paddingTop="0dp"
-            android:paddingBottom="0dp"
-            android:minHeight="0dp"
-            android:includeFontPadding="false"
 
             app:layout_constraintWidth_percent="0.7" />
 

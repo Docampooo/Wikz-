@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondoregistro"
+    android:background="@drawable/registro"
     tools:context=".AnadirUsuario">
 
     <LinearLayout
@@ -68,18 +68,18 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="70dp"
             android:background="@color/moradoLogo"
-            android:text="Entrar"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-
-            android:paddingTop="0dp"
-            android:paddingBottom="0dp"
-            android:minHeight="0dp"
             android:includeFontPadding="false"
+            android:minHeight="0dp"
+            android:paddingTop="0dp"
 
+            android:paddingBottom="0dp"
+            android:text="Entrar"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+
+            android:textColor="@android:color/white"
             android:textSize="14sp"
-            app:layout_constraintWidth_percent="0.7"
-            android:textAlignment="center" />
+            app:layout_constraintWidth_percent="0.7" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -58,10 +58,11 @@ public class Registro extends AppCompatActivity {
                 nombreUsuario = txtNombreUsuario.getText().toString();
                 pass = txtPassUsuario.getText().toString();
 
-                if(nombreUsuario.equals("consultaNombre") && pass.equals("consultaPass")){
+                //Introducir las condiciones de la consulta cuando sea necesario
+                if(true){
 
                     //Mandar Intent a la página principal
-                    Intent intentPrincipal = new Intent(Registro.this, AnadirUsuario.class);
+                    Intent intentPrincipal = new Intent(Registro.this, MenuPrincipal.class);
 
                     startActivity(intentPrincipal);
 
@@ -100,6 +101,4 @@ public class Registro extends AppCompatActivity {
             }
         });
     }
-
-
 }
