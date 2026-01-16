@@ -1,0 +1,10 @@
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\bin\Debug\wikz_escritorio.exe.config
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\bin\Debug\wikz_escritorio.exe
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\bin\Debug\wikz_escritorio.pdb
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.Properties.Resources.resources
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.Registro.resources
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.csproj.GenerateResource.cache
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.exe
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.pdb
