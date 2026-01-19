@@ -1,3 +1,5 @@
+Bienvenidos a Wikz, un ambicioso proyecto desarrollado por un estudiante de DAM que trata de crear una red social enfocada en la música y su relación con los movimientos de moda y estilos de todo tipo! 
+
 12/01/2026
 Primer avance en el desarrollo de la interfaz de la aplicación móvil, he desarrollado un primer modelo de registro de usuario y actividad de inició de sesión en Wikz sin acceso a la base de datos ni a la API.
 
