@@ -8,3 +8,6 @@ Continuación de la interfaz en móviles, se ha añadido una buena parte de la l
 
 15/01/2026
 Primeros pasos del desarrollo de la aplicación de escritorio, se ha desarrollado la interfaz de usuario de registro y inicio de sesión y los primeros pasos de la lógica del programa sin acceso a la base de datos
+
+19/01/2026
+Añadido de un BottomNavigationBar en moviles que aporta un gran avance al proyecto y permite versatilidad, getstión y usabilidad a la interfaz, se han creado 3 fragmentos independientes que van alternandose
