@@ -1,3 +1,5 @@
+Bienvenidos a Wikz, un ambicioso proyecto desarrollado por un estudiante de DAM que trata de crear una red social enfocada en la música y su relación con los movimientos de moda y estilos de todo tipo! Se basa principalmente en imágenes y gifs que publican los usuarios basado en diferentes temáticas musicales y sus respectivos estilos de vestimenta: Accesorios, colores, prendas. . . En Wikz puedes dar a conocer tu estilo y descubrir nuevos interactuando con la comunidad.
+
 12/01/2026
 Primer avance en el desarrollo de la interfaz de la aplicación móvil, he desarrollado un primer modelo de registro de usuario y actividad de inició de sesión en Wikz sin acceso a la base de datos ni a la API.
 
@@ -6,3 +8,6 @@ Continuación de la interfaz en móviles, se ha añadido una buena parte de la l
 
 15/01/2026
 Primeros pasos del desarrollo de la aplicación de escritorio, se ha desarrollado la interfaz de usuario de registro y inicio de sesión y los primeros pasos de la lógica del programa sin acceso a la base de datos
+
+19/01/2026
+Añadido de un BottomNavigationBar en moviles que aporta un gran avance al proyecto y permite versatilidad, getstión y usabilidad a la interfaz, se han creado 3 fragmentos independientes que van alternandose
