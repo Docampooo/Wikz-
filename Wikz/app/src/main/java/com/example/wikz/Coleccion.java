@@ -1,6 +1,8 @@
 package com.example.wikz;
 
-public class ColeccionUsuario {
+import java.util.ArrayList;
+
+public class Coleccion {
 
     private String nombre; //Nombre de la coleccion
 
@@ -33,14 +35,32 @@ public class ColeccionUsuario {
         return  imagen;
     }
 
-    public ColeccionUsuario(String nombre, int id, int elementos, int imagen){
+    public Coleccion(String nombre, int id, int elementos, int imagen){
         setNombre(nombre);
         setId(id);
         setElementos(elementos);
         setImagen(imagen);
     }
 
-    public  ColeccionUsuario(){
+    public Coleccion(){
         this("", 0, 0, 0);
     }
+
+    public static ArrayList<Coleccion> obtenerColecciones(){
+
+        ArrayList<Coleccion> colecciones = new ArrayList<>();
+
+        //Añadir unas colecciones para probar el programa
+        colecciones.add(new Coleccion("lvlRandom", 0, 0, R.drawable.lain));
+        colecciones.add(new Coleccion("MetalVibes", 1, 0, R.drawable.chino));
+        colecciones.add(new Coleccion("luv:3", 2, 0, R.drawable.beso));
+        colecciones.add(new Coleccion("trivs", 3, 0, R.drawable.cruz));
+        colecciones.add(new Coleccion("tunning!", 4, 0, R.drawable.zapas_korn));
+        colecciones.add(new Coleccion("Editzz", 5, 0, R.drawable.evanescense));
+        colecciones.add(new Coleccion("HardPics", 6, 0, R.drawable.minecraft));
+
+        return  colecciones;
+    }
 }
+
+

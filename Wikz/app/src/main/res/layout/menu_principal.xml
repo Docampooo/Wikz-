@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,42 +8,30 @@
     android:layout_height="match_parent"
     tools:context=".MenuPrincipal">
 
-    <!-- 🔝 BARRA SUPERIOR: COLECCIONES -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvColecciones"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="1" />
-
-    <!-- 🧠 CONTENEDOR CENTRAL -->
-
-    <!-- 🔽 BARRA INFERIOR -->
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPublicaciones"
+    <!-- CONTENEDOR DE FRAGMENTS -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/navMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- BOTTOM NAVIGATION -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navMenu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:minHeight="56dp"
+
+        app:itemIconSize="22dp"
+        app:itemPaddingBottom="4dp"
+        app:itemPaddingTop="4dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rvColecciones" />
-
-<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--        android:id="@+id/navContenidoUsuario"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:background="@color/selector_nav"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:menu="@menu/menu_datos_usuario" />-->
+        app:menu="@menu/menu_datos_usuario" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

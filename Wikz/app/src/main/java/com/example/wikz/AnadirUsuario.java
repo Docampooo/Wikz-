@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import android.util.Patterns;
+
 
 
 public class AnadirUsuario extends AppCompatActivity {
@@ -29,6 +31,10 @@ public class AnadirUsuario extends AppCompatActivity {
     String pass;
 
     String confirmarPass;
+
+    String correoUsuario;
+
+    boolean aceptar = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,46 +60,73 @@ public class AnadirUsuario extends AppCompatActivity {
         nombreUsuario = "";
         pass = "";
         confirmarPass = "";
+        correoUsuario = "";
+
 
         btnRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                nombreUsuario = txtRegistrarNombre.getText().toString();
+                nombreUsuario = txtRegistrarNombre.getText().toString().trim();
                 pass = txtRegistrarPass.getText().toString().trim();
                 confirmarPass = txtRepetirPass.getText().toString().trim();
+                correoUsuario = txtRegistrarCorreo.getText().toString().trim();
 
-                if(pass.equals(confirmarPass)){
+                //Validar campos vacíos
+                if (nombreUsuario.isEmpty() || pass.isEmpty() || confirmarPass.isEmpty() || correoUsuario.isEmpty()) {
 
-                    //Añadir el usuario a la base de datos y entrar en la pagina principal
-                    Intent intentPrincipal = new Intent(AnadirUsuario.this, AnadirUsuario.class);
+                    reiniciarCampos("Todos los campos son obligatorios");
+                    return;
+                }
 
-                    startActivity(intentPrincipal);
-                }else{
+                //Validar correo
+                if (!correoValido(correoUsuario)) {
 
-                    //Lanzar mensaje de Error
-                    Toast toast = Toast.makeText(getApplicationContext(), "Las contraseñas no coinciden!", Toast.LENGTH_SHORT);
+                    correoUsuario = "";
+                    txtRegistrarCorreo.setText("");
 
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    View view = toast.getView();
-                    view.setBackgroundResource(R.drawable.toast_background);
+                    reiniciarCampos("Correo electrónico no válido");
+                    return;
+                }
 
-                    // Cambiar color del texto a blanco para que contraste
-                    TextView text = view.findViewById(android.R.id.message);
-                    text.setTextColor(Color.WHITE);
-
-                    toast.show();
-
-                    nombreUsuario = "";
+                //Validar contraseñas
+                if (!pass.equals(confirmarPass)) {
                     pass = "";
                     confirmarPass = "";
 
-                    txtRegistrarNombre.setText("");
                     txtRegistrarPass.setText("");
                     txtRepetirPass.setText("");
-                    txtRegistrarCorreo.setText("");
+
+                    reiniciarCampos("Las contraseñas no coinciden");
+                    return;
                 }
+
+                // crear usuario
+                Usuario usuario = new Usuario(nombreUsuario, pass, correoUsuario);
+
+                Intent intentPrincipal = new Intent(AnadirUsuario.this, MenuPrincipal.class);
+                startActivity(intentPrincipal);
             }
         });
+    }
+
+    private boolean correoValido(String correo) {
+        return correo != null && Patterns.EMAIL_ADDRESS.matcher(correo).matches();
+    }
+
+    public void reiniciarCampos(String datoError){
+
+        //Lanzar mensaje de Error
+        Toast toast = Toast.makeText(getApplicationContext(), datoError, Toast.LENGTH_SHORT);
+
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        View view = toast.getView();
+        view.setBackgroundResource(R.drawable.toast_background);
+
+        // Cambiar color del texto a blanco para que contraste
+        TextView text = view.findViewById(android.R.id.message);
+        text.setTextColor(Color.WHITE);
+
+        toast.show();
     }
 }

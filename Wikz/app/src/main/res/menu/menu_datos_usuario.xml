@@ -8,18 +8,6 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/mn_buscar"
-        android:icon="@drawable/ic_buscar"
-        android:title="Buscar"
-        app:showAsAction="always" />
-
-    <item
-        android:id="@+id/mn_actividad"
-        android:icon="@drawable/ic_actividad"
-        android:title="Actividad"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/mn_perfil"
         android:icon="@drawable/ic_perfil"
         android:title="Perfil"

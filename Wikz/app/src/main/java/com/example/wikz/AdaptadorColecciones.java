@@ -13,10 +13,10 @@ import java.util.ArrayList;
 
 public class AdaptadorColecciones extends  RecyclerView.Adapter<AdaptadorColecciones.MyViewHolder>{
 
-    ArrayList<ColeccionUsuario> coleccionesUsuario;
+    ArrayList<Coleccion> coleccionesUsuario;
 
     //Constructor
-    public AdaptadorColecciones(ArrayList<ColeccionUsuario> coleccionesUsuarios){
+    public AdaptadorColecciones(ArrayList<Coleccion> coleccionesUsuarios){
         this.coleccionesUsuario = coleccionesUsuarios;
     }
 
@@ -31,7 +31,7 @@ public class AdaptadorColecciones extends  RecyclerView.Adapter<AdaptadorColecci
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        ColeccionUsuario cu = this.coleccionesUsuario.get(position);
+        Coleccion cu = this.coleccionesUsuario.get(position);
 
         holder.getNombreColeccion().setText(cu.getNombre());
         holder.getImagenColeccion().setImageResource(cu.getImagen());
