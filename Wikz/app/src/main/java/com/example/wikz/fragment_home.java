@@ -26,8 +26,6 @@ public class fragment_home extends Fragment {
     AdaptadorColecciones adaptadorColecciones;
     AdaptadorPublicaciones adaptadorPublicaciones;
     RecyclerView rvPublicaciones;
-    BottomNavigationView navContenidoUsuario;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,7 +45,6 @@ public class fragment_home extends Fragment {
         rvColecciones.setAdapter(adaptadorColecciones);
 
         //Rv Publicaciones
-        publicaciones = new ArrayList<>();
         //Añadir publicaciones para probar el codigo
         publicaciones = Publicacion.establecerPublicaciones();
 

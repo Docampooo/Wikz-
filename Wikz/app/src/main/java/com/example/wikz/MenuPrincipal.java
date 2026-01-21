@@ -7,13 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
 
 public class MenuPrincipal extends AppCompatActivity {
 
@@ -21,7 +16,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
     fragment_home frHome = new fragment_home();
 
-    fragment_mensajes frMsg = new fragment_mensajes();
+    fragment_explorar frMsg = new fragment_explorar();
 
     fragment_perfil frPerf = new fragment_perfil();
 
@@ -59,7 +54,7 @@ public class MenuPrincipal extends AppCompatActivity {
                         .commit();
                 return true;
 
-            }else if( id == R.id.mn_mensajes){
+            }else if( id == R.id.mn_explorar){
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, frMsg)

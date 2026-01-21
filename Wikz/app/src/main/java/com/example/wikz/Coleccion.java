@@ -61,6 +61,21 @@ public class Coleccion {
 
         return  colecciones;
     }
+
+    public static ArrayList<Coleccion> obtenerTematicas(){
+
+        ArrayList<Coleccion> tematicas = new ArrayList<>();
+
+        //Añadir unas tematicas para probar el programa
+        tematicas.add(new Coleccion("NuMetal", 0, 0,R.drawable.numetal));
+        tematicas.add(new Coleccion("Punk", 1,  0,R.drawable.punk));
+        tematicas.add(new Coleccion("Rock", 2, 0,R.drawable.rock));
+        tematicas.add(new Coleccion("Hippie", 3, 0,R.drawable.hippie));
+        tematicas.add(new Coleccion("HyperPop", 4, 0,R.drawable.hyperpop));
+        tematicas.add(new Coleccion("HeavyMetal", 5, 0,R.drawable.heavymetal));
+
+        return  tematicas;
+    }
 }
 
 

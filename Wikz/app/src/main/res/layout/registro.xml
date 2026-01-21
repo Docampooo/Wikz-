@@ -42,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:foregroundTint="@color/grisClaro"
             android:hint="Nombre Usuario"
             android:inputType="text"
             android:textAlignment="center"
@@ -52,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:foregroundTint="@color/grisClaro"
             android:hint="Contraseña"
             android:inputType="text|textPassword"
             android:textAlignment="center"
@@ -83,18 +85,19 @@
             android:layout_height="35dp"
             android:layout_marginTop="10dp"
             android:background="@color/moradoLogo"
-            android:includeFontPadding="false"
+            android:backgroundTint="@color/moradoLogo"
 
+            android:includeFontPadding="false"
             android:minHeight="0dp"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
-            android:text="Sign Up"
 
+            android:text="Sign Up"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textSize="13sp"
 
+            android:textSize="13sp"
             app:layout_constraintWidth_percent="0.7" />
 
     </LinearLayout>

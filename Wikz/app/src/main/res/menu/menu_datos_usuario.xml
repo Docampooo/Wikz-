@@ -14,9 +14,9 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/mn_mensajes"
-        android:icon="@drawable/ic_mensajes"
-        android:title="Mensajes"
+        android:id="@+id/mn_explorar"
+        android:icon="@drawable/ic_buscar"
+        android:title="Explorar"
         app:showAsAction="always" />
 
 </menu>
