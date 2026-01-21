@@ -13,4 +13,6 @@ Primeros pasos del desarrollo de la aplicación de escritorio, se ha desarrollad
 Añadido de un BottomNavigationBar en moviles que aporta un gran avance al proyecto y permite versatilidad, getstión y usabilidad a la interfaz, se han creado 3 fragmentos independientes que van alternandose
 
 20/01/2026
-Se han establecido nuevas clases y modificaciones en la aplicacion de móvil, corrección de errores y manejo de excepciones y el añadido del fragmento de exploración que permite la interacción entre usuarios
+Se han establecido nuevas clases y modificaciones en la aplicacion de móvil, corrección de errores, manejo de excepciones y el añadido del fragmento de exploración que permite la interacción entre usuarios
+
+21/01/2026
