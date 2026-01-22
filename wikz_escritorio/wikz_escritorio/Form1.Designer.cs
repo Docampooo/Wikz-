@@ -36,8 +36,8 @@
             // 
             // floColecciones
             // 
+            this.floColecciones.AutoScroll = true;
             this.floColecciones.BackColor = System.Drawing.Color.Gray;
-            this.floColecciones.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.floColecciones.Location = new System.Drawing.Point(23, 24);
             this.floColecciones.Name = "floColecciones";
             this.floColecciones.Size = new System.Drawing.Size(533, 98);
@@ -47,17 +47,15 @@
             // 
             this.floPublicaciones.AutoScroll = true;
             this.floPublicaciones.BackColor = System.Drawing.Color.Gray;
-            this.floPublicaciones.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.floPublicaciones.Location = new System.Drawing.Point(23, 145);
             this.floPublicaciones.Name = "floPublicaciones";
             this.floPublicaciones.Size = new System.Drawing.Size(533, 434);
             this.floPublicaciones.TabIndex = 1;
-            this.floPublicaciones.WrapContents = false;
             // 
             // floNavegador
             // 
+            this.floNavegador.AutoScroll = true;
             this.floNavegador.BackColor = System.Drawing.Color.Gray;
-            this.floNavegador.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.floNavegador.Location = new System.Drawing.Point(23, 605);
             this.floNavegador.Name = "floNavegador";
             this.floNavegador.Size = new System.Drawing.Size(533, 74);
@@ -72,6 +70,7 @@
             this.Controls.Add(this.floNavegador);
             this.Controls.Add(this.floPublicaciones);
             this.Controls.Add(this.floColecciones);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Principal";
             this.Text = "Wikz!";
