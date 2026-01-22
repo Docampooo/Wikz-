@@ -45,7 +45,7 @@ namespace wikz_escritorio
 
         string correo = "";
 
-        bool usuarioValido = false;
+        bool usuarioValido = true;
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
@@ -58,6 +58,9 @@ namespace wikz_escritorio
             else
             {
                 reg.MostrarToast("El campo del nombre ha de estar cubierto");
+                txtAñadirNombre.Text = "";
+                nombreUsuario = "";
+                usuarioValido = false;
             }
 
             //Contraseña
@@ -69,6 +72,12 @@ namespace wikz_escritorio
             else
             {
                 reg.MostrarToast("El campo de la contraseña ha de estar cubierto");
+                txtAñadirPass.Text = "";
+                txtAñadirRepetirPass.Text = "";
+
+                passUsuario = "";
+                repPassUsuario = "";
+                usuarioValido = false;
             }
 
             if (passUsuario == repPassUsuario)
@@ -77,13 +86,14 @@ namespace wikz_escritorio
             }
             else
             {
-                passUsuario = "";
-                repPassUsuario = "";
 
+                reg.MostrarToast("Las contraseñas no coinciden");
                 txtAñadirPass.Text = "";
                 txtAñadirRepetirPass.Text = "";
 
-                reg.MostrarToast("Las contraseñas no coinciden");
+                passUsuario = "";
+                repPassUsuario = "";
+                usuarioValido = false;
             }
 
             //Correo electrónico
@@ -97,17 +107,23 @@ namespace wikz_escritorio
                 else
                 {
                     reg.MostrarToast("El correo es incorrecto");
-
-                    correo = "";
                     txtAñadirCorreo.Text = "";
+                    correo = "";
+                    usuarioValido = false;
+
                 }
             }
             else
             {
                 reg.MostrarToast("El campo del correo Electronico ha de estar cubierto");
+                usuarioValido = false;
             }
 
-            //Añadir consulta SQL para comprobar si hay algún usuario con los mismos datos
+            Usuario u = new Usuario(nombreUsuario, passUsuario, correo, "", null);
+            //Añadir consulta SQL para comprobar si hay algún usuario con los mismos datos, si da true, boolean usuariovalido a true
+            usuarioValido = true;
+
+            
         }
     }
 }

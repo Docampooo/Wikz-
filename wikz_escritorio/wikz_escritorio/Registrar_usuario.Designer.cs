@@ -158,7 +158,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::wikz_escritorio.Properties.Resources.registro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(579, 711);
+            this.ClientSize = new System.Drawing.Size(582, 703);
             this.Controls.Add(this.lblAñadirCorreo);
             this.Controls.Add(this.txtAñadirCorreo);
             this.Controls.Add(this.lblAñadirRepetirPass);

@@ -6,16 +6,20 @@ import java.util.Date;
 
 public class Usuario {
 
-    public Usuario(String nombre, String pass, String correo){
+    public Usuario(String nombre, String pass, String correo, String descripcion, int fotoPerfil){
 
         setNommbre(nombre);
         setPass(pass);
         setCorreo(correo);
+
+        setDescripcion("");
+        setFotoPerfil(0);
+
         setFechaCreacion(new Date());
     }
 
     public Usuario(){
-        this("", "", "");
+        this("", "", "", "", 0);
     }
     private String nombre;
     public void setNommbre(String nombre){
@@ -49,5 +53,22 @@ public class Usuario {
 
     public Date getFechaCreacion() {
         return fechaCreacion;
+    }
+
+    private String descripcion;
+    public void setDescripcion(String descripcion){
+        this.descripcion = descripcion;
+    }
+
+    public String getDescripcion(){
+        return descripcion;
+    }
+
+    private int fotoPerfil;
+    public void setFotoPerfil(int foto){
+        this.fotoPerfil = foto;
+    }
+    public int getFotoPerfil(){
+        return  fotoPerfil;
     }
 }

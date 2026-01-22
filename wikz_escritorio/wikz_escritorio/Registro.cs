@@ -69,6 +69,8 @@ namespace wikz_escritorio
             else
             {
                 MostrarToast("El campo del nombre ha de estar cubierto");
+                txtRegistroNombre.Text = "";
+                nombreUsuario = "";
             }
 
             //Contraseña
@@ -80,6 +82,8 @@ namespace wikz_escritorio
             else
             {
                 MostrarToast("El campo de la contraseña ha de estar cubierto");
+                txtRegistroPass.Text = "";
+                passUsuario = "";
             }
 
             //Insertar consulta SQL a la base de datos para verificar si el usuario está registrado en la base de datos
@@ -92,11 +96,6 @@ namespace wikz_escritorio
             {
                 MostrarToast("Los datos del usuario no coinciden con ningún usuario registrado");
 
-                nombreUsuario = "";
-                passUsuario = "";
-
-                txtRegistroNombre.Text = "";
-                txtRegistroPass.Text = "";
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace wikz_escritorio
 {
-    partial class Form1
+    partial class Principal
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,13 +28,62 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
+            this.floColecciones = new System.Windows.Forms.FlowLayoutPanel();
+            this.floPublicaciones = new System.Windows.Forms.FlowLayoutPanel();
+            this.floNavegador = new System.Windows.Forms.FlowLayoutPanel();
+            this.SuspendLayout();
+            // 
+            // floColecciones
+            // 
+            this.floColecciones.BackColor = System.Drawing.Color.Gray;
+            this.floColecciones.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.floColecciones.Location = new System.Drawing.Point(23, 24);
+            this.floColecciones.Name = "floColecciones";
+            this.floColecciones.Size = new System.Drawing.Size(533, 98);
+            this.floColecciones.TabIndex = 0;
+            // 
+            // floPublicaciones
+            // 
+            this.floPublicaciones.AutoScroll = true;
+            this.floPublicaciones.BackColor = System.Drawing.Color.Gray;
+            this.floPublicaciones.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.floPublicaciones.Location = new System.Drawing.Point(23, 145);
+            this.floPublicaciones.Name = "floPublicaciones";
+            this.floPublicaciones.Size = new System.Drawing.Size(533, 434);
+            this.floPublicaciones.TabIndex = 1;
+            this.floPublicaciones.WrapContents = false;
+            // 
+            // floNavegador
+            // 
+            this.floNavegador.BackColor = System.Drawing.Color.Gray;
+            this.floNavegador.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.floNavegador.Location = new System.Drawing.Point(23, 605);
+            this.floNavegador.Name = "floNavegador";
+            this.floNavegador.Size = new System.Drawing.Size(533, 74);
+            this.floNavegador.TabIndex = 1;
+            // 
+            // Principal
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClientSize = new System.Drawing.Size(582, 703);
+            this.Controls.Add(this.floNavegador);
+            this.Controls.Add(this.floPublicaciones);
+            this.Controls.Add(this.floColecciones);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Principal";
+            this.Text = "Wikz!";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.FlowLayoutPanel floColecciones;
+        private System.Windows.Forms.FlowLayoutPanel floPublicaciones;
+        private System.Windows.Forms.FlowLayoutPanel floNavegador;
     }
 }
 

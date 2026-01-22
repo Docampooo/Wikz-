@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace wikz_escritorio
+namespace RecyclerView
 {
-    public partial class Entrar : Form
+    public partial class Recycler: UserControl
     {
-        public Entrar()
+        public Recycler()
         {
             InitializeComponent();
+            
         }
     }
 }

@@ -102,7 +102,9 @@ public class AnadirUsuario extends AppCompatActivity {
                 }
 
                 // crear usuario
-                Usuario usuario = new Usuario(nombreUsuario, pass, correoUsuario);
+                Usuario usuario = new Usuario(nombreUsuario, pass, correoUsuario, "", 0);
+
+                //insertar usuario en la base de datos
 
                 Intent intentPrincipal = new Intent(AnadirUsuario.this, MenuPrincipal.class);
                 startActivity(intentPrincipal);

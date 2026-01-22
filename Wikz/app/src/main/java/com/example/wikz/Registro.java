@@ -58,6 +58,8 @@ public class Registro extends AppCompatActivity {
                 nombreUsuario = txtNombreUsuario.getText().toString();
                 pass = txtPassUsuario.getText().toString();
 
+                Usuario u = new Usuario(nombreUsuario, pass, "", "", 0);
+
                 //Introducir las condiciones de la consulta cuando sea necesario
                 if(true){
 

@@ -22,16 +22,21 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navMenu"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:minHeight="56dp"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
 
+        android:minHeight="56dp"
         app:itemIconSize="22dp"
-        app:itemPaddingBottom="4dp"
         app:itemPaddingTop="4dp"
+        app:itemPaddingBottom="4dp"
+
+        app:itemIconTint="@null"
+        app:itemTextColor="@color/white"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
         app:menu="@menu/menu_datos_usuario" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

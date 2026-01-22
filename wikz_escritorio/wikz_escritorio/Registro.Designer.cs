@@ -43,7 +43,7 @@
             // 
             this.pbRegistro.BackColor = System.Drawing.Color.Black;
             this.pbRegistro.Image = global::wikz_escritorio.Properties.Resources.logosinfondo1;
-            this.pbRegistro.Location = new System.Drawing.Point(174, 127);
+            this.pbRegistro.Location = new System.Drawing.Point(210, 129);
             this.pbRegistro.Name = "pbRegistro";
             this.pbRegistro.Size = new System.Drawing.Size(166, 135);
             this.pbRegistro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -55,9 +55,9 @@
             this.txtRegistroNombre.BackColor = System.Drawing.Color.Black;
             this.txtRegistroNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRegistroNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.txtRegistroNombre.Location = new System.Drawing.Point(83, 317);
+            this.txtRegistroNombre.Location = new System.Drawing.Point(97, 317);
             this.txtRegistroNombre.Name = "txtRegistroNombre";
-            this.txtRegistroNombre.Size = new System.Drawing.Size(346, 22);
+            this.txtRegistroNombre.Size = new System.Drawing.Size(388, 22);
             this.txtRegistroNombre.TabIndex = 1;
             this.txtRegistroNombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -67,9 +67,9 @@
             this.btnLogIn.FlatAppearance.BorderSize = 0;
             this.btnLogIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogIn.Location = new System.Drawing.Point(83, 487);
+            this.btnLogIn.Location = new System.Drawing.Point(97, 487);
             this.btnLogIn.Name = "btnLogIn";
-            this.btnLogIn.Size = new System.Drawing.Size(346, 30);
+            this.btnLogIn.Size = new System.Drawing.Size(388, 30);
             this.btnLogIn.TabIndex = 2;
             this.btnLogIn.Text = "Log In";
             this.btnLogIn.UseVisualStyleBackColor = false;
@@ -81,9 +81,9 @@
             this.btnSignUp.FlatAppearance.BorderSize = 0;
             this.btnSignUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSignUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignUp.Location = new System.Drawing.Point(83, 537);
+            this.btnSignUp.Location = new System.Drawing.Point(97, 537);
             this.btnSignUp.Name = "btnSignUp";
-            this.btnSignUp.Size = new System.Drawing.Size(346, 30);
+            this.btnSignUp.Size = new System.Drawing.Size(388, 30);
             this.btnSignUp.TabIndex = 3;
             this.btnSignUp.Text = "Sign Up";
             this.btnSignUp.UseVisualStyleBackColor = false;
@@ -94,10 +94,10 @@
             this.txtRegistroPass.BackColor = System.Drawing.Color.Black;
             this.txtRegistroPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRegistroPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.txtRegistroPass.Location = new System.Drawing.Point(83, 389);
+            this.txtRegistroPass.Location = new System.Drawing.Point(97, 389);
             this.txtRegistroPass.Name = "txtRegistroPass";
             this.txtRegistroPass.PasswordChar = '•';
-            this.txtRegistroPass.Size = new System.Drawing.Size(346, 22);
+            this.txtRegistroPass.Size = new System.Drawing.Size(388, 22);
             this.txtRegistroPass.TabIndex = 4;
             this.txtRegistroPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtRegistroPass.UseSystemPasswordChar = true;
@@ -107,7 +107,7 @@
             this.lblNombreRegistro.AutoSize = true;
             this.lblNombreRegistro.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblNombreRegistro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.lblNombreRegistro.Location = new System.Drawing.Point(186, 288);
+            this.lblNombreRegistro.Location = new System.Drawing.Point(220, 289);
             this.lblNombreRegistro.Name = "lblNombreRegistro";
             this.lblNombreRegistro.Size = new System.Drawing.Size(142, 16);
             this.lblNombreRegistro.TabIndex = 5;
@@ -118,7 +118,7 @@
             this.lblRegistroPass.AutoSize = true;
             this.lblRegistroPass.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblRegistroPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.lblRegistroPass.Location = new System.Drawing.Point(210, 360);
+            this.lblRegistroPass.Location = new System.Drawing.Point(245, 357);
             this.lblRegistroPass.Name = "lblRegistroPass";
             this.lblRegistroPass.Size = new System.Drawing.Size(86, 16);
             this.lblRegistroPass.TabIndex = 6;
@@ -130,7 +130,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::wikz_escritorio.Properties.Resources.registro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(517, 695);
+            this.ClientSize = new System.Drawing.Size(578, 699);
             this.Controls.Add(this.lblRegistroPass);
             this.Controls.Add(this.lblNombreRegistro);
             this.Controls.Add(this.txtRegistroPass);
