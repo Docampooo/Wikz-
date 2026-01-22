@@ -16,3 +16,4 @@ Añadido de un BottomNavigationBar en moviles que aporta un gran avance al proye
 Se han establecido nuevas clases y modificaciones en la aplicacion de móvil, corrección de errores, manejo de excepciones y el añadido del fragmento de exploración que permite la interacción entre usuarios
 
 21/01/2026
+Grandes avances en el desarrollo de la aplicacion de escritorio, se han desarrollado las clases principales y me he empezado a pelear con la creación de una clase de recyclerView hecho en C#
