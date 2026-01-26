@@ -17,3 +17,6 @@ Se han establecido nuevas clases y modificaciones en la aplicacion de móvil, co
 
 21/01/2026
 Grandes avances en el desarrollo de la aplicacion de escritorio, se han desarrollado las clases principales y me he empezado a pelear con la creación de una clase de recyclerView hecho en C#
+
+22/01/2026
+En escritorio, se ha añadido la primera versión de los recyclers views, tanto los de las colecciones como los de publicaciones, he encontrado varias fuentes y formas de decorarlos pero aón no son funcionales
