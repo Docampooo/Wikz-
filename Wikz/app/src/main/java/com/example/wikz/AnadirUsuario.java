@@ -102,7 +102,7 @@ public class AnadirUsuario extends AppCompatActivity {
                 }
 
                 // crear usuario
-                Usuario usuario = new Usuario(nombreUsuario, pass, correoUsuario, "", 0);
+                Usuario usuario = new Usuario(nombreUsuario, pass, correoUsuario, "", null);
 
                 //insertar usuario en la base de datos
 

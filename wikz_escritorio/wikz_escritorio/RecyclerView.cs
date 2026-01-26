@@ -14,35 +14,23 @@ namespace wikz_escritorio
     {
 
         Color moradoLogo = Color.FromArgb(163, 73, 164);
-        Color grisClaro = Color.FromArgb(122, 122, 122);
         public RecyclerView(Coleccion c)
         {
             InitializeComponent();
 
             //modificar tamaño
-            this.AutoSize = true;
-            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-
-            this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-
             this.BackColor = Color.FromArgb(30, 30, 30);
-            this.Padding = new Padding(8);
 
             pbImagen.Dock = DockStyle.Top;
-            pbImagen.Height = (int)(this.Width * 0.6);
-
             pbImagen.SizeMode = PictureBoxSizeMode.Zoom;
             pbImagen.BackColor = Color.Black;
+
+            pbImagen.Width = (int)(this.Width * 0.35);
+            pbImagen.Height = (int)(this.Height * 0.33);
+
             pbImagen.Cursor = Cursors.Hand;
 
-            //Ajustar la altura en funcion del tamaño de la ventana
-            this.Resize += (s, e) =>
-            {
-                pbImagen.Height = (int)(this.Width * 0.6);
-                pbImagen.Invalidate();
-            };
-
-            //Decoracion del Picture Box
+            //Decoracion del Picture Box, celda con bordes
             pbImagen.Paint += (s, e) =>
             {
                 var radius = 12;
@@ -58,19 +46,26 @@ namespace wikz_escritorio
                 }
             };
 
-            //Decoracion del Label
-            lblNombre.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            lblNombre.ForeColor = moradoLogo;
-            lblNombre.Dock = DockStyle.Top;
-
             pbImagen.Image = c.FotoColeccion;
-            lblNombre.Text = c.Nombre;
+            lblNombre.Text = establecerTitulo(c.Nombre);
         }
 
-        public void AjustarTamaño(int anchoDisponible)
+        public string establecerTitulo(string cad)
         {
-            this.Width = anchoDisponible;
-            this.Height = (int)(anchoDisponible * 1.3);
+
+            if (cad.Length >= 10)
+            {
+                return $"{cad.Substring(0, 7)}...";
+            }
+            else
+            {
+                return cad;
+            }
+        }
+
+        private void RecyclerView_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

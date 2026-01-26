@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,9 +28,14 @@ namespace wikz_escritorio
             InitializeComponent();
 
             cargarPublicaciones();
-            cargarColecciones();
 
-            //MessageBox.Show($"cant publicaciones {publicaciones.Count}, colecciones {colecciones.Count}");
+            cargarColecciones();
+            floColecciones.Padding = Padding.Empty;
+            floColecciones.Margin = Padding.Empty;
+
+            RedondearPnNavegador(22);
+            pnNavegador.Paint += PnNavegador_Paint;
+
         }
 
         public void cargarPublicaciones()
@@ -64,7 +70,7 @@ namespace wikz_escritorio
 
                             string descripcion = p[3];
 
-                            Publicacion pub = new Publicacion(nombre, id, imagen, descripcion);
+                            Publicacion pub = new Publicacion(nombre, id, imagen, descripcion, 0);
                             publicaciones.Add(pub);
 
                             linea = sr.ReadLine();
@@ -93,7 +99,7 @@ namespace wikz_escritorio
                 pbPub.Cursor = Cursors.Hand;
 
                 int margin = (int)(floPublicaciones.Width * 0.022);
-                pbPub.Margin = new Padding(margin, margin/2, margin, margin/2);    // left, top, right, bottom
+                pbPub.Margin = new Padding(margin, margin / 2, margin, margin / 2);    // left, top, right, bottom
 
 
                 //Ajustar la altura en funcion del tamaño de la ventana
@@ -173,41 +179,59 @@ namespace wikz_escritorio
                 }
             }
 
-            anchoCeldaColeccion = (floColecciones.ClientSize.Width - (1 + 1) * 10) / 1;
-
-            //Añadir el RecyclerView;
             foreach (Coleccion c in colecciones)
             {
                 RecyclerView rv = new RecyclerView(c);
-                rv.AjustarTamaño(anchoCeldaColeccion);
+
+                rv.Width = (int)(floColecciones.Width * 0.2);
+                rv.Height = (int)(floColecciones.Height * 0.8);
 
                 floColecciones.Controls.Add(rv);
             }
 
-            floColecciones.SizeChanged += (s, e) =>
-            {
-                foreach (Control ctrl in floColecciones.Controls)
-                {
-                    if (ctrl is RecyclerView rv)
-                    {
-                        rv.Width = floColecciones.ClientSize.Width - 20;
-                    }
-                }
-            };
-
-            floPublicaciones.ResumeLayout();
+            floColecciones.ResumeLayout();
         }
 
-        public void ajustarTamañoRecycler(Object sender, EventArgs e)
+        private void RedondearPnNavegador(int radio)
         {
-            int columnas = 1;
-            int espacio = 10;
+            GraphicsPath path = new GraphicsPath();
+            Rectangle rect = pnNavegador.ClientRectangle;
 
-            anchoCeldaColeccion = (floColecciones.ClientSize.Width - (columnas + 1) * espacio) / columnas;
+            int r = radio;
 
-            foreach (RecyclerView rv in floColecciones.Controls.OfType<RecyclerView>())
+            path.StartFigure();
+            path.AddArc(rect.X, rect.Y, r, r, 180, 90);
+            path.AddArc(rect.Right - r, rect.Y, r, r, 270, 90);
+            path.AddArc(rect.Right - r, rect.Bottom - r, r, r, 0, 90);
+            path.AddArc(rect.X, rect.Bottom - r, r, r, 90, 90);
+            path.CloseFigure();
+
+            pnNavegador.Region = new Region(path);
+        }
+
+        private void PnNavegador_Paint(object sender, PaintEventArgs e)
+        {
+            int radio = 22;
+
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            Rectangle rect = pnNavegador.ClientRectangle;
+            rect.Width -= 1;
+            rect.Height -= 1;
+
+            using (GraphicsPath path = new GraphicsPath())
             {
-                rv.AjustarTamaño(anchoCeldaColeccion);
+                path.AddArc(rect.X, rect.Y, radio, radio, 180, 90);
+                path.AddArc(rect.Right - radio, rect.Y, radio, radio, 270, 90);
+                path.AddArc(rect.Right - radio, rect.Bottom - radio, radio, radio, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - radio, radio, radio, 90, 90);
+                path.CloseFigure();
+
+                // Color del borde (elige uno sutil)
+                using (Pen pen = new Pen(Color.FromArgb(60, 255, 255, 255), 1))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
             }
         }
     }

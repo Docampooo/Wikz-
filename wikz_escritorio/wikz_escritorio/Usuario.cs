@@ -23,25 +23,7 @@ namespace wikz_escritorio
         public DateTime FechaCreacion { set; get; }
 
         private string descripcion;
-        public string Descripcion
-        {
-            set
-            {
-                if(value.Length > 30)
-                {
-                    throw new ArgumentException("Demasiada longitud de descripcion");
-                }
-                else
-                {
-                    descripcion = value;
-                }
-            }
-
-            get
-            {
-                return descripcion;
-            }
-        }
+        public string Descripcion { set; get; }
 
         private Image fotoPerfil;
         public Image FotoPerfil { set; get; }

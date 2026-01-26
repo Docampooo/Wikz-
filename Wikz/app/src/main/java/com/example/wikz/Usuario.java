@@ -6,43 +6,67 @@ import java.util.Date;
 
 public class Usuario {
 
-    public Usuario(String nombre, String pass, String correo, String descripcion, int fotoPerfil){
+    public Usuario(String nombre, String correo, String pass, String biografia, byte[] fotoPerfil) {
 
         setNommbre(nombre);
         setPass(pass);
         setCorreo(correo);
 
-        setDescripcion("");
-        setFotoPerfil(0);
+        setBiografia(biografia);
+        setFotoPerfil(fotoPerfil);
 
         setFechaCreacion(new Date());
     }
 
-    public Usuario(){
-        this("", "", "", "", 0);
+    public Usuario() {
+        this("", "", "", "", null);
     }
+
     private String nombre;
-    public void setNommbre(String nombre){
+
+    public void setNommbre(String nombre) {
         this.nombre = nombre;
     }
-    public String getNombre(){
+
+    public String getNombre() {
         return nombre;
     }
 
-    private  String pass;
-    public void setPass(String pass){
-        this.pass = pass;
-    }
-    public String getPass(){
-        return  pass;
+    private byte[] fotoPerfil;
+
+    public void setFotoPerfil(byte[] fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 
-    private  String correo;
-    public void setCorreo(String correo){
+    public byte[] getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    private String pass;
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    private String correo;
+
+    public void setCorreo(String correo) {
         this.correo = correo;
     }
-    public String getCorreo(){
-        return  correo;
+
+    public String getCorreo() {
+        return correo;
     }
 
     private Date fechaCreacion;
@@ -55,20 +79,14 @@ public class Usuario {
         return fechaCreacion;
     }
 
-    private String descripcion;
-    public void setDescripcion(String descripcion){
-        this.descripcion = descripcion;
+    private String biografia;
+
+    public void setBiografia(String biografia) {
+        this.biografia = biografia;
     }
 
-    public String getDescripcion(){
-        return descripcion;
-    }
-
-    private int fotoPerfil;
-    public void setFotoPerfil(int foto){
-        this.fotoPerfil = foto;
-    }
-    public int getFotoPerfil(){
-        return  fotoPerfil;
+    public String getBiografia() {
+        return biografia;
     }
 }
+

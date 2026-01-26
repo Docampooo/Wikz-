@@ -21,15 +21,24 @@ namespace wikz_escritorio
         private Image fotoPublicacion;
         public Image FotoPublicacion { set; get; }
 
-        public Publicacion(string nombre, int id, Image fotoPublicacion, string descripcion)
+        private DateTime fechaCreacion;
+        public DateTime FechaCreacion { set; get; }
+
+        private int likes;
+        public int Likes { set; get; }
+       
+
+        public Publicacion(string nombre, int id, Image fotoPublicacion, string descripcion, int likes)
         {
             Nombre = nombre;
             Id = id;
             FotoPublicacion = fotoPublicacion;
             Descripcion = descripcion;
+            FechaCreacion = DateTime.Now;
+            Likes = likes;
         }
 
-        public Publicacion() : this("", 0, null, "") { }
+        public Publicacion() : this("", 0, null, "", 0) { }
 
         
     }

@@ -119,7 +119,7 @@
             this.btnSignUp.FlatAppearance.BorderSize = 0;
             this.btnSignUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSignUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignUp.Location = new System.Drawing.Point(92, 560);
+            this.btnSignUp.Location = new System.Drawing.Point(93, 594);
             this.btnSignUp.Name = "btnSignUp";
             this.btnSignUp.Size = new System.Drawing.Size(389, 30);
             this.btnSignUp.TabIndex = 10;
@@ -158,7 +158,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::wikz_escritorio.Properties.Resources.registro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(582, 703);
+            this.ClientSize = new System.Drawing.Size(582, 753);
             this.Controls.Add(this.lblAñadirCorreo);
             this.Controls.Add(this.txtAñadirCorreo);
             this.Controls.Add(this.lblAñadirRepetirPass);

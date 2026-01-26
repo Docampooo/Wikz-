@@ -143,9 +143,29 @@ namespace wikz_escritorio.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_guardarMorado {
+            get {
+                object obj = ResourceManager.GetObject("ic_guardarMorado", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_inicio {
             get {
                 object obj = ResourceManager.GetObject("ic_inicio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_likesMorado {
+            get {
+                object obj = ResourceManager.GetObject("ic_likesMorado", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,6 +186,26 @@ namespace wikz_escritorio.Properties {
         internal static System.Drawing.Bitmap ic_perfil {
             get {
                 object obj = ResourceManager.GetObject("ic_perfil", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_perfilMorado {
+            get {
+                object obj = ResourceManager.GetObject("ic_perfilMorado", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_publicarMorado {
+            get {
+                object obj = ResourceManager.GetObject("ic_publicarMorado", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
