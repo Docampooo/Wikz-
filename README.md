@@ -20,3 +20,6 @@ Grandes avances en el desarrollo de la aplicacion de escritorio, se han desarrol
 
 22/01/2026
 En escritorio, se ha añadido la primera versión de los recyclers views, tanto los de las colecciones como los de publicaciones, he encontrado varias fuentes y formas de decorarlos pero aón no son funcionales
+
+26/01/2026
+Grandes avances en el proyecto, se ha creado la base de datos y la API para gestionar todo el flujo dentro del proyecto que se va a utilizar tanto en móviles, escritorio y web, los cambios aun no se han probado pero es un gran avance
