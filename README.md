@@ -15,8 +15,11 @@ Añadido de un BottomNavigationBar en moviles que aporta un gran avance al proye
 20/01/2026
 Se han establecido nuevas clases y modificaciones en la aplicacion de móvil, corrección de errores, manejo de excepciones y el añadido del fragmento de exploración que permite la interacción entre usuarios
 
-21/01/2026
+26/01/2026
 Grandes avances en el desarrollo de la aplicacion de escritorio, se han desarrollado las clases principales y me he empezado a pelear con la creación de una clase de recyclerView hecho en C#
+
+27/1/2026
+La base de datos ya está operatica, bien conectada y la API en funcionamiento, se han añadido a esta última las primeras funciones para gestionar la base de datos
 
 22/01/2026
 En escritorio, se ha añadido la primera versión de los recyclers views, tanto los de las colecciones como los de publicaciones, he encontrado varias fuentes y formas de decorarlos pero aón no son funcionales
