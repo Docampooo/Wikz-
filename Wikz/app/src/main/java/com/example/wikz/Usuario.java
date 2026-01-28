@@ -1,30 +1,34 @@
 package com.example.wikz;
 
+import android.graphics.Bitmap;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class Usuario {
+public class Usuario implements Serializable {
 
-    public Usuario(String nombre, String correo, String pass, String biografia, byte[] fotoPerfil) {
+    public Usuario(String nombre, String correo, String pass, String biografia, Bitmap fotoPerfil, Date fechaCreacion) {
 
-        setNommbre(nombre);
+        setNombre(nombre);
         setPass(pass);
-        setCorreo(correo);
+        setEmail(correo);
 
         setBiografia(biografia);
         setFotoPerfil(fotoPerfil);
 
-        setFechaCreacion(new Date());
+        this.fechaCreacion = fechaCreacion != null ? fechaCreacion : new Date();
+
     }
 
     public Usuario() {
-        this("", "", "", "", null);
+        this("", "", "", "", null, new Date());
     }
 
     private String nombre;
 
-    public void setNommbre(String nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -32,18 +36,11 @@ public class Usuario {
         return nombre;
     }
 
-    private byte[] fotoPerfil;
-
-    public void setFotoPerfil(byte[] fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
-    }
-
-    public byte[] getFotoPerfil() {
-        return fotoPerfil;
-    }
-
-
     private int id;
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;
@@ -59,14 +56,14 @@ public class Usuario {
         return pass;
     }
 
-    private String correo;
+    private String email;
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
     private Date fechaCreacion;
@@ -88,5 +85,20 @@ public class Usuario {
     public String getBiografia() {
         return biografia;
     }
+
+    private Bitmap fotoPerfil;
+
+    public Bitmap getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(Bitmap fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
+    }
+
+    public String toString() {
+        return "Usuario{id=" + id + ", nombre=" + nombre + ", email=" + email + "}";
+    }
+
 }
 

@@ -5,78 +5,76 @@ import java.util.Date;
 
 public class Publicacion {
 
-    public Publicacion(int id, int id_usuario, String titulo, byte[] imagen, String descripcion) {
-
-        setId(id);
-        setIdUsuario(id_usuario);
-        setTitulo(titulo);
-        setImagen(imagen);
-        setDescripcion(descripcion);
-
-        setFechaCreacion(new Date());
+    public Publicacion(int id_usuario, String titulo, String imagenBase64, String descripcion, Date fechaCreacion) {
+        this.id_usuario = id_usuario;
+        this.titulo = titulo != null ? titulo : "";
+        this.imagenBase64 = imagenBase64;
+        this.descripcion = descripcion != null ? descripcion : "";
+        this.fechaCreacion = fechaCreacion != null ? fechaCreacion : new Date();
     }
 
-    public Publicacion(){
-        this(0, 0, "", null, "");
+    public Publicacion() {
+        this(0, "", null, "", new Date());
     }
 
+    private int id;
+    private int id_usuario;
     private String titulo;
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
     private String descripcion;
+    private String imagenBase64;
+    private Date fechaCreacion;
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getDescripcion() {
-        return this.descripcion;
-    }
-
-    private int id; // Id de la colección
-
-    public void setId(int id){
-        this.id = id;
-    }
-
+    // Getters y setters
     public int getId() {
         return id;
     }
 
-    private int id_usuario;
-
-    public void setIdUsuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdUsuario() {
         return id_usuario;
     }
 
-    private byte[] imagen; // Imagen de la coleccion
-
-    public void setImagen(byte[] imagen) {
-        this.imagen = imagen;
+    public void setIdUsuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
-    public byte[] getImagen() {
-        return imagen;
+    public String getTitulo() {
+        return titulo;
     }
 
-    private Date creacionPublicacion;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.creacionPublicacion = fechaCreacion;
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getImagenBase64() {
+        return imagenBase64;
+    }
+
+    public void setImagenBase64(String imagenBase64) {
+        this.imagenBase64 = imagenBase64;
     }
 
     public Date getFechaCreacion() {
-        return creacionPublicacion;
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    @Override
+    public String toString() {
+        return "Publicacion{id=" + id + ", id_usuario=" + id_usuario + ", titulo=" + titulo + "}";
     }
 }

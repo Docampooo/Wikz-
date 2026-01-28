@@ -1,5 +1,6 @@
 package com.example.wikz;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -12,11 +13,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuPrincipal extends AppCompatActivity {
 
+
+    Intent intentUsuario;
     BottomNavigationView navMenu;
 
-    fragment_home frHome = new fragment_home();
-
-    fragment_explorar frMsg = new fragment_explorar();
+    fragment_home frHome;
+    fragment_explorar frExp;
 
     fragment_perfil frPerf = new fragment_perfil();
 
@@ -32,7 +34,23 @@ public class MenuPrincipal extends AppCompatActivity {
 
         });
 
+        intentUsuario = getIntent();
+
+        Usuario u = (Usuario)intentUsuario.getSerializableExtra("usuario");
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", u);
+
+
         navMenu = findViewById(R.id.navMenu);
+
+        frHome = new fragment_home();
+        frHome.setArguments(bundle);
+
+        frExp = new fragment_explorar();
+        frHome.setArguments(bundle);
+
+        //seguir
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -57,7 +75,7 @@ public class MenuPrincipal extends AppCompatActivity {
             }else if( id == R.id.mn_explorar){
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, frMsg)
+                        .replace(R.id.fragment_container, frExp)
                         .commit();
                 return true;
 

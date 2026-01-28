@@ -4,14 +4,36 @@ import java.util.ArrayList;
 
 public class Coleccion {
 
-     public Coleccion(int id_usuario, String nombre, int elementos, byte[] imagen) {
-        setTitulo(nombre);
+    public Coleccion(int idUsuario, String titulo, ArrayList<Publicacion> elementos, String imagenBase64) {
+
+        setIdUsuario(idUsuario);
+        setTitulo(titulo);
         setElementos(elementos);
-        setImagen(imagen);
+        setImagenBase64(imagenBase64);
     }
 
     public Coleccion() {
-        this(0, "", 0, null);
+        this(0, "", new ArrayList<Publicacion>(), null);
+    }
+
+    private int id;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    private int idUsuario;
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
     private String titulo;
@@ -24,39 +46,31 @@ public class Coleccion {
         return titulo;
     }
 
-    private int id;
+    private ArrayList<Publicacion> elementos;
 
-    public int getId() {
-        return id;
-    }
-
-    private int id_usuario;
-
-    public void setIdUsuario(int id_usuario){
-        this.id_usuario = id_usuario;
-    }
-
-    public int getIdUsuario(){
-        return id_usuario;
-    }
-
-    private int elementos;
-
-    public void setElementos(int elementos) {
+    public void setElementos(ArrayList<Publicacion> elementos) {
         this.elementos = elementos;
     }
 
-    public int getElementos() {
+    public ArrayList<Publicacion> getElementos() {
         return elementos;
     }
 
-    private byte[] imagen;
+    private String imagenBase64;
 
-    public void setImagen(byte[] imagen) {
-        this.imagen = imagen;
+    public void setImagenBase64(String imagenBase64) {
+        this.imagenBase64 = imagenBase64;
     }
 
-    public byte[] getImagen() {
-        return imagen;
+    public String getImagenBase64() {
+        return imagenBase64;
+    }
+
+    @Override
+    public String toString() {
+        return "Coleccion{id=" + id +
+                ", titulo=" + titulo +
+                ", elementos=" + elementos.size() +
+                ", idUsuario=" + idUsuario + "}";
     }
 }

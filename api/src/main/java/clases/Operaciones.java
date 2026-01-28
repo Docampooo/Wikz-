@@ -18,6 +18,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.util.Base64;
 
 @Path("/operaciones")
 public class Operaciones {
@@ -40,6 +41,84 @@ public class Operaciones {
     private static final String user = "root";
     private static final String pass = "";
 
+    // Helpers
+    private Usuario mapUsuario(ResultSet rs) throws SQLException {
+        Usuario u = new Usuario();
+        u.setId(rs.getInt("id"));
+        u.setNombre(rs.getString("nombre"));
+        u.setEmail(rs.getString("email"));
+        u.setPass(rs.getString("pass"));
+        u.setBiografia(rs.getString("bio"));
+        byte[] foto = rs.getBytes("foto_perfil");
+        if (foto != null)
+            u.setFotoPerfilBase64(Base64.getEncoder().encodeToString(foto));
+
+        u.setFechaCreacion(rs.getTimestamp("creacion"));
+        return u;
+    }
+
+    private Publicacion mapPublicacion(ResultSet rs) throws SQLException {
+        Publicacion p = new Publicacion();
+        p.setId(rs.getInt("id"));
+        p.setIdUsuario(rs.getInt("id_usuario"));
+        p.setTitulo(rs.getString("titulo"));
+        p.setDescripcion(rs.getString("descripcion"));
+
+        byte[] img = rs.getBytes("imagen");
+        if (img != null)
+            p.setImagenBase64(Base64.getEncoder().encodeToString(img));
+
+        p.setFechaCreacion(rs.getTimestamp("creacion"));
+        return p;
+    }
+
+    public ArrayList<Publicacion> getPublicacionesDeColeccion(int idColeccion) {
+
+        ArrayList<Publicacion> publis = new ArrayList<>();
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+            try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
+
+                String sql = "SELECT p.* FROM publicaciones p JOIN guardados g ON p.id = g.id_publicacion WHERE g.id_coleccion = ?";
+
+                PreparedStatement ps = conexion.prepareStatement(sql);
+                ps.setInt(1, idColeccion);
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    publis.add(mapPublicacion(rs));
+                }
+
+            } catch (Exception e) {
+
+            }
+
+        } catch (Exception e) {
+            return null;
+
+        }
+        return publis;
+    }
+
+    private Coleccion mapColeccion(ResultSet rs) throws SQLException {
+        Coleccion c = new Coleccion();
+        c.setId(rs.getInt("id"));
+        c.setIdUsuario(rs.getInt("id_usuario"));
+        c.setTitulo(rs.getString("titulo"));
+
+        byte[] img = rs.getBytes("imagen");
+        if (img != null) {
+            c.setImagenBase64(
+                    Base64.getEncoder().encodeToString(img));
+        }
+
+        c.setElementos(new ArrayList<>());
+
+        return c;
+    }
+
     // Añadir un usuario a la base de datos
     @POST
     @Path("/addUsuario")
@@ -47,10 +126,30 @@ public class Operaciones {
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response addUsuario(Usuario u) {
 
+        if (u == null || u.getNombre() == null || u.getEmail() == null || u.getPass() == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Datos de usuario incompletos")
+                    .build();
+        }
+
         try {
             Class.forName("org.mariadb.jdbc.Driver");
 
             try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
+
+                String checkSql = "SELECT 1 FROM usuarios WHERE email = ? OR nombre = ?";
+                PreparedStatement checkPs = conexion.prepareStatement(checkSql);
+                checkPs.setString(1, u.getEmail());
+                checkPs.setString(2, u.getNombre());
+
+                ResultSet rs = checkPs.executeQuery();
+
+                // si hay algun resultado, el usuario ya existe
+                if (rs.next()) {
+                    return Response.status(Response.Status.CONFLICT)
+                            .entity("Ya existe un usuario con ese nombre o correo")
+                            .build();
+                }
 
                 String consulta = "INSERT INTO usuarios (nombre, email, pass, bio, foto_perfil) VALUES(?, ?, ?, ?, ?)";
 
@@ -64,7 +163,13 @@ public class Operaciones {
                 ps.setString(3, hash);
 
                 ps.setString(4, u.getBiografia());
-                ps.setBytes(5, u.getFotoPerfil());
+
+                byte[] foto = null;
+                if (u.getFotoPerfilBase64() != null) {
+                    foto = Base64.getDecoder().decode(u.getFotoPerfilBase64());
+                }
+
+                ps.setBytes(5, foto);
 
                 int filasAfectadas = ps.executeUpdate();
 
@@ -105,7 +210,12 @@ public class Operaciones {
                 ps.setInt(1, p.getIdUsuario());
                 ps.setString(2, p.getTitulo());
 
-                ps.setBytes(3, p.getImagen());
+                byte[] foto = null;
+                if (p.getImagenBase64() != null) {
+                    foto = Base64.getDecoder().decode(p.getImagenBase64());
+                }
+
+                ps.setBytes(3, foto);
                 ps.setString(4, p.getDescripcion());
 
                 int filasAfectadas = ps.executeUpdate();
@@ -125,60 +235,6 @@ public class Operaciones {
 
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en los drivers").build();
-        }
-    }
-
-    // Obtener todos los usuarios
-    // ruta: http://localhost:8080/api/wikz/operaciones/getUsuarios
-    @GET
-    @Path("/getUsuarios")
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response getUsuarios() {
-
-        ArrayList<Usuario> usuarios = new ArrayList<>();
-
-        try {
-            Class.forName("org.mariadb.jdbc.Driver");
-
-            try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
-
-                String consulta = "SELECT * FROM usuarios";
-
-                PreparedStatement ps = conexion.prepareStatement(consulta);
-
-                ResultSet rs = ps.executeQuery();
-
-                while (rs.next()) {
-
-                    Usuario u = new Usuario();
-
-                    u.setId(rs.getInt("id"));
-                    u.setNommbre(rs.getString("nombre"));
-                    u.setEmail(rs.getString("email"));
-                    u.setPass(rs.getString("pass"));
-                    u.setBiografia(rs.getString("bio"));
-                    u.setFotoPerfil(rs.getBytes("foto_perfil"));
-                    u.setFechaCreacion(rs.getDate("creacion"));
-
-                    usuarios.add(u);
-                }
-
-                if (usuarios.size() == 0) {
-                    return Response.status(Response.Status.NOT_FOUND).entity("No se han encontrado usuarios").build();
-
-                } else {
-
-                    return Response.ok(usuarios).build();
-                }
-
-            } catch (Exception e) {
-                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en la base de datos")
-                        .build();
-
-            }
-
-        } catch (Exception e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en el Driver").build();
         }
     }
 
@@ -210,13 +266,7 @@ public class Operaciones {
                             .build();
                 }
 
-                u.setId(id);
-                u.setNommbre(rs.getString("nombre"));
-                u.setEmail(rs.getString("email"));
-                u.setPass(rs.getString("pass"));
-                u.setBiografia(rs.getString("bio"));
-                u.setFotoPerfil(rs.getBytes("foto_perfil"));
-                u.setFechaCreacion(rs.getDate("creacion"));
+                u = mapUsuario(rs);
 
                 return Response.ok(u).build();
 
@@ -232,13 +282,6 @@ public class Operaciones {
     }
 
     @GET
-    @Path("/gethola")
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response gethola() {
-        return Response.ok("hola").build();
-    }
-
-    @GET
     @Path("/getUsuarioNombre")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response getUsuarioNombre(@QueryParam("nombre") String nombre) {
@@ -250,7 +293,7 @@ public class Operaciones {
 
             try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
 
-                String consulta = "SELECT * FROM usuarios WHERE nombre LIKE ?";
+                String consulta = "SELECT * FROM usuarios WHERE nombre = ?";
 
                 PreparedStatement ps = conexion.prepareStatement(consulta);
 
@@ -264,15 +307,99 @@ public class Operaciones {
                             .build();
                 }
 
-                u.setId(rs.getInt("id"));
-                u.setNommbre(nombre);
-                u.setEmail(rs.getString("email"));
-                u.setPass(rs.getString("pass"));
-                u.setBiografia(rs.getString("bio"));
-                u.setFotoPerfil(rs.getBytes("foto_perfil"));
-                u.setFechaCreacion(rs.getDate("creacion"));
+                u = mapUsuario(rs);
 
                 return Response.ok(u).build();
+
+            } catch (Exception e) {
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en la base de datos")
+                        .build();
+
+            }
+
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en el Driver").build();
+        }
+    }
+
+    @GET
+    @Path("/getUsuarioNombrePass")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getUsuarioNombrePass(@QueryParam("nombreUs") String nombreUs, @QueryParam("passUs") String passUs) {
+
+        Usuario u = new Usuario();
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+            String hash = hashPassword(passUs);
+
+            try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
+
+                String consulta = "SELECT * FROM usuarios WHERE nombre = ? AND  pass = ?";
+
+                PreparedStatement ps = conexion.prepareStatement(consulta);
+
+                ps.setString(1, nombreUs);
+                ps.setString(2, hash);
+
+                ResultSet rs = ps.executeQuery();
+
+                if (!rs.next()) {
+                    return Response.status(Response.Status.NOT_FOUND)
+                            .entity("Usuario no encontrado")
+                            .build();
+                }
+
+                u = mapUsuario(rs);
+
+                return Response.ok(u).build();
+
+            } catch (Exception e) {
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en la base de datos")
+                        .build();
+
+            }
+
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en el Driver").build();
+        }
+    }
+
+    // Obtener todos los usuarios
+    // ruta: http://localhost:8080/api/wikz/operaciones/getUsuarios
+    @GET
+    @Path("/getUsuarios")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getUsuarios() {
+
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+            try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
+
+                String consulta = "SELECT * FROM usuarios";
+
+                PreparedStatement ps = conexion.prepareStatement(consulta);
+
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+
+                    Usuario u = mapUsuario(rs);
+
+                    usuarios.add(u);
+                }
+
+                if (usuarios.size() == 0) {
+                    return Response.status(Response.Status.NOT_FOUND).entity("No se han encontrado usuarios").build();
+
+                } else {
+
+                    return Response.ok(usuarios).build();
+                }
 
             } catch (Exception e) {
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en la base de datos")
@@ -307,10 +434,7 @@ public class Operaciones {
 
                 while (rs.next()) {
 
-                    Publicacion p = new Publicacion(rs.getInt("id"), rs.getInt("id_usuario"), rs.getString("titulo"),
-                            rs.getBytes("imagen"), rs.getString("descripcion"));
-
-                    p.setFechaCreacion(rs.getDate("creacion"));
+                    Publicacion p = mapPublicacion(rs);
 
                     publis.add(p);
                 }
@@ -363,12 +487,7 @@ public class Operaciones {
                             .build();
                 }
 
-                p.setId(rs.getInt("id"));
-                p.setIdUsuario(rs.getInt("id_usuario"));
-                p.setTitulo(rs.getString("titulo"));
-                p.setDescripcion(rs.getString("descripcion"));
-                p.setImagen(rs.getBytes("imagen"));
-                p.setFechaCreacion(rs.getDate("creacion"));
+                p = mapPublicacion(rs);
 
                 return Response.ok(p).build();
 
@@ -383,45 +502,93 @@ public class Operaciones {
         }
     }
 
-    // Obtener todas las publicaciones
     // ruta: http://localhost:8080/api/wikz/operaciones/getPublicaciones
     @GET
-    @Path("/getPublicaciones")
+    @Path("/getPublicacionesUsuario")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response getPublicacionesUsuario(@QueryParam("idUsuario") int idUsuario) {
 
         ArrayList<Publicacion> publis = new ArrayList<>();
 
-        //seguir aqui !!!!!
         try {
             Class.forName("org.mariadb.jdbc.Driver");
 
             try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
 
-                String consulta = "SELECT * FROM publicaciones where id_usuario = ?";
+                String consulta = "SELECT * FROM publicaciones WHERE id_usuario = ?";
 
                 PreparedStatement ps = conexion.prepareStatement(consulta);
 
                 ps.setInt(1, idUsuario);
 
-                ResultSet rs = ps.executeQuery();
+                if (idUsuario > 0) {
+                    ResultSet rs = ps.executeQuery();
 
-                while (rs.next()) {
+                    while (rs.next()) {
 
-                    Publicacion p = new Publicacion(rs.getInt("id"), rs.getInt("id_usuario"), rs.getString("titulo"),
-                            rs.getBytes("imagen"), rs.getString("descripcion"));
+                        Publicacion p = mapPublicacion(rs);
 
-                    p.setFechaCreacion(rs.getDate("creacion"));
-
-                    publis.add(p);
+                        publis.add(p);
+                    }
                 }
 
                 if (publis.size() == 0) {
-                    return Response.status(Response.Status.NOT_FOUND).entity("No se han encontrado publicaciones")
+                    return Response.status(Response.Status.NOT_FOUND)
+                            .entity("No se han encontrado publicaciones del usuario")
                             .build();
 
                 } else {
                     return Response.ok(publis).build();
+
+                }
+
+            } catch (Exception e) {
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en la base de datos")
+                        .build();
+
+            }
+
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en el Driver").build();
+        }
+    }
+
+    @GET
+    @Path("/getColeccionesUsuario")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getColeccionesUsuario(@QueryParam("idUsuario") int idUsuario) {
+
+        ArrayList<Coleccion> colec = new ArrayList<>();
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+            try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
+
+                String consulta = "SELECT * FROM colecciones WHERE id_usuario = ?";
+
+                PreparedStatement ps = conexion.prepareStatement(consulta);
+
+                ps.setInt(1, idUsuario);
+
+                if (idUsuario > 0) {
+                    ResultSet rs = ps.executeQuery();
+
+                    while (rs.next()) {
+
+                        Coleccion c = mapColeccion(rs);
+
+                        colec.add(c);
+                    }
+                }
+
+                if (colec.size() == 0) {
+                    return Response.status(Response.Status.NOT_FOUND)
+                            .entity("No se han encontrado colecciones del usuario")
+                            .build();
+
+                } else {
+                    return Response.ok(colec).build();
 
                 }
 

@@ -4,25 +4,26 @@ import java.util.Date;
 
 public class Usuario {
 
-    public Usuario(String nombre, String correo, String pass, String biografia, byte[] fotoPerfil) {
+    public Usuario(String nombre, String correo, String pass, String biografia, String fotoPerfil, Date fechaCreacion) {
 
-        setNommbre(nombre);
+        setNombre(nombre);
         setPass(pass);
         setEmail(correo);
 
         setBiografia(biografia);
-        setFotoPerfil(fotoPerfil);
+        setFotoPerfilBase64(fotoPerfil);
 
-        setFechaCreacion(new Date());
+        this.fechaCreacion = fechaCreacion != null ? fechaCreacion : new Date();
+
     }
 
     public Usuario() {
-        this("", "", "", "", null);
+        this("", "", "", "", null, new Date());
     }
 
     private String nombre;
 
-    public void setNommbre(String nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -30,22 +31,12 @@ public class Usuario {
         return nombre;
     }
 
-    private byte[] fotoPerfil;
-
-    public void setFotoPerfil(byte[] fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
-    }
-
-    public byte[] getFotoPerfil() {
-        return fotoPerfil;
-    }
-
     private int id;
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -89,4 +80,19 @@ public class Usuario {
     public String getBiografia() {
         return biografia;
     }
+
+    private String fotoPerfilBase64;
+
+    public String getFotoPerfilBase64() {
+        return fotoPerfilBase64;
+    }
+
+    public void setFotoPerfilBase64(String fotoPerfil) {
+        this.fotoPerfilBase64 = fotoPerfil;
+    }
+
+    public String toString() {
+        return "Usuario{id=" + id + ", nombre=" + nombre + ", email=" + email + "}";
+    }
+
 }

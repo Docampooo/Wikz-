@@ -1,81 +1,79 @@
 package com.example.wikz;
 
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
 
 public class Coleccion {
 
-    private String nombre; //Nombre de la coleccion
+    public Coleccion(int idUsuario, String titulo, ArrayList<Publicacion> elementos, Bitmap imagen) {
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-
-    private int id; //Id de la colección
-    public void setId(int id) {
-        this.id = id;
-    }
-    public int getId() {
-        return  id;
-    }
-    private int elementos; //total de elementos de la coleccion
-    public void setElementos(int elementos) {
-        this.elementos = elementos;
-    }
-    public int getElementos() {
-        return  elementos;
-    }
-    private int imagen; //Imagen de la coleccion
-    public void setImagen(int imagen) {
-        this.imagen = imagen;
-    }
-    public int getImagen() {
-        return  imagen;
-    }
-
-    public Coleccion(String nombre, int id, int elementos, int imagen){
-        setNombre(nombre);
-        setId(id);
+        setIdUsuario(idUsuario);
+        setTitulo(titulo);
         setElementos(elementos);
         setImagen(imagen);
     }
 
-    public Coleccion(){
-        this("", 0, 0, 0);
+    public Coleccion() {
+        this(0, "", new ArrayList<Publicacion>(), null);
     }
 
-    public static ArrayList<Coleccion> obtenerColecciones(){
+    private int id;
 
-        ArrayList<Coleccion> colecciones = new ArrayList<>();
-
-        //Añadir unas colecciones para probar el programa
-        colecciones.add(new Coleccion("lvlRandom", 0, 0, R.drawable.lain));
-        colecciones.add(new Coleccion("MetalVibes", 1, 0, R.drawable.chino));
-        colecciones.add(new Coleccion("luv:3", 2, 0, R.drawable.beso));
-        colecciones.add(new Coleccion("trivs", 3, 0, R.drawable.cruz));
-        colecciones.add(new Coleccion("tunning!", 4, 0, R.drawable.zapas_korn));
-        colecciones.add(new Coleccion("Editzz", 5, 0, R.drawable.evanescense));
-        colecciones.add(new Coleccion("HardPics", 6, 0, R.drawable.minecraft));
-
-        return  colecciones;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public static ArrayList<Coleccion> obtenerTematicas(){
+    public int getId() {
+        return id;
+    }
 
-        ArrayList<Coleccion> tematicas = new ArrayList<>();
+    private int idUsuario;
 
-        //Añadir unas tematicas para probar el programa
-        tematicas.add(new Coleccion("NuMetal", 0, 0,R.drawable.numetal));
-        tematicas.add(new Coleccion("Punk", 1,  0,R.drawable.punk));
-        tematicas.add(new Coleccion("Rock", 2, 0,R.drawable.rock));
-        tematicas.add(new Coleccion("Hippie", 3, 0,R.drawable.hippie));
-        tematicas.add(new Coleccion("HyperPop", 4, 0,R.drawable.hyperpop));
-        tematicas.add(new Coleccion("HeavyMetal", 5, 0,R.drawable.heavymetal));
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
-        return  tematicas;
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    private String titulo;
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    private ArrayList<Publicacion> elementos;
+
+    public void setElementos(ArrayList<Publicacion> elementos) {
+        this.elementos = elementos;
+    }
+
+    public ArrayList<Publicacion> getElementos() {
+        return elementos;
+    }
+
+    private Bitmap imagenBase64;
+
+    public void setImagen(Bitmap imagenBase64) {
+        this.imagenBase64 = imagenBase64;
+    }
+
+    public Bitmap getImagen() {
+        return imagenBase64;
+    }
+
+    @Override
+    public String toString() {
+        return "Coleccion{id=" + id +
+                ", titulo=" + titulo +
+                ", elementos=" + elementos.size() +
+                ", idUsuario=" + idUsuario + "}";
     }
 }
-
 

@@ -1,5 +1,6 @@
 package com.example.wikz;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import android.util.Patterns;
 
 public class AnadirUsuario extends AppCompatActivity {
 
+    Api api;
+
     EditText txtRegistrarNombre;
     EditText txtRegistrarPass;
     EditText txtRepetirPass;
@@ -34,7 +37,8 @@ public class AnadirUsuario extends AppCompatActivity {
 
     String correoUsuario;
 
-    boolean aceptar = true;
+    boolean añadido = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,7 @@ public class AnadirUsuario extends AppCompatActivity {
         confirmarPass = "";
         correoUsuario = "";
 
+        api = new Api();
 
         btnRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,10 +106,8 @@ public class AnadirUsuario extends AppCompatActivity {
                     return;
                 }
 
-                // crear usuario
-                Usuario usuario = new Usuario(nombreUsuario, pass, correoUsuario, "", null);
-
                 //insertar usuario en la base de datos
+                api.addUsuario(AnadirUsuario.this ,nombreUsuario, correoUsuario, pass, "", null);
 
                 Intent intentPrincipal = new Intent(AnadirUsuario.this, MenuPrincipal.class);
                 startActivity(intentPrincipal);

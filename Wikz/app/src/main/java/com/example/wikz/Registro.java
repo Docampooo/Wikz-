@@ -18,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Registro extends AppCompatActivity {
 
-
+    Api api;
     EditText txtNombreUsuario;
     EditText txtPassUsuario;
 
@@ -50,6 +50,7 @@ public class Registro extends AppCompatActivity {
         //datos Usuario
         nombreUsuario = "";
         pass = "";
+        api = new Api();
 
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,37 +59,41 @@ public class Registro extends AppCompatActivity {
                 nombreUsuario = txtNombreUsuario.getText().toString();
                 pass = txtPassUsuario.getText().toString();
 
-                Usuario u = new Usuario(nombreUsuario, pass, "", "", null);
+                new Thread(() -> {
 
-                //Introducir las condiciones de la consulta cuando sea necesario
-                if(true){
+                    Usuario u = api.getUsuarioNombrePass(Registro.this, nombreUsuario, pass);
 
-                    //Mandar Intent a la página principal
-                    Intent intentPrincipal = new Intent(Registro.this, MenuPrincipal.class);
+                    runOnUiThread(() -> {
 
-                    startActivity(intentPrincipal);
+                        if (u != null) {
+                            // LOGIN OK
+                            Intent intentPrincipal = new Intent(Registro.this, MenuPrincipal.class);
+                            intentPrincipal.putExtra("usuario", u);
+                            startActivity(intentPrincipal);
 
-                }else{
-                    nombreUsuario = "";
-                    pass = "";
+                        } else {
+                            // LOGIN ERROR
+                            txtNombreUsuario.setText("");
+                            txtPassUsuario.setText("");
 
-                    txtNombreUsuario.setText("");
-                    txtPassUsuario.setText("");
+                            Toast toast = Toast.makeText(
+                                    getApplicationContext(),
+                                    "El usuario y la contraseña no coinciden",
+                                    Toast.LENGTH_SHORT
+                            );
 
-                    //Lanzar mensaje de Error
-                    Toast toast = Toast.makeText(getApplicationContext(), "El usuario y la contraseña no coinciden!", Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            View view = toast.getView();
+                            view.setBackgroundResource(R.drawable.toast_background);
 
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    // Aplicar fondo morado
-                    View view = toast.getView();
-                    view.setBackgroundResource(R.drawable.toast_background);
+                            TextView text = view.findViewById(android.R.id.message);
+                            text.setTextColor(Color.WHITE);
 
-                    // Cambiar color del texto a blanco para que contraste
-                    TextView text = view.findViewById(android.R.id.message);
-                    text.setTextColor(Color.WHITE);
+                            toast.show();
+                        }
+                    });
 
-                    toast.show();
-                }
+                }).start();
             }
         });
 
