@@ -29,3 +29,6 @@ Grandes avances en el proyecto, se ha creado la base de datos y la API para gest
 
 28/01/2026
 muchas funciones y cambios en la base de datos de Wikz, la api también se ha actualizado y se ha empezado a implementar en el desarrollo movil
+
+29/01/206
+Validaciones de usuarios ya establecidas, usuarios añadidos correctamente y inserción en la página principal de la red social en móviles
