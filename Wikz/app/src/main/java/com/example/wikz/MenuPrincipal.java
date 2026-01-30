@@ -20,7 +20,7 @@ public class MenuPrincipal extends AppCompatActivity {
     fragment_home frHome;
     fragment_explorar frExp;
 
-    fragment_perfil frPerf = new fragment_perfil();
+    fragment_perfil frPerf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +48,10 @@ public class MenuPrincipal extends AppCompatActivity {
         frHome.setArguments(bundle);
 
         frExp = new fragment_explorar();
-        frHome.setArguments(bundle);
+        frExp.setArguments(bundle);
 
-        //seguir
+        frPerf = new fragment_perfil();
+        frPerf.setArguments(bundle);
 
         getSupportFragmentManager()
                 .beginTransaction()

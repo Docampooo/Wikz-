@@ -59,19 +59,26 @@ public class Registro extends AppCompatActivity {
                 nombreUsuario = txtNombreUsuario.getText().toString();
                 pass = txtPassUsuario.getText().toString();
 
-                new Thread(() -> {
+                if(nombreUsuario.isEmpty() || pass.isEmpty()) {
+                    Toast.makeText(Registro.this, "Por favor, escribe tu nombre y contraseña", Toast.LENGTH_SHORT).show();
+                    
+                }else{
+                    new Thread(() -> {
+                        System.out.println("Usuario fallo");
+                        Usuario u = api.getUsuarioNombrePass(Registro.this, nombreUsuario, pass);
 
-                    Usuario u = api.getUsuarioNombrePass(Registro.this, nombreUsuario, pass);
 
-                    runOnUiThread(() -> {
+                        runOnUiThread(() -> {
 
-                        if (u != null) {
-                            // LOGIN OK
-                            Intent intentPrincipal = new Intent(Registro.this, MenuPrincipal.class);
-                            intentPrincipal.putExtra("usuario", u);
-                            startActivity(intentPrincipal);
+                            System.out.println("inicio fallo");
 
-                        } else {
+                            if (u != null) {
+                                // LOGIN OK
+                                Intent intentPrincipal = new Intent(Registro.this, MenuPrincipal.class);
+                                intentPrincipal.putExtra("usuario", u);
+                                startActivity(intentPrincipal);
+
+                            }
                             // LOGIN ERROR
                             txtNombreUsuario.setText("");
                             txtPassUsuario.setText("");
@@ -88,12 +95,10 @@ public class Registro extends AppCompatActivity {
 
                             TextView text = view.findViewById(android.R.id.message);
                             text.setTextColor(Color.WHITE);
-
                             toast.show();
-                        }
-                    });
-
-                }).start();
+                        });
+                    }).start();
+                }
             }
         });
 

@@ -366,6 +366,45 @@ public class Operaciones {
         }
     }
 
+    @GET
+    @Path("/getUsuarioEmail")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getUsuarioEmail(@QueryParam("email") String email) {
+
+        Usuario u = new Usuario();
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+            try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
+
+                String consulta = "SELECT * FROM usuarios WHERE email = ?";
+
+                PreparedStatement ps = conexion.prepareStatement(consulta);
+
+                ps.setString(1, email);
+
+                ResultSet rs = ps.executeQuery();
+
+                if (rs.next()) {
+                    return Response.status(Response.Status.CONFLICT)
+                            .entity("Usuario ya existente")
+                            .build();
+                } else {
+                    return Response.ok().entity("Email disponible").build();
+                }
+
+            } catch (Exception e) {
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en la base de datos")
+                        .build();
+
+            }
+
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en el Driver").build();
+        }
+    }
+
     // Obtener todos los usuarios
     // ruta: http://localhost:8080/api/wikz/operaciones/getUsuarios
     @GET

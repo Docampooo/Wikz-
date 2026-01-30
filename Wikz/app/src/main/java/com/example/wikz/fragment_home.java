@@ -62,23 +62,21 @@ public class fragment_home extends Fragment {
         rvPublicaciones.setAdapter(adaptadorPublicaciones);
 
         new Thread(() -> {
-
             ArrayList<Publicacion> res = api.getPublicaciones(requireActivity());
 
-            if(res != null){
-
-                //Limpiar flujo de datos
-                publicaciones.clear();
-                publicaciones.addAll(res);
-                adaptadorPublicaciones.notifyDataSetChanged();
-
-            }else{
-                Toast.makeText(
-                        getContext(),
-                        "Error cargando publicaciones",
-                        Toast.LENGTH_SHORT
-                ).show();
-            }
+            requireActivity().runOnUiThread(() -> {
+                if(res != null){
+                    publicaciones.clear();
+                    publicaciones.addAll(res);
+                    adaptadorPublicaciones.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(
+                            getContext(),
+                            "Error cargando publicaciones",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+            });
         }).start();
 
         //Rv Colecciones
@@ -93,23 +91,21 @@ public class fragment_home extends Fragment {
         rvColecciones.setAdapter(adaptadorColecciones);
 
         new Thread(() -> {
+            ArrayList<Coleccion> res = api.getColeccionesUsuario(u.getId());
 
-            ArrayList<Coleccion> res = api.getColeccionesUsuario(requireActivity() ,u.getId());
-
-            if(res != null){
-
-                //Limpiar flujo de datos
-                colecciones.clear();
-                colecciones.addAll(res);
-                adaptadorColecciones.notifyDataSetChanged();
-
-            }else{
-                Toast.makeText(
-                        getContext(),
-                        "Error cargando colecciones",
-                        Toast.LENGTH_SHORT
-                ).show();
-            }
+            requireActivity().runOnUiThread(() -> {
+                if(res != null){
+                    colecciones.clear();
+                    colecciones.addAll(res);
+                    adaptadorColecciones.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(
+                            getContext(),
+                            "Error cargando colecciones",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+            });
         }).start();
 
         return view;

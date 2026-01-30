@@ -33,8 +33,8 @@ public class AdaptadorColecciones extends  RecyclerView.Adapter<AdaptadorColecci
 
         Coleccion cu = this.coleccionesUsuario.get(position);
 
-        holder.getNombreColeccion().setText(cu.getNombre());
-        holder.getImagenColeccion().setImageResource(cu.getImagen());
+        holder.getNombreColeccion().setText(cu.getTitulo());
+        holder.getImagenColeccion().setImageBitmap(cu.getImagen());
 
         if (selectedPos == position)
             holder.itemView.setBackgroundResource(R.color.moradoLogo);

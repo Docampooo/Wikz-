@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,11 @@ import java.util.ArrayList;
 public class fragment_perfil extends Fragment {
 
     //Establecer los datos del usuario
+
+    Api api;
+
+    Usuario u;
+
     ImageView ivFotoPerfil;
     TextView tvNombrePerfil;
 
@@ -30,6 +36,14 @@ public class fragment_perfil extends Fragment {
 
     AdaptadorPublicaciones adaptadorPublicaciones;
     ArrayList<Publicacion> publicacionesPerfil;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            u = (Usuario) getArguments().getSerializable("usuario");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,9 +61,10 @@ public class fragment_perfil extends Fragment {
 
         tvDescripcionPerfil = view.findViewById(R.id.tvDescripcionPerfil);
 
+        api = new Api();
         //Rv Publicaciones
         //Añadir publicaciones para probar el codigo
-        publicacionesPerfil = Publicacion.establecerPublicaciones();
+        publicacionesPerfil = new ArrayList<>();
 
         adaptadorPublicaciones = new AdaptadorPublicaciones(publicacionesPerfil);
         rvPublicacionesPerfil = view.findViewById(R.id.rvPublicacionesPerfil);
@@ -57,6 +72,24 @@ public class fragment_perfil extends Fragment {
 
         GridLayoutManager gridVertical =new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
         rvPublicacionesPerfil.setLayoutManager(gridVertical);
+
+        new Thread(() -> {
+            ArrayList<Publicacion> res = api.getPublicaciones(requireActivity());
+
+            requireActivity().runOnUiThread(() -> {
+                if(res != null){
+                    publicacionesPerfil.clear();
+                    publicacionesPerfil.addAll(res);
+                    adaptadorPublicaciones.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(
+                            getContext(),
+                            "Error cargando publicaciones",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+            });
+        }).start();
 
         return view;
     }

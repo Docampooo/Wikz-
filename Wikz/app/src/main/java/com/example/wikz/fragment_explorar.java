@@ -16,12 +16,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class fragment_explorar extends Fragment {
 
+    Api api;
+
+    Usuario u;
     TextView tvTematica;
 
     ImageView ivTematica;
@@ -35,6 +39,14 @@ public class fragment_explorar extends Fragment {
     AdaptadorPublicaciones adaptadorPublicaciones;
 
     ArrayList<Publicacion> publicacionesExplorar;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            u = (Usuario) getArguments().getSerializable("usuario");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,9 +69,11 @@ public class fragment_explorar extends Fragment {
                 Shader.TileMode.CLAMP
         );
 
+        api = new Api();
+
         tvTematica.getPaint().setShader(shader);
 
-        publicacionesExplorar = Publicacion.establecerPublicaciones();
+        publicacionesExplorar = new ArrayList<>();
 
         rvExplorar = view.findViewById(R.id.rvExplorar);
 
@@ -68,6 +82,26 @@ public class fragment_explorar extends Fragment {
 
         GridLayoutManager gridVertical =new GridLayoutManager(getContext(), 4, GridLayoutManager.VERTICAL, false);
         rvExplorar.setLayoutManager(gridVertical);
+
+
+        new Thread(() -> {
+            ArrayList<Publicacion> res = api.getPublicaciones(requireActivity());
+
+            requireActivity().runOnUiThread(() -> {
+                if(res != null){
+                    publicacionesExplorar.clear();
+                    publicacionesExplorar.addAll(res);
+                    adaptadorPublicaciones.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(
+                            getContext(),
+                            "Error cargando publicaciones",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+            });
+        }).start();
+
 
         return view;
     }

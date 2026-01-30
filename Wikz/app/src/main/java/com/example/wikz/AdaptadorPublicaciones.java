@@ -34,6 +34,8 @@ public class AdaptadorPublicaciones extends  RecyclerView.Adapter<AdaptadorPubli
 
         Publicacion pu = this.publicaciones.get(position);
 
+        holder.imagenPublicacion.setImageBitmap(pu.getImagen());
+
         if (selectedPos == position)
             holder.itemView.setBackgroundResource(R.color.moradoLogo);
         else holder.itemView.setBackgroundResource(R.color.white);

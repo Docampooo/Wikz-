@@ -262,6 +262,43 @@ public class Api {
             return  null;
     }
 
+    public boolean getUsuarioEmail(Activity activity, String email){
+
+        HttpURLConnection con = null;
+
+        try {
+            URL url = new URL("http://10.0.2.2:8080/api/wikz/operaciones/getUsuarioEmail");
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+
+            int code = conn.getResponseCode();
+            System.out.println("Código HTTP: " + code);
+
+            InputStream stream = conn.getInputStream();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8) );
+
+            StringBuilder response = new StringBuilder();
+            String line;
+
+            while ((line = reader.readLine()) != null)
+            {
+                response.append(line.trim());
+            }
+
+            if (code == 200) {
+
+                return  true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public ArrayList<Publicacion> getPublicaciones(Activity activity){
 
         HttpURLConnection con = null;
@@ -305,7 +342,7 @@ public class Api {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return  null;
+        return  publis;
     }
 
     public ArrayList<Publicacion> getPublicacionesUsuario(Activity activity, int id_usuario){
@@ -354,7 +391,7 @@ public class Api {
         return  null;
     }
 
-    public ArrayList<Coleccion> getColeccionesUsuario(Activity activity, int id_usuario){
+    public ArrayList<Coleccion> getColeccionesUsuario(int id_usuario){
 
         HttpURLConnection con = null;
         ArrayList<Coleccion> colec = new ArrayList<>();

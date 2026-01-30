@@ -18,6 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.util.Patterns;
 
+import java.util.Date;
 
 
 public class AnadirUsuario extends AppCompatActivity {
@@ -77,40 +78,59 @@ public class AnadirUsuario extends AppCompatActivity {
                 confirmarPass = txtRepetirPass.getText().toString().trim();
                 correoUsuario = txtRegistrarCorreo.getText().toString().trim();
 
-                //Validar campos vacíos
+                // Validar campos vacíos
                 if (nombreUsuario.isEmpty() || pass.isEmpty() || confirmarPass.isEmpty() || correoUsuario.isEmpty()) {
-
                     reiniciarCampos("Todos los campos son obligatorios");
                     return;
                 }
 
-                //Validar correo
+                // Validar correo
                 if (!correoValido(correoUsuario)) {
-
-                    correoUsuario = "";
                     txtRegistrarCorreo.setText("");
-
                     reiniciarCampos("Correo electrónico no válido");
                     return;
                 }
 
-                //Validar contraseñas
+                // Validar contraseñas
                 if (!pass.equals(confirmarPass)) {
-                    pass = "";
-                    confirmarPass = "";
-
                     txtRegistrarPass.setText("");
                     txtRepetirPass.setText("");
-
                     reiniciarCampos("Las contraseñas no coinciden");
                     return;
                 }
 
-                //insertar usuario en la base de datos
-                api.addUsuario(AnadirUsuario.this ,nombreUsuario, correoUsuario, pass, "", null);
+                // Hilo para llamadas de red
+                new Thread(() -> {
+                    try {
+                        // Comprobar si el correo ya existe
+                        boolean existe = api.getUsuarioEmail(AnadirUsuario.this, correoUsuario);
 
-                Intent intentPrincipal = new Intent(AnadirUsuario.this, MenuPrincipal.class);
-                startActivity(intentPrincipal);
+                        // Actualizar UI en el hilo principal
+                        runOnUiThread(() -> {
+                            if (!existe) {
+                                // Añadir usuario
+                                api.addUsuario(AnadirUsuario.this, nombreUsuario, correoUsuario, pass, "", null);
+
+                                // Crear usuario para enviar a MenuPrincipal
+                                Usuario u = new Usuario(nombreUsuario, correoUsuario, pass, "", null, new Date());
+                                Intent intentPrincipal = new Intent(AnadirUsuario.this, MenuPrincipal.class);
+                                intentPrincipal.putExtra("usuario", u);
+
+                                startActivity(intentPrincipal);
+
+                            } else {
+                                // Reiniciar campo y mostrar mensaje
+                                txtRegistrarCorreo.setText("");
+                                reiniciarCampos("Email ya registrado");
+                            }
+                        });
+
+                    } catch (Exception e) {
+                        // Si ocurre algún error en la red, mostrarlo con tu función
+                        runOnUiThread(() -> reiniciarCampos("Error al conectar con el servidor"));
+                        e.printStackTrace();
+                    }
+                }).start();
             }
         });
     }
