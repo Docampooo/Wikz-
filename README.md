@@ -26,3 +26,6 @@ En escritorio, se ha añadido la primera versión de los recyclers views, tanto 
 
 26/01/2026
 Grandes avances en el proyecto, se ha creado la base de datos y la API para gestionar todo el flujo dentro del proyecto que se va a utilizar tanto en móviles, escritorio y web, los cambios aun no se han probado pero es un gran avance
+
+28/01/2026
+muchas funciones y cambios en la base de datos de Wikz, la api también se ha actualizado y se ha empezado a implementar en el desarrollo movil
