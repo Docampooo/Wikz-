@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/registro">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/registro" />
+
+    <LinearLayout
+        android:layout_width="276dp"
+        android:layout_height="449dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivLogoWikz"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintHeight_percent="0.20"
+            app:layout_constraintWidth_percent="0.65"
+            app:srcCompat="@drawable/logosinfondo" />
+
+        <EditText
+            android:id="@+id/txtNombreUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:foregroundTint="@color/grisClaro"
+            android:hint="Nombre Usuario"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textColorHint="@color/grisClaro" />
+
+        <EditText
+            android:id="@+id/txtPassUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:foregroundTint="@color/grisClaro"
+            android:hint="Contraseña"
+            android:inputType="text|textPassword"
+            android:textAlignment="center"
+            android:textColorHint="@color/grisClaro" />
+
+        <Button
+            android:id="@+id/btnLogIn"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/moradoLogo"
+            android:includeFontPadding="false"
+            android:minHeight="0dp"
+
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:text="Log In"
+
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+
+            app:layout_constraintWidth_percent="0.7" />
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/moradoLogo"
+            android:backgroundTint="@color/moradoLogo"
+
+            android:includeFontPadding="false"
+            android:minHeight="0dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+
+            android:text="Sign Up"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+
+            android:textSize="13sp"
+            app:layout_constraintWidth_percent="0.7" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -126,6 +126,8 @@ public class Operaciones {
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response addUsuario(Usuario u) {
 
+        System.out.println("Dentro");
+
         if (u == null || u.getNombre() == null || u.getEmail() == null || u.getPass() == null) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity("Datos de usuario incompletos")
@@ -354,45 +356,6 @@ public class Operaciones {
                 u = mapUsuario(rs);
 
                 return Response.ok(u).build();
-
-            } catch (Exception e) {
-                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en la base de datos")
-                        .build();
-
-            }
-
-        } catch (Exception e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en el Driver").build();
-        }
-    }
-
-    @GET
-    @Path("/getUsuarioEmail")
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response getUsuarioEmail(@QueryParam("email") String email) {
-
-        Usuario u = new Usuario();
-
-        try {
-            Class.forName("org.mariadb.jdbc.Driver");
-
-            try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
-
-                String consulta = "SELECT * FROM usuarios WHERE email = ?";
-
-                PreparedStatement ps = conexion.prepareStatement(consulta);
-
-                ps.setString(1, email);
-
-                ResultSet rs = ps.executeQuery();
-
-                if (rs.next()) {
-                    return Response.status(Response.Status.CONFLICT)
-                            .entity("Usuario ya existente")
-                            .build();
-                } else {
-                    return Response.ok().entity("Email disponible").build();
-                }
 
             } catch (Exception e) {
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en la base de datos")
