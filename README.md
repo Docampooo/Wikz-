@@ -32,3 +32,6 @@ muchas funciones y cambios en la base de datos de Wikz, la api también se ha ac
 
 29/01/206
 Validaciones de usuarios ya establecidas, usuarios añadidos correctamente y inserción en la página principal de la red social en móviles
+
+02/02/2026
+Base de datos ya operativa! la api funciona a la perfeccion y se han probado las funciones con el RESTER, se ha empezado la depuración de añadido de usuarios desde el móvil y falta gestionar el tráfico de datos compartido, todo va viento en popa
