@@ -5,8 +5,8 @@ import java.util.Date;
 
 public class Publicacion {
 
-    public Publicacion(int id_usuario, String titulo, String imagenBase64, String descripcion, Date fechaCreacion) {
-        this.id_usuario = id_usuario;
+    public Publicacion(String titulo, String imagenBase64, String descripcion, Date fechaCreacion) {
+
         this.titulo = titulo != null ? titulo : "";
         this.imagenBase64 = imagenBase64;
         this.descripcion = descripcion != null ? descripcion : "";
@@ -14,7 +14,7 @@ public class Publicacion {
     }
 
     public Publicacion() {
-        this(0, "", null, "", new Date());
+        this("", null, "", new Date());
     }
 
     private int id;

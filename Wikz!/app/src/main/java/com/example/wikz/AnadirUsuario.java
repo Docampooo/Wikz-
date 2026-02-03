@@ -105,7 +105,7 @@ public class AnadirUsuario extends AppCompatActivity {
                                 api.addUsuario(AnadirUsuario.this ,nombreUsuario, correoUsuario, pass, "");
 
                                 // Crear usuario para enviar a MenuPrincipal
-                                Usuario u = new Usuario(nombreUsuario, correoUsuario, pass, "", null, new Date());
+                                Usuario u = new Usuario(nombreUsuario, correoUsuario, "", null, new Date());
                                 Intent intentPrincipal = new Intent(AnadirUsuario.this, MenuPrincipal.class);
                                 intentPrincipal.putExtra("usuario", u);
 

@@ -93,7 +93,7 @@ public class fragment_home extends Fragment {
 
         new Thread(() -> {
 
-            Log.d("advertencia", u.getId() + u.getNombre());
+            Log.d("advertencia", u.getNombre() + u.getId());
             ArrayList<Coleccion> res = api.getColeccionesUsuario(u.getId());
 
             requireActivity().runOnUiThread(() -> {

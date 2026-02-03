@@ -43,11 +43,13 @@ public class Operaciones {
 
     // Helpers
     private Usuario mapUsuario(ResultSet rs) throws SQLException {
+
+        // Se omiten el id y la contraseña para devolver
         Usuario u = new Usuario();
+
         u.setId(rs.getInt("id"));
         u.setNombre(rs.getString("nombre"));
         u.setEmail(rs.getString("email"));
-        u.setPass(rs.getString("pass"));
         u.setBiografia(rs.getString("bio"));
         byte[] foto = rs.getBytes("foto_perfil");
         if (foto != null)
@@ -58,7 +60,10 @@ public class Operaciones {
     }
 
     private Publicacion mapPublicacion(ResultSet rs) throws SQLException {
+
+        // No se envia ni el id de la publicacion ni el del usuario
         Publicacion p = new Publicacion();
+
         p.setId(rs.getInt("id"));
         p.setIdUsuario(rs.getInt("id_usuario"));
         p.setTitulo(rs.getString("titulo"));
@@ -70,6 +75,23 @@ public class Operaciones {
 
         p.setFechaCreacion(rs.getTimestamp("creacion"));
         return p;
+    }
+
+    private Coleccion mapColeccion(ResultSet rs) throws SQLException {
+        Coleccion c = new Coleccion();
+        c.setId(rs.getInt("id"));
+        c.setIdUsuario(rs.getInt("id_usuario"));
+        c.setTitulo(rs.getString("titulo"));
+
+        byte[] img = rs.getBytes("imagen");
+        if (img != null) {
+            c.setImagenBase64(
+                    Base64.getEncoder().encodeToString(img));
+        }
+
+        c.setElementos(new ArrayList<>());
+
+        return c;
     }
 
     public ArrayList<Publicacion> getPublicacionesDeColeccion(int idColeccion) {
@@ -102,29 +124,12 @@ public class Operaciones {
         return publis;
     }
 
-    private Coleccion mapColeccion(ResultSet rs) throws SQLException {
-        Coleccion c = new Coleccion();
-        c.setId(rs.getInt("id"));
-        c.setIdUsuario(rs.getInt("id_usuario"));
-        c.setTitulo(rs.getString("titulo"));
-
-        byte[] img = rs.getBytes("imagen");
-        if (img != null) {
-            c.setImagenBase64(
-                    Base64.getEncoder().encodeToString(img));
-        }
-
-        c.setElementos(new ArrayList<>());
-
-        return c;
-    }
-
-    // Añadir un usuario a la base de datos
+    // Añadir un usuario a la base de datos --> bien
     @POST
     @Path("/addUsuario")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response addUsuario(Usuario u) {
+    public Response addUsuario(UsuarioRegistro u) {
 
         System.out.println("Dentro");
 
@@ -193,7 +198,7 @@ public class Operaciones {
         }
     }
 
-    // Añadir una publicacion
+    // Añadir una publicacion --> probar
     @POST
     @Path("/addPublicacion")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -240,8 +245,8 @@ public class Operaciones {
         }
     }
 
-    // Obtener un usuario por id
-    // ruta: http://localhost:8080/api/wikz/operaciones/getUsuarioId?id=x
+    // Obtener un usuario por id --> bien
+    // ruta: http://localhost:8080/api/wikz/operaciones/getUsuarioId
     @GET
     @Path("/getUsuarioId")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -283,6 +288,7 @@ public class Operaciones {
         }
     }
 
+    // Usuario por su nombre --> bien
     @GET
     @Path("/getUsuarioNombre")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -324,6 +330,8 @@ public class Operaciones {
         }
     }
 
+    // path:http://localhost:8080/api/wikz/operaciones/getUsuarioNombrePass?nombreUs=iago&passUs=34
+    // Usuario por nombre y contraseña --> bien
     @GET
     @Path("/getUsuarioNombrePass")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -368,7 +376,7 @@ public class Operaciones {
         }
     }
 
-    // Obtener todos los usuarios
+    // Obtener todos los usuarios --> bien
     // ruta: http://localhost:8080/api/wikz/operaciones/getUsuarios
     @GET
     @Path("/getUsuarios")
@@ -461,7 +469,7 @@ public class Operaciones {
         }
     }
 
-    // Obtener un usuario por id
+    // Obtener una publicacoin por id
     // ruta: http://localhost:8080/api/wikz/operaciones/getUsuarioId?id=x
     @GET
     @Path("/getPublicacionId")
@@ -504,7 +512,8 @@ public class Operaciones {
         }
     }
 
-    // ruta: http://localhost:8080/api/wikz/operaciones/getPublicaciones
+    // ruta: http://localhost:8080/api/wikz/operaciones/getPublicacionesUsuario
+    //Devuelve las publicaciones de un usuario --> bien
     @GET
     @Path("/getPublicacionesUsuario")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -523,20 +532,18 @@ public class Operaciones {
 
                 ps.setInt(1, idUsuario);
 
-                if (idUsuario > 0) {
-                    ResultSet rs = ps.executeQuery();
+                ResultSet rs = ps.executeQuery();
 
-                    while (rs.next()) {
+                while (rs.next()) {
 
-                        Publicacion p = mapPublicacion(rs);
+                    Publicacion p = mapPublicacion(rs);
 
-                        publis.add(p);
-                    }
+                    publis.add(p);
                 }
 
                 if (publis.size() == 0) {
                     return Response.status(Response.Status.NOT_FOUND)
-                            .entity("No se han encontrado publicaciones del usuario")
+                            .entity("No se han encontrado publicaciones del usuario" + idUsuario)
                             .build();
 
                 } else {

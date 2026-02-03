@@ -73,8 +73,6 @@ public class Registro extends AppCompatActivity {
 
                         }
                     });
-
-
                     new Thread(() -> {
 
                         //funcion confirmar usuario

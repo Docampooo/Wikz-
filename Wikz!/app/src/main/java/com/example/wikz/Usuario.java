@@ -9,21 +9,18 @@ import java.util.Date;
 
 public class Usuario implements Serializable {
 
-    public Usuario(String nombre, String correo, String pass, String biografia, Bitmap fotoPerfil, Date fechaCreacion) {
+    public Usuario(String nombre, String correo, String biografia, Bitmap fotoPerfil, Date fechaCreacion) {
 
         setNombre(nombre);
-        setPass(pass);
         setEmail(correo);
-
         setBiografia(biografia);
         setFotoPerfil(fotoPerfil);
 
         this.fechaCreacion = fechaCreacion != null ? fechaCreacion : new Date();
 
     }
-
     public Usuario() {
-        this("", "", "", "", null, new Date());
+        this("", "", "", null, new Date());
     }
 
     private String nombre;
@@ -31,7 +28,6 @@ public class Usuario implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public String getNombre() {
         return nombre;
     }
@@ -45,17 +41,6 @@ public class Usuario implements Serializable {
     public int getId() {
         return id;
     }
-
-    private String pass;
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
     private String email;
 
     public void setEmail(String email) {
@@ -97,7 +82,7 @@ public class Usuario implements Serializable {
     }
 
     public String toString() {
-        return "Usuario{id=" + id + ", nombre=" + nombre + ", email=" + email + "}";
+        return "Usuario{nombre=" + nombre + ", email=" + email + "}";
     }
 
 }

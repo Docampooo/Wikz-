@@ -67,10 +67,8 @@ public class Api {
 
         Usuario u = new Usuario();
 
-        u.setId(obj.getInt("id"));
         u.setNombre(obj.getString("nombre"));
         u.setEmail(obj.getString("email"));
-        u.setPass(obj.getString("pass"));
         u.setBiografia(obj.getString("bio"));
 
         if (!obj.isNull("fotoPerfilBase64")) {
@@ -326,7 +324,7 @@ public class Api {
         return  publis;
     }
 
-    public ArrayList<Publicacion> getPublicacionesUsuario(Activity activity, int id_usuario){
+    public ArrayList<Publicacion> getPublicacionesUsuario(Activity activity, int idUsuario){
 
         HttpURLConnection con = null;
         ArrayList<Publicacion> publis = new ArrayList<>();
