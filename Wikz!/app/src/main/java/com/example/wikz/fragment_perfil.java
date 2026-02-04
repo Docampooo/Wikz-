@@ -73,23 +73,20 @@ public class fragment_perfil extends Fragment {
         GridLayoutManager gridVertical =new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
         rvPublicacionesPerfil.setLayoutManager(gridVertical);
 
-        new Thread(() -> {
-            ArrayList<Publicacion> res = api.getPublicaciones(requireActivity());
+        //Añadir las publicaciones al recyclerView
+        api.getPublicacionesUsuario(fragment_perfil.this.getActivity(), u.getId(), (success, pubs) -> {
+            if(success){
 
-            requireActivity().runOnUiThread(() -> {
-                if(res != null){
-                    publicacionesPerfil.clear();
-                    publicacionesPerfil.addAll(res);
-                    adaptadorPublicaciones.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(
-                            getContext(),
-                            "Error cargando publicaciones",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }
-            });
-        }).start();
+                publicacionesPerfil.clear();
+                publicacionesPerfil.addAll(pubs);
+                adaptadorPublicaciones.notifyDataSetChanged();
+
+            } else {
+                fragment_perfil.this.getActivity().runOnUiThread(() -> {
+                    Toast.makeText(getContext(), "Error Cargando las publicaciones del usuario", Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
 
         return view;
     }

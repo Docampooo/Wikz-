@@ -83,25 +83,20 @@ public class fragment_explorar extends Fragment {
         GridLayoutManager gridVertical =new GridLayoutManager(getContext(), 4, GridLayoutManager.VERTICAL, false);
         rvExplorar.setLayoutManager(gridVertical);
 
+        //Añadir las publicaciones al recyclerView
+        api.getPublicaciones(fragment_explorar.this.getActivity(), (success, pubs) -> {
+            if(success){
 
-        new Thread(() -> {
-            ArrayList<Publicacion> res = api.getPublicaciones(requireActivity());
+                publicacionesExplorar.clear();
+                publicacionesExplorar.addAll(pubs);
+                adaptadorPublicaciones.notifyDataSetChanged();
 
-            requireActivity().runOnUiThread(() -> {
-                if(res != null){
-                    publicacionesExplorar.clear();
-                    publicacionesExplorar.addAll(res);
-                    adaptadorPublicaciones.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(
-                            getContext(),
-                            "Error cargando publicaciones",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }
-            });
-        }).start();
-
+            } else {
+                fragment_explorar.this.getActivity().runOnUiThread(() -> {
+                    Toast.makeText(getContext(), "Error Cargando las publicaciones", Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
 
         return view;
     }

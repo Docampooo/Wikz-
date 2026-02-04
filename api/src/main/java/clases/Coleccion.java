@@ -4,16 +4,15 @@ import java.util.ArrayList;
 
 public class Coleccion {
 
-    public Coleccion(int idUsuario, String titulo, ArrayList<Publicacion> elementos, String imagenBase64) {
+    public Coleccion(int idUsuario, String titulo, String imagenBase64) {
 
         setIdUsuario(idUsuario);
         setTitulo(titulo);
-        setElementos(elementos);
         setImagenBase64(imagenBase64);
     }
 
     public Coleccion() {
-        this(0, "", new ArrayList<Publicacion>(), null);
+        this(0, "", null);
     }
 
     private int id;
@@ -46,16 +45,6 @@ public class Coleccion {
         return titulo;
     }
 
-    private ArrayList<Publicacion> elementos;
-
-    public void setElementos(ArrayList<Publicacion> elementos) {
-        this.elementos = elementos;
-    }
-
-    public ArrayList<Publicacion> getElementos() {
-        return elementos;
-    }
-
     private String imagenBase64;
 
     public void setImagenBase64(String imagenBase64) {
@@ -70,7 +59,6 @@ public class Coleccion {
     public String toString() {
         return "Coleccion{id=" + id +
                 ", titulo=" + titulo +
-                ", elementos=" + elementos.size() +
                 ", idUsuario=" + idUsuario + "}";
     }
 }

@@ -1,22 +1,28 @@
 <?php
-session_start();
+// index.php
+require_once 'config/Database.php';
 
-$c = $_GET["c"] ?? "Login";     // controlador por defecto
-$m = $_GET["m"] ?? "mostrar";   // método por defecto
+// Autocarga de controladores y modelos
+spl_autoload_register(function($className) {
+    if (file_exists('controllers/' . $className . '.php')) {
+        require_once 'controllers/' . $className . '.php';
+    } elseif (file_exists('models/' . $className . '.php')) {
+        require_once 'models/' . $className . '.php';
+    }
+});
 
-$controllerName = $c . "Controller";
-$controllerFile = "controllers/$controllerName.php";
+//Rutas principales
+$controller = $_GET['controller'] ?? 'Usuario';
+$action     = $_GET['action'] ?? 'login';
 
-if (!file_exists($controllerFile)) {
-    die("Controlador no encontrado");
+$controllerName = $controller . 'Controller';
+if (class_exists($controllerName)) {
+    $ctrl = new $controllerName();
+    if (method_exists($ctrl, $action)) {
+        $ctrl->$action();
+    } else {
+        echo "Acción no encontrada: $action";
+    }
+} else {
+    echo "Controlador no encontrado: $controllerName";
 }
-
-require_once $controllerFile;
-
-$controller = new $controllerName();
-
-if (!method_exists($controller, $m)) {
-    die("Método no encontrado");
-}
-
-$controller->$m();

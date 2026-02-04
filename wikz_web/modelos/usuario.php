@@ -1,128 +1,47 @@
 <?php
-
-require_once "config/database.php";
+// models/Usuario.php
+require_once 'config/Database.php';
 
 class Usuario
 {
-    private ?int $id = null;
-    private string $nombre;
-    private string $pass;
-    private string $email;
-    private DateTime $fechaCreacion;
-    private string $biografia;
-    private ?string $fotoPerfilBase64;
+    private $pdo;
 
-    private PDO $db;
+    public $id;
+    public $nombre;
+    public $email;
+    public $pass;
+    public $bio;
+    public $foto_perfil;
+    public $fecha_creacion;
 
-    // ===== CONSTRUCTOR =====
-    public function __construct(
-        string $nombre = "",
-        string $correo = "",
-        string $pass = "",
-        string $biografia = "",
-        ?string $fotoPerfil = null,
-        ?DateTime $fechaCreacion = null
-    ) {
-        $this->db = Database::getConnection();
-
-        $this->nombre = $nombre;
-        $this->email = $correo;
-        $this->pass = $pass;
-        $this->biografia = $biografia;
-        $this->fotoPerfilBase64 = $fotoPerfil;
-        $this->fechaCreacion = $fechaCreacion ?? new DateTime();
+    public function __construct()
+    {
+        $this->pdo = Database::getConnection();
     }
 
-    // ===== CRUD =====
-
-    public function guardar(): bool
+    // Obtener usuario por email
+    public function getByEmail($email)
     {
-        $sql = "INSERT INTO usuarios 
-                (nombre, email, pass, biografia, foto_perfil, fecha_creacion)
-                VALUES (?, ?, ?, ?, ?, ?)";
-
-        $stmt = $this->db->prepare($sql);
-
-        $resultado = $stmt->execute([
-            $this->nombre,
-            $this->email,
-            password_hash($this->pass, PASSWORD_DEFAULT),
-            $this->biografia,
-            $this->fotoPerfilBase64,
-            $this->fechaCreacion->format('Y-m-d H:i:s')
-        ]);
-
-        if ($resultado) {
-            $this->id = (int)$this->db->lastInsertId();
-        }
-
-        return $resultado;
+        $stmt = $this->pdo->prepare("SELECT id, nombre, email, bio, foto_perfil, creacion FROM usuarios WHERE email = ?");
+        $stmt->execute([$email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function obtenerPorId(int $id): ?Usuario
+    // Crear nuevo usuario
+    public function crear($nombre, $email, $pass, $bio = '', $foto = null)
     {
-        $db = Database::getConnection();
-
-        $stmt = $db->prepare("SELECT * FROM usuarios WHERE id = ?");
-        $stmt->execute([$id]);
-
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$data) {
-            return null;
-        }
-
-        return self::fromArray($data);
-    }
-
-    public static function obtenerTodos(): array
-    {
-        $db = Database::getConnection();
-
-        $stmt = $db->query("SELECT * FROM usuarios");
-        $usuarios = [];
-
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $usuarios[] = self::fromArray($row);
-        }
-
-        return $usuarios;
-    }
-
-    // ===== HIDRATACIÓN =====
-    private static function fromArray(array $data): Usuario
-    {
-        $usuario = new Usuario(
-            $data['nombre'],
-            $data['email'],
-            "",
-            $data['biografia'],
-            $data['foto_perfil'],
-            new DateTime($data['fecha_creacion'])
+        $hash = password_hash($pass, PASSWORD_BCRYPT);
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO usuarios (nombre, email, pass, bio, foto_perfil, creacion) VALUES (?, ?, ?, ?, ?, NOW())"
         );
-
-        $usuario->id = (int)$data['id'];
-        $usuario->pass = $data['pass']; // hash
-
-        return $usuario;
+        return $stmt->execute([$nombre, $email, $hash, $bio, $foto]);
     }
 
-    // ===== GETTERS =====
-
-    public function getId(): ?int { return $this->id; }
-    public function getNombre(): string { return $this->nombre; }
-    public function getEmail(): string { return $this->email; }
-    public function getBiografia(): string { return $this->biografia; }
-    public function getFechaCreacion(): DateTime { return $this->fechaCreacion; }
-    public function getFotoPerfilBase64(): ?string { return $this->fotoPerfilBase64; }
-
-    public function verificarPassword(string $pass): bool
+    // Obtener usuario por id
+    public function getById($id)
     {
-        return password_verify($pass, $this->pass);
-    }
-
-    public function __toString(): string
-    {
-        return "Usuario{id={$this->id}, nombre={$this->nombre}, email={$this->email}}";
+        $stmt = $this->pdo->prepare("SELECT id, nombre, email, bio, foto_perfil, creacion FROM usuarios WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

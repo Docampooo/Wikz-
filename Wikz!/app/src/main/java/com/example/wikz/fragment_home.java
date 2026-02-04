@@ -22,16 +22,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 
 public class fragment_home extends Fragment {
-
-
     Api api;
 
     Usuario u;
+
+    ArrayList<Publicacion> publicaciones;
+
     ArrayList<Coleccion> colecciones;
     RecyclerView rvColecciones;
     AdaptadorColecciones adaptadorColecciones;
 
-    ArrayList<Publicacion> publicaciones;
     AdaptadorPublicaciones adaptadorPublicaciones;
     RecyclerView rvPublicaciones;
 
@@ -62,27 +62,23 @@ public class fragment_home extends Fragment {
         rvPublicaciones.setLayoutManager(grid);
         rvPublicaciones.setAdapter(adaptadorPublicaciones);
 
-        new Thread(() -> {
-            ArrayList<Publicacion> res = api.getPublicaciones(requireActivity());
+        //Añadir las publicaciones al recyclerView
+        api.getPublicaciones(fragment_home.this.getActivity(), (success, pubs) -> {
+            if(success){
 
-            requireActivity().runOnUiThread(() -> {
-                if(res != null){
-                    publicaciones.clear();
-                    publicaciones.addAll(res);
-                    adaptadorPublicaciones.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(
-                            getContext(),
-                            "Error cargando publicaciones",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }
-            });
-        }).start();
+                publicaciones.clear();
+                publicaciones.addAll(pubs);
+                adaptadorPublicaciones.notifyDataSetChanged();
+
+            } else {
+                fragment_home.this.getActivity().runOnUiThread(() -> {
+                    Toast.makeText(getContext(), "Error Cargando las publicaciones", Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
 
         //Rv Colecciones
         colecciones = new ArrayList<>();
-
 
         adaptadorColecciones = new AdaptadorColecciones(colecciones);
         rvColecciones = view.findViewById(R.id.rvColecciones);
@@ -91,25 +87,19 @@ public class fragment_home extends Fragment {
         rvColecciones.setLayoutManager(horizontal);
         rvColecciones.setAdapter(adaptadorColecciones);
 
-        new Thread(() -> {
+        api.getColeccionesUsuario(fragment_home.this.getActivity(), u.getId(), (success, colecs) -> {
+            if(success){
 
-            Log.d("advertencia", u.getNombre() + u.getId());
-            ArrayList<Coleccion> res = api.getColeccionesUsuario(u.getId());
+                colecciones.clear();
+                colecciones.addAll(colecs);
+                adaptadorColecciones.notifyDataSetChanged();
 
-            requireActivity().runOnUiThread(() -> {
-                if(res != null){
-                    colecciones.clear();
-                    colecciones.addAll(res);
-                    adaptadorColecciones.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(
-                            getContext(),
-                            "Error cargando colecciones",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }
-            });
-        }).start();
+            } else {
+                fragment_home.this.getActivity().runOnUiThread(() -> {
+                    Toast.makeText(getContext(), "Error Cargando las colecciones del usuario", Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
 
         return view;
     }

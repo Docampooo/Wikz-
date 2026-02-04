@@ -19,6 +19,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class Registro extends AppCompatActivity {
 
     Api api;
+
+    Usuario u = new Usuario();
     EditText txtNombreUsuario;
     EditText txtPassUsuario;
 
@@ -56,55 +58,48 @@ public class Registro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                nombreUsuario = txtNombreUsuario.getText().toString();
-                pass = txtPassUsuario.getText().toString();
+                nombreUsuario = txtNombreUsuario.getText().toString().trim();
+                pass = txtPassUsuario.getText().toString().trim();
 
                 if(nombreUsuario.isEmpty() || pass.isEmpty()) {
                     Toast.makeText(Registro.this, "Por favor, escribe tu nombre y contraseña", Toast.LENGTH_SHORT).show();
                     
                 }else{
-                    Usuario u = new Usuario();
 
+                    System.out.println(nombreUsuario + " " + pass);
+                    //Probar!
                     api.getUsuarioNombrePass(Registro.this, nombreUsuario, pass, (success, usu) -> {
 
                         if(success){
                             System.out.println("Usuario encontrado");
+                            u = usu;
+
+                            // LOGIN OK
+                            Intent intentPrincipal = new Intent(Registro.this, MenuPrincipal.class);
+                            intentPrincipal.putExtra("usuario", u);
+                            startActivity(intentPrincipal);
+
                         }else{
 
-                        }
-                    });
-                    new Thread(() -> {
-
-                        //funcion confirmar usuario
-                        runOnUiThread(() -> {
-
-                            if (u != null) {
-
-                                // LOGIN OK
-                                Intent intentPrincipal = new Intent(Registro.this, MenuPrincipal.class);
-                                intentPrincipal.putExtra("usuario", u);
-                                startActivity(intentPrincipal);
-
-                            }
                             // LOGIN ERROR
                             txtNombreUsuario.setText("");
                             txtPassUsuario.setText("");
+                        }
+                    });
 
-                            Toast toast = Toast.makeText(
-                                    getApplicationContext(),
-                                    "El usuario y la contraseña no coinciden",
-                                    Toast.LENGTH_SHORT
-                            );
+                    Toast toast = Toast.makeText(
+                            getApplicationContext(),
+                            "El usuario y la contraseña no coinciden",
+                            Toast.LENGTH_SHORT
+                    );
 
-                            toast.setGravity(Gravity.CENTER, 0, 0);
-                            View view = toast.getView();
-                            view.setBackgroundResource(R.drawable.toast_background);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    View view = toast.getView();
+                    view.setBackgroundResource(R.drawable.toast_background);
 
-                            TextView text = view.findViewById(android.R.id.message);
-                            text.setTextColor(Color.WHITE);
-                            toast.show();
-                        });
-                    }).start();
+                    TextView text = view.findViewById(android.R.id.message);
+                    text.setTextColor(Color.WHITE);
+                    toast.show();
                 }
             }
         });

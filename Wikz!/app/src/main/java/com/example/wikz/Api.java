@@ -34,12 +34,12 @@ public class Api {
         void onLoginResult(boolean success, ArrayList<Usuario> usuarios);
     }
 
-    public interface LoginCallBackUsuarioPublicacion{
-        void onLoginResult(boolean success, Publicacion p);
-    }
-
     public interface LoginCallBackPublicaciones{
         void onLoginResult(boolean success, ArrayList<Publicacion> publicaciones);
+    }
+
+    public interface LoginCallBackColecciones{
+        void onLoginResult(boolean success, ArrayList<Coleccion> colecciones);
     }
 
     //funcion para convertir de BitMap a Byte[]
@@ -67,9 +67,10 @@ public class Api {
 
         Usuario u = new Usuario();
 
+        u.setId(obj.getInt("id"));
         u.setNombre(obj.getString("nombre"));
         u.setEmail(obj.getString("email"));
-        u.setBiografia(obj.getString("bio"));
+        u.setBiografia(obj.getString("biografia"));
 
         if (!obj.isNull("fotoPerfilBase64")) {
             Bitmap foto = base64ToBitmap(
@@ -241,7 +242,7 @@ public class Api {
             HttpURLConnection con = null;
 
             try {
-                URL url = new URL("http://10.0.2.2:8080/api/wikz/operaciones/getUsuarioNombrePass");
+                URL url = new URL("http://10.0.2.2:8080/api/wikz/operaciones/getUsuarioNombrePass?nombreUs=" + nombre + "&passUs="+ pass);
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
@@ -271,148 +272,156 @@ public class Api {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                call.onLoginResult(true, null);
+                activity.runOnUiThread(() -> call.onLoginResult(false, null));
             }
-            call.onLoginResult(true, null);
+            call.onLoginResult(false, null);
 
         }).start();
     }
 
-    public ArrayList<Publicacion> getPublicaciones(Activity activity){
+    public void getPublicaciones(Activity activity, LoginCallBackPublicaciones call){
 
-        HttpURLConnection con = null;
-        ArrayList<Publicacion> publis = new ArrayList<>();
+        new Thread(() -> {
 
-        try {
-            URL url = new URL("http://10.0.2.2:8080/api/wikz/operaciones/getPublicaciones");
+            HttpURLConnection con = null;
+            ArrayList<Publicacion> publis = new ArrayList<>();
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/json");
+            try {
+                URL url = new URL("http://10.0.2.2:8080/api/wikz/operaciones/getPublicaciones");
 
-            int code = conn.getResponseCode();
-            System.out.println("Código HTTP: " + code);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
 
-            InputStream stream = conn.getInputStream();
+                int code = conn.getResponseCode();
+                System.out.println("Código HTTP: " + code);
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8) );
+                InputStream stream = conn.getInputStream();
 
-            StringBuilder response = new StringBuilder();
-            String line;
+                BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8) );
 
-            while ((line = reader.readLine()) != null)
-            {
-                response.append(line.trim());
-            }
+                StringBuilder response = new StringBuilder();
+                String line;
 
-            if (code == 200) {
-                JSONArray array = new JSONArray(response.toString());
-
-                for(int i = 0; i < array.length(); i++){
-
-                    JSONObject obj = array.getJSONObject(i);
-                    Publicacion p = mapPublicacion(obj);
-
-                    publis.add(p);
+                while ((line = reader.readLine()) != null)
+                {
+                    response.append(line.trim());
                 }
-                return  publis;
-            }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return  publis;
+                if (code == 200) {
+                    JSONArray array = new JSONArray(response.toString());
+
+                    for(int i = 0; i < array.length(); i++){
+
+                        JSONObject obj = array.getJSONObject(i);
+                        Publicacion p = mapPublicacion(obj);
+
+                        publis.add(p);
+                    }
+                    call.onLoginResult(true, publis);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                activity.runOnUiThread(() -> call.onLoginResult(false, null));
+            }
+            call.onLoginResult(false, publis);
+        }).start();
     }
 
-    public ArrayList<Publicacion> getPublicacionesUsuario(Activity activity, int idUsuario){
+    public void getPublicacionesUsuario(Activity activity, int idUsuario, LoginCallBackPublicaciones call) {
 
-        HttpURLConnection con = null;
-        ArrayList<Publicacion> publis = new ArrayList<>();
+        new Thread(() -> {
+            HttpURLConnection con = null;
+            ArrayList<Publicacion> publis = new ArrayList<>();
 
-        try {
-            URL url = new URL("http://10.0.2.2:8080/api/wikz/operaciones/getPublicacionesUsuario");
+            try {
+                URL url = new URL("http://10.0.2.2:8080/api/wikz/operaciones/getPublicacionesUsuario");
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/json");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
 
-            int code = conn.getResponseCode();
-            System.out.println("Código HTTP: " + code);
+                int code = conn.getResponseCode();
+                System.out.println("Código HTTP: " + code);
 
-            InputStream stream = conn.getInputStream();
+                InputStream stream = conn.getInputStream();
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8) );
+                BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
 
-            StringBuilder response = new StringBuilder();
-            String line;
+                StringBuilder response = new StringBuilder();
+                String line;
 
-            while ((line = reader.readLine()) != null)
-            {
-                response.append(line.trim());
-            }
-
-            if (code == 200) {
-                JSONArray array = new JSONArray(response.toString());
-
-                for(int i = 0; i < array.length(); i++){
-
-                    JSONObject obj = array.getJSONObject(i);
-                    Publicacion p = mapPublicacion(obj);
-
-                    publis.add(p);
+                while ((line = reader.readLine()) != null) {
+                    response.append(line.trim());
                 }
-                return  publis;
-            }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return  null;
+                if (code == 200) {
+                    JSONArray array = new JSONArray(response.toString());
+
+                    for (int i = 0; i < array.length(); i++) {
+
+                        JSONObject obj = array.getJSONObject(i);
+                        Publicacion p = mapPublicacion(obj);
+
+                        publis.add(p);
+                    }
+                    call.onLoginResult(true, publis);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                activity.runOnUiThread(() -> call.onLoginResult(false, null));
+            }
+            call.onLoginResult(false, publis);
+        }).start();
     }
 
-    public ArrayList<Coleccion> getColeccionesUsuario(int id_usuario){
+    public void getColeccionesUsuario(Activity activity, int idUsuario, LoginCallBackColecciones call) {
 
-        HttpURLConnection con = null;
-        ArrayList<Coleccion> colec = new ArrayList<>();
+        new Thread(() -> {
+            HttpURLConnection con = null;
+            ArrayList<Coleccion> colec = new ArrayList<>();
 
-        try {
-            URL url = new URL("http://10.0.2.2:8080/api/wikz/operaciones/getColeccionesUsuario");
+            try {
+                URL url = new URL("http://10.0.2.2:8080/api/wikz/operaciones/getColeccionesUsuario");
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/json");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
 
-            int code = conn.getResponseCode();
-            System.out.println("Código HTTP: " + code);
+                int code = conn.getResponseCode();
+                System.out.println("Código HTTP: " + code);
 
-            InputStream stream = conn.getInputStream();
+                InputStream stream = conn.getInputStream();
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8) );
+                BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
 
-            StringBuilder response = new StringBuilder();
-            String line;
+                StringBuilder response = new StringBuilder();
+                String line;
 
-            while ((line = reader.readLine()) != null)
-            {
-                response.append(line.trim());
-            }
-
-            if (code == 200) {
-                JSONArray array = new JSONArray(response.toString());
-
-                for(int i = 0; i < array.length(); i++){
-
-                    JSONObject obj = array.getJSONObject(i);
-                    Coleccion c = mapColeccion(obj);
-
-                    colec.add(c);
+                while ((line = reader.readLine()) != null) {
+                    response.append(line.trim());
                 }
-                return  colec;
-            }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return  null;
+                if (code == 200) {
+                    JSONArray array = new JSONArray(response.toString());
+
+                    for (int i = 0; i < array.length(); i++) {
+
+                        JSONObject obj = array.getJSONObject(i);
+                        Coleccion c = mapColeccion(obj);
+
+                        colec.add(c);
+                    }
+                    call.onLoginResult(true, colec);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                activity.runOnUiThread(() -> call.onLoginResult(false, colec));
+            }
+            call.onLoginResult(false, colec);
+        }).start();
     }
 }

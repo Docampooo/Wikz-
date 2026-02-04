@@ -44,7 +44,7 @@ public class Operaciones {
     // Helpers
     private Usuario mapUsuario(ResultSet rs) throws SQLException {
 
-        // Se omiten el id y la contraseña para devolver
+        // Se omite la contraseña para devolver
         Usuario u = new Usuario();
 
         u.setId(rs.getInt("id"));
@@ -61,7 +61,6 @@ public class Operaciones {
 
     private Publicacion mapPublicacion(ResultSet rs) throws SQLException {
 
-        // No se envia ni el id de la publicacion ni el del usuario
         Publicacion p = new Publicacion();
 
         p.setId(rs.getInt("id"));
@@ -79,17 +78,16 @@ public class Operaciones {
 
     private Coleccion mapColeccion(ResultSet rs) throws SQLException {
         Coleccion c = new Coleccion();
+
         c.setId(rs.getInt("id"));
         c.setIdUsuario(rs.getInt("id_usuario"));
         c.setTitulo(rs.getString("titulo"));
 
-        byte[] img = rs.getBytes("imagen");
+        byte[] img = rs.getBytes("imagen_url");
         if (img != null) {
             c.setImagenBase64(
                     Base64.getEncoder().encodeToString(img));
         }
-
-        c.setElementos(new ArrayList<>());
 
         return c;
     }
@@ -125,6 +123,7 @@ public class Operaciones {
     }
 
     // Añadir un usuario a la base de datos --> bien
+    //http://localhost:8080/api/wikz/operaciones/addUsuario
     @POST
     @Path("/addUsuario")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -198,7 +197,8 @@ public class Operaciones {
         }
     }
 
-    // Añadir una publicacion --> probar
+    // Añadir una publicacion --> bien
+    //http://localhost:8080/api/wikz/operaciones/addPublicacion
     @POST
     @Path("/addPublicacion")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -242,6 +242,94 @@ public class Operaciones {
 
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en los drivers").build();
+        }
+    }
+
+    // Añadir colecciones --> bien
+    // http://localhost:8080/api/wikz/operaciones/addColeccion
+    @POST
+    @Path("/addColeccion")
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response addColeccion(Coleccion c) {
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+            try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
+
+                String consulta = "INSERT INTO Colecciones (id_usuario, titulo, imagen_url) VALUES(?, ?, ?)";
+
+                PreparedStatement ps = conexion.prepareStatement(consulta);
+
+                ps.setInt(1, c.getIdUsuario());
+                ps.setString(2, c.getTitulo());
+
+                byte[] foto = null;
+                if (c.getImagenBase64() != null) {
+                    foto = Base64.getDecoder().decode(c.getImagenBase64());
+                }
+
+                ps.setBytes(3, foto);
+
+                int filasAfectadas = ps.executeUpdate();
+
+                if (filasAfectadas == 1) {
+                    return Response.ok("Se ha añadido la coleccion").build();
+                } else {
+                    return Response.status(Response.Status.NOT_IMPLEMENTED).entity("No se ha añadido la coleccion")
+                            .build();
+                }
+
+            } catch (SQLException e) {
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en la base de datos")
+                        .build();
+
+            }
+
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en los drivers").build();
+        }
+    }
+
+    //añade una publicacion a una coleccion --> bien
+    //http://localhost:8080/api/wikz/operaciones/addPublicacionColeccion
+    @POST
+    @Path("/addPublicacionColeccion")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addPublicacionColeccion(Guardado g) {
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+            try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
+
+                String consulta = "INSERT INTO guardados(id_coleccion, id_publicacion) VALUES (?, ?)";
+
+                PreparedStatement ps = conexion.prepareStatement(consulta);
+                ps.setInt(1, g.getIdColeccion());
+                ps.setInt(2, g.getIdPublicacion());
+
+                int filasAfectadas = ps.executeUpdate();
+
+                if (filasAfectadas == 1) {
+                    return Response.ok("Se ha añadido la relacion").build();
+                } else {
+                    return Response.status(Response.Status.NOT_IMPLEMENTED).entity("No se ha añadido la relacion")
+                            .build();
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace(); 
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                        .entity(e.getMessage())
+                        .build();
+            }
+
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Error al guardar publicación")
+                    .build();
+
         }
     }
 
@@ -289,6 +377,7 @@ public class Operaciones {
     }
 
     // Usuario por su nombre --> bien
+    //http://localhost:8080/api/wikz/operaciones/getUsuarioNombre?nombre=MorganBono
     @GET
     @Path("/getUsuarioNombre")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -330,8 +419,8 @@ public class Operaciones {
         }
     }
 
-    // path:http://localhost:8080/api/wikz/operaciones/getUsuarioNombrePass?nombreUs=iago&passUs=34
     // Usuario por nombre y contraseña --> bien
+    // path:http://localhost:8080/api/wikz/operaciones/getUsuarioNombrePass?nombreUs=iago&passUs=34
     @GET
     @Path("/getUsuarioNombrePass")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -422,7 +511,7 @@ public class Operaciones {
         }
     }
 
-    // Obtener todas las publicaciones
+    // Obtener todas las publicaciones --> bien
     // ruta: http://localhost:8080/api/wikz/operaciones/getPublicaciones
     @GET
     @Path("/getPublicaciones")
@@ -469,8 +558,8 @@ public class Operaciones {
         }
     }
 
-    // Obtener una publicacoin por id
-    // ruta: http://localhost:8080/api/wikz/operaciones/getUsuarioId?id=x
+    // Obtener una publicacoin por id --> bien
+    // ruta: http://localhost:8080/api/wikz/operaciones/getPublicacionId?id=x
     @GET
     @Path("/getPublicacionId")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -512,8 +601,8 @@ public class Operaciones {
         }
     }
 
+    // Devuelve las publicaciones de un usuario --> bien
     // ruta: http://localhost:8080/api/wikz/operaciones/getPublicacionesUsuario
-    //Devuelve las publicaciones de un usuario --> bien
     @GET
     @Path("/getPublicacionesUsuario")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -562,6 +651,8 @@ public class Operaciones {
         }
     }
 
+    // obtener las colecciones de un usuario --> bien
+    // http://localhost:8080/api/wikz/operaciones/getColeccionesUsuario?idUsuario=1
     @GET
     @Path("/getColeccionesUsuario")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -580,15 +671,13 @@ public class Operaciones {
 
                 ps.setInt(1, idUsuario);
 
-                if (idUsuario > 0) {
-                    ResultSet rs = ps.executeQuery();
+                ResultSet rs = ps.executeQuery();
 
-                    while (rs.next()) {
+                while (rs.next()) {
 
-                        Coleccion c = mapColeccion(rs);
+                    Coleccion c = mapColeccion(rs);
 
-                        colec.add(c);
-                    }
+                    colec.add(c);
                 }
 
                 if (colec.size() == 0) {
@@ -610,5 +699,26 @@ public class Operaciones {
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en el Driver").build();
         }
+    }
+
+    //obtiene las publicaciones contenidas en las publicaciones --> bien
+    //http://localhost:8080/api/wikz/operaciones/getPublicacionesColeccion?idColeccion=1
+    @GET
+    @Path("/getPublicacionesColeccion")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getPublicacionesColeccion(@QueryParam("idColeccion") int idColeccion) {
+
+        ArrayList<Publicacion> p = getPublicacionesDeColeccion(idColeccion);
+
+        if (p.isEmpty()) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("No se han encontrado publicaciones en esta coleccion").build();
+
+        } else if (p.equals(null)) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("La coleccion no existe").build();
+
+        }
+        return Response.ok(p).build();
     }
 }

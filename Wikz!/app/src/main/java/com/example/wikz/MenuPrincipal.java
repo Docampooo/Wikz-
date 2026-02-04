@@ -2,6 +2,7 @@ package com.example.wikz;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,7 +41,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", u);
-
+        Log.d("Mostremos el usuario enviado a ver que tieneeeee",  String.format("%s %d", u.getNombre(), u.getId()));
 
         navMenu = findViewById(R.id.navMenu);
 

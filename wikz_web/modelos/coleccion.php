@@ -1,89 +1,65 @@
 <?php
+// models/Coleccion.php
+require_once 'config/Database.php';
 
 class Coleccion
 {
-    private int $id;
-    private int $idUsuario;
-    private string $titulo;
-    private array $elementos; // Array de Publicacion
-    private ?string $imagenBase64;
+    private $pdo;
 
-    // Constructor principal
-    public function __construct(
-        int $idUsuario = 0,
-        string $titulo = "",
-        array $elementos = [],
-        ?string $imagenBase64 = null
-    ) {
-        $this->idUsuario = $idUsuario;
-        $this->titulo = $titulo;
-        $this->elementos = $elementos;
-        $this->imagenBase64 = $imagenBase64;
+    public $id;
+    public $id_usuario;
+    public $titulo;
+    public $imagen;
+    public $fecha_creacion;
+
+    public function __construct()
+    {
+        $this->pdo = Database::getConnection();
     }
 
-    // ===== GETTERS & SETTERS =====
-
-    public function getId(): int
+    // Crear colección
+    public function crear($id_usuario, $titulo, $imagen = null)
     {
-        return $this->id;
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO colecciones (id_usuario, titulo, imagen, creacion) VALUES (?, ?, ?, NOW())"
+        );
+        return $stmt->execute([$id_usuario, $titulo, $imagen]);
     }
 
-    public function setId(int $id): void
+    // Obtener colecciones de un usuario
+    public function getPorUsuario($id_usuario)
     {
-        $this->id = $id;
+        $stmt = $this->pdo->prepare("SELECT * FROM colecciones WHERE id_usuario = ? ORDER BY creacion DESC");
+        $stmt->execute([$id_usuario]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getIdUsuario(): int
+    // Obtener colección por id
+    public function getById($id)
     {
-        return $this->idUsuario;
+        $stmt = $this->pdo->prepare("SELECT * FROM colecciones WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function setIdUsuario(int $idUsuario): void
+    // Añadir publicación a la colección (guardados)
+    public function addPublicacion($id_coleccion, $id_publicacion)
     {
-        $this->idUsuario = $idUsuario;
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO guardados (id_coleccion, id_publicacion) VALUES (?, ?)"
+        );
+        return $stmt->execute([$id_coleccion, $id_publicacion]);
     }
 
-    public function getTitulo(): string
+    // Obtener publicaciones de la colección
+    public function getPublicaciones($id_coleccion)
     {
-        return $this->titulo;
-    }
-
-    public function setTitulo(string $titulo): void
-    {
-        $this->titulo = $titulo;
-    }
-
-    /**
-     * @return Publicacion[]
-     */
-    public function getElementos(): array
-    {
-        return $this->elementos;
-    }
-
-    /**
-     * @param Publicacion[] $elementos
-     */
-    public function setElementos(array $elementos): void
-    {
-        $this->elementos = $elementos;
-    }
-
-    public function getImagenBase64(): ?string
-    {
-        return $this->imagenBase64;
-    }
-
-    public function setImagenBase64(?string $imagenBase64): void
-    {
-        $this->imagenBase64 = $imagenBase64;
-    }
-
-    // ===== toString =====
-    public function __toString(): string
-    {
-        return "Coleccion{id={$this->id}, titulo={$this->titulo}, elementos=" .
-            count($this->elementos) .
-            ", idUsuario={$this->idUsuario}}";
+        $stmt = $this->pdo->prepare(
+            "SELECT p.* FROM publicaciones p
+             JOIN guardados g ON p.id = g.id_publicacion
+             WHERE g.id_coleccion = ? ORDER BY p.creacion DESC"
+        );
+        $stmt->execute([$id_coleccion]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

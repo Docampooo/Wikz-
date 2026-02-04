@@ -1,94 +1,46 @@
 <?php
 
+// models/Publicacion.php
+require_once 'config/Database.php';
+
 class Publicacion
 {
-    private int $id;
-    private int $id_usuario;
-    private string $titulo;
-    private string $descripcion;
-    private ?string $imagenBase64;
-    private DateTime $fechaCreacion;
+    private $pdo;
 
-    // Constructor principal
-    public function __construct(
-        int $id_usuario = 0,
-        string $titulo = "",
-        ?string $imagenBase64 = null,
-        string $descripcion = "",
-        ?DateTime $fechaCreacion = null
-    ) {
-        $this->id_usuario = $id_usuario;
-        $this->titulo = $titulo ?? "";
-        $this->imagenBase64 = $imagenBase64;
-        $this->descripcion = $descripcion ?? "";
-        $this->fechaCreacion = $fechaCreacion ?? new DateTime();
+    public $id;
+    public $id_usuario;
+    public $titulo;
+    public $descripcion;
+    public $imagen;
+    public $fecha_creacion;
+
+    public function __construct()
+    {
+        $this->pdo = Database::getConnection();
     }
 
-    // ===== GETTERS & SETTERS =====
-
-    public function getId(): int
+    // Crear publicación
+    public function crear($id_usuario, $titulo, $descripcion, $imagen = null)
     {
-        return $this->id;
+        $stmt = $this->pdo->prepare(
+            "INSERT INTO publicaciones (id_usuario, titulo, descripcion, imagen, creacion) VALUES (?, ?, ?, ?, NOW())"
+        );
+        return $stmt->execute([$id_usuario, $titulo, $descripcion, $imagen]);
     }
 
-    public function setId(int $id): void
+    // Obtener publicaciones de un usuario
+    public function getPorUsuario($id_usuario)
     {
-        $this->id = $id;
+        $stmt = $this->pdo->prepare("SELECT * FROM publicaciones WHERE id_usuario = ? ORDER BY creacion DESC");
+        $stmt->execute([$id_usuario]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getIdUsuario(): int
+    // Obtener publicación por id
+    public function getById($id)
     {
-        return $this->id_usuario;
-    }
-
-    public function setIdUsuario(int $id_usuario): void
-    {
-        $this->id_usuario = $id_usuario;
-    }
-
-    public function getTitulo(): string
-    {
-        return $this->titulo;
-    }
-
-    public function setTitulo(string $titulo): void
-    {
-        $this->titulo = $titulo;
-    }
-
-    public function getDescripcion(): string
-    {
-        return $this->descripcion;
-    }
-
-    public function setDescripcion(string $descripcion): void
-    {
-        $this->descripcion = $descripcion;
-    }
-
-    public function getImagenBase64(): ?string
-    {
-        return $this->imagenBase64;
-    }
-
-    public function setImagenBase64(?string $imagenBase64): void
-    {
-        $this->imagenBase64 = $imagenBase64;
-    }
-
-    public function getFechaCreacion(): DateTime
-    {
-        return $this->fechaCreacion;
-    }
-
-    public function setFechaCreacion(DateTime $fechaCreacion): void
-    {
-        $this->fechaCreacion = $fechaCreacion;
-    }
-
-    // ===== toString =====
-    public function __toString(): string
-    {
-        return "Publicacion{id={$this->id}, id_usuario={$this->id_usuario}, titulo={$this->titulo}}";
+        $stmt = $this->pdo->prepare("SELECT * FROM publicaciones WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

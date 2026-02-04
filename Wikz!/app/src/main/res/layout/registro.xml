@@ -42,10 +42,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:foregroundTint="@color/grisClaro"
+            android:foreground="@color/moradoLogo"
+            android:foregroundTint="@color/moradoLogo"
             android:hint="Nombre Usuario"
             android:inputType="text"
             android:textAlignment="center"
+            android:textColor="@color/moradoLogo"
             android:textColorHint="@color/grisClaro" />
 
         <EditText
@@ -53,10 +55,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:foregroundTint="@color/grisClaro"
+            android:foreground="@color/moradoLogo"
+            android:foregroundTint="@color/moradoLogo"
             android:hint="Contraseña"
             android:inputType="text|textPassword"
             android:textAlignment="center"
+            android:textColor="@color/moradoLogo"
             android:textColorHint="@color/grisClaro" />
 
         <Button

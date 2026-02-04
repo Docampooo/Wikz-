@@ -23,6 +23,8 @@ import java.util.Date;
 public class AnadirUsuario extends AppCompatActivity {
     Api api;
 
+    Usuario u;
+
     EditText txtRegistrarNombre;
     EditText txtRegistrarPass;
     EditText txtRepetirPass;
@@ -66,6 +68,8 @@ public class AnadirUsuario extends AppCompatActivity {
         correoUsuario = "";
 
         api = new Api();
+        u = new Usuario();
+
         btnRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,13 +107,8 @@ public class AnadirUsuario extends AppCompatActivity {
                         runOnUiThread(() -> {
                                 // Añadir usuario
                                 api.addUsuario(AnadirUsuario.this ,nombreUsuario, correoUsuario, pass, "");
+                                añadido = true;
 
-                                // Crear usuario para enviar a MenuPrincipal
-                                Usuario u = new Usuario(nombreUsuario, correoUsuario, "", null, new Date());
-                                Intent intentPrincipal = new Intent(AnadirUsuario.this, MenuPrincipal.class);
-                                intentPrincipal.putExtra("usuario", u);
-
-                                startActivity(intentPrincipal);
                         });
 
                     } catch (Exception e) {
@@ -118,6 +117,25 @@ public class AnadirUsuario extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }).start();
+
+                System.out.println("Usuario" + nombreUsuario + pass + añadido);
+                //Posible solucion --> no se ejecuta porque el usuario aun no se ha mandado a la base de datos
+                if(añadido){
+                    api.getUsuarioNombrePass(AnadirUsuario.this, nombreUsuario, pass, (success, usu) -> {
+
+                        if(success){
+                            u = usu;
+
+                            // Crear usuario para enviar a MenuPrincipal
+                            Usuario u = new Usuario(nombreUsuario, correoUsuario, "", null, new Date());
+                            Intent intentPrincipal = new Intent(AnadirUsuario.this, MenuPrincipal.class);
+                            intentPrincipal.putExtra("usuario", u);
+
+                            startActivity(intentPrincipal);
+
+                        }
+                    });
+                }
             }
         });
     }
