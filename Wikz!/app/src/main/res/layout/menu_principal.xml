@@ -9,16 +9,19 @@
     tools:context=".MenuPrincipal">
 
     <!-- CONTENEDOR DE FRAGMENTS -->
+
+    <!-- BOTTOM NAVIGATION -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/navMenu"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <!-- BOTTOM NAVIGATION -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navMenu"
         android:layout_width="match_parent"
@@ -30,7 +33,6 @@
         app:itemPaddingTop="4dp"
         app:itemPaddingBottom="4dp"
 
-        app:itemIconTint="@null"
         app:itemTextColor="@color/white"
 
         app:layout_constraintBottom_toBottomOf="parent"

@@ -17,8 +17,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.util.Patterns;
 
-import java.util.Date;
-
 
 public class AnadirUsuario extends AppCompatActivity {
     Api api;
@@ -52,15 +50,15 @@ public class AnadirUsuario extends AppCompatActivity {
             return insets;
         });
 
-        txtRegistrarNombre = findViewById(R.id.txtRegistrarNombre);
+        txtRegistrarNombre = findViewById(R.id.txtNombre);
 
-        txtRegistrarPass = findViewById(R.id.txtRegistrarPass);
+        txtRegistrarPass = findViewById(R.id.txtBio);
 
         txtRepetirPass = findViewById(R.id.txtRepetirPass);
 
         txtRegistrarCorreo = findViewById(R.id.txtRegistrarCorreo);
 
-        btnRegistrarUsuario = findViewById(R.id.btnRegistrarUsuario);
+        btnRegistrarUsuario = findViewById(R.id.btnConfirmar);
 
         nombreUsuario = "";
         pass = "";
@@ -100,42 +98,23 @@ public class AnadirUsuario extends AppCompatActivity {
                     return;
                 }
 
-                // Hilo para llamadas de red
-                new Thread(() -> {
-                    try {
-                        // Actualizar UI en el hilo principal
-                        runOnUiThread(() -> {
-                                // Añadir usuario
-                                api.addUsuario(AnadirUsuario.this ,nombreUsuario, correoUsuario, pass, "");
-                                añadido = true;
-
+                api.addUsuario(AnadirUsuario.this, nombreUsuario, correoUsuario, pass, "", (successAdd) -> {
+                    // Esto se ejecuta cuando addUsuario termina
+                    if (successAdd) {
+                        api.getUsuarioNombrePass(AnadirUsuario.this, nombreUsuario, pass, (successGet, usu) -> {
+                            if (successGet && usu != null) {
+                                Intent intentPrincipal = new Intent(AnadirUsuario.this, MenuPrincipal.class);
+                                intentPrincipal.putExtra("usuario", usu);
+                                startActivity(intentPrincipal);
+                                finish(); // Importante para que no regrese al registro al darle atrás
+                            } else {
+                                reiniciarCampos("Error al recuperar el perfil creado");
+                            }
                         });
-
-                    } catch (Exception e) {
-                        // Si ocurre algún error en la red, mostrarlo con tu función
-                        runOnUiThread(() -> reiniciarCampos("Error al conectar con el servidor"));
-                        e.printStackTrace();
+                    } else {
+                        reiniciarCampos("Error al registrar, El usuario ya existe");
                     }
-                }).start();
-
-                System.out.println("Usuario" + nombreUsuario + pass + añadido);
-                //Posible solucion --> no se ejecuta porque el usuario aun no se ha mandado a la base de datos
-                if(añadido){
-                    api.getUsuarioNombrePass(AnadirUsuario.this, nombreUsuario, pass, (success, usu) -> {
-
-                        if(success){
-                            u = usu;
-
-                            // Crear usuario para enviar a MenuPrincipal
-                            Usuario u = new Usuario(nombreUsuario, correoUsuario, "", null, new Date());
-                            Intent intentPrincipal = new Intent(AnadirUsuario.this, MenuPrincipal.class);
-                            intentPrincipal.putExtra("usuario", u);
-
-                            startActivity(intentPrincipal);
-
-                        }
-                    });
-                }
+                });
             }
         });
     }

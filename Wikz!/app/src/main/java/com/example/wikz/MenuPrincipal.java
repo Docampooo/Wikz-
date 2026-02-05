@@ -2,7 +2,6 @@ package com.example.wikz;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,10 +17,10 @@ public class MenuPrincipal extends AppCompatActivity {
     Intent intentUsuario;
     BottomNavigationView navMenu;
 
-    fragment_home frHome;
-    fragment_explorar frExp;
+    fr_contenido frHome;
+    fr_publicar frExp;
 
-    fragment_perfil frPerf;
+    fr_perfil frPerf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +40,17 @@ public class MenuPrincipal extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", u);
-        Log.d("Mostremos el usuario enviado a ver que tieneeeee",  String.format("%s %d", u.getNombre(), u.getId()));
 
         navMenu = findViewById(R.id.navMenu);
+        navMenu.setItemIconTintList(null);
 
-        frHome = new fragment_home();
+        frHome = new fr_contenido();
         frHome.setArguments(bundle);
 
-        frExp = new fragment_explorar();
+        frExp = new fr_publicar();
         frExp.setArguments(bundle);
 
-        frPerf = new fragment_perfil();
+        frPerf = new fr_perfil();
         frPerf.setArguments(bundle);
 
         getSupportFragmentManager()
@@ -67,14 +66,14 @@ public class MenuPrincipal extends AppCompatActivity {
 
             int id = item.getItemId();
 
-            if(id == R.id.mn_inicio){
+            if(id == R.id.mn_publicar){
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, frHome)
                         .commit();
                 return true;
 
-            }else if( id == R.id.mn_explorar){
+            }else if( id == R.id.mn_contenido){
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, frExp)

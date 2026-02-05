@@ -123,14 +123,12 @@ public class Operaciones {
     }
 
     // Añadir un usuario a la base de datos --> bien
-    //http://localhost:8080/api/wikz/operaciones/addUsuario
+    // http://localhost:8080/api/wikz/operaciones/addUsuario
     @POST
     @Path("/addUsuario")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response addUsuario(UsuarioRegistro u) {
-
-        System.out.println("Dentro");
 
         if (u == null || u.getNombre() == null || u.getEmail() == null || u.getPass() == null) {
             return Response.status(Response.Status.BAD_REQUEST)
@@ -198,7 +196,7 @@ public class Operaciones {
     }
 
     // Añadir una publicacion --> bien
-    //http://localhost:8080/api/wikz/operaciones/addPublicacion
+    // http://localhost:8080/api/wikz/operaciones/addPublicacion
     @POST
     @Path("/addPublicacion")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -291,8 +289,8 @@ public class Operaciones {
         }
     }
 
-    //añade una publicacion a una coleccion --> bien
-    //http://localhost:8080/api/wikz/operaciones/addPublicacionColeccion
+    // añade una publicacion a una coleccion --> bien
+    // http://localhost:8080/api/wikz/operaciones/addPublicacionColeccion
     @POST
     @Path("/addPublicacionColeccion")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -319,7 +317,7 @@ public class Operaciones {
                 }
 
             } catch (SQLException e) {
-                e.printStackTrace(); 
+                e.printStackTrace();
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                         .entity(e.getMessage())
                         .build();
@@ -377,7 +375,7 @@ public class Operaciones {
     }
 
     // Usuario por su nombre --> bien
-    //http://localhost:8080/api/wikz/operaciones/getUsuarioNombre?nombre=MorganBono
+    // http://localhost:8080/api/wikz/operaciones/getUsuarioNombre?nombre=MorganBono
     @GET
     @Path("/getUsuarioNombre")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -445,6 +443,7 @@ public class Operaciones {
                 ResultSet rs = ps.executeQuery();
 
                 if (!rs.next()) {
+                    System.out.println("No encontrado");
                     return Response.status(Response.Status.NOT_FOUND)
                             .entity("Usuario no encontrado")
                             .build();
@@ -701,8 +700,8 @@ public class Operaciones {
         }
     }
 
-    //obtiene las publicaciones contenidas en las publicaciones --> bien
-    //http://localhost:8080/api/wikz/operaciones/getPublicacionesColeccion?idColeccion=1
+    // obtiene las publicaciones contenidas en las publicaciones --> bien
+    // http://localhost:8080/api/wikz/operaciones/getPublicacionesColeccion?idColeccion=1
     @GET
     @Path("/getPublicacionesColeccion")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -720,5 +719,67 @@ public class Operaciones {
 
         }
         return Response.ok(p).build();
+    }
+
+    @POST
+    @Path("/updateUsuario")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateUsuario(Usuario u) {
+
+        if (u == null || u.getId() <= 0) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Usuario inválido")
+                    .build();
+        }
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+            try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
+
+                String sql;
+                PreparedStatement ps;
+
+                if (u.getFotoPerfilBase64() != null) {
+
+                    sql = "UPDATE usuarios SET nombre = ?, bio = ?, foto_perfil = ? WHERE id = ?";
+
+                    ps = conexion.prepareStatement(sql);
+                    ps.setString(1, u.getNombre());
+                    ps.setString(2, u.getBiografia());
+                    ps.setBytes(3, Base64.getDecoder().decode(u.getFotoPerfilBase64()));
+                    ps.setInt(4, u.getId());
+
+                } else {
+
+                    sql = "UPDATE usuarios SET nombre = ?, bio = ? WHERE id = ?";
+
+                    ps = conexion.prepareStatement(sql);
+                    ps.setString(1, u.getNombre());
+                    ps.setString(2, u.getBiografia());
+                    ps.setInt(3, u.getId());
+                }
+
+                int filas = ps.executeUpdate();
+
+                if (filas == 1) {
+                    return Response.ok("Usuario actualizado correctamente").build();
+                } else {
+                    return Response.status(Response.Status.NOT_FOUND)
+                            .entity("Usuario no encontrado")
+                            .build();
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(e.getMessage())
+                    .build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Error en los drivers")
+                    .build();
+        }
     }
 }

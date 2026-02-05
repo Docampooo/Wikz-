@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/txtRegistrarNombre"
+            android:id="@+id/txtNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
@@ -30,7 +30,7 @@
             android:textColorHint="@color/grisClaro" />
 
         <EditText
-            android:id="@+id/txtRegistrarPass"
+            android:id="@+id/txtBio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -66,7 +66,7 @@
             android:textColorHint="@color/grisClaro" />
 
         <Button
-            android:id="@+id/btnRegistrarUsuario"
+            android:id="@+id/btnConfirmar"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginTop="30dp"

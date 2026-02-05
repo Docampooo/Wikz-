@@ -1,9 +1,11 @@
 package com.example.wikz;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
@@ -24,6 +26,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Api {
+
+    public interface ApiCallback {
+        void onResult(boolean success);
+    }
 
     //Añadir los callbacks y las llamadas para los gets
     public interface LoginCallBackUsuario{
@@ -142,7 +148,7 @@ public class Api {
         return c;
     }
 
-    public void addUsuario(Activity activity, String nombre, String email, String pass, String bio){
+    public void addUsuario(Activity activity, String nombre, String email, String pass, String bio, ApiCallback call){
 
         new Thread(() -> {
 
@@ -172,20 +178,18 @@ public class Api {
                 System.out.println(json);
                 int code = con.getResponseCode();
 
-                if (code == 200 || code == 201) {
-                    activity.runOnUiThread(() ->
-                            activity.startActivity(new Intent(activity, MenuPrincipal.class)));
-
-                }else if(code == 409){
-
-                    activity.runOnUiThread(() ->
-                            Toast.makeText(activity, "Datos de usuario ya existentes", Toast.LENGTH_SHORT).show());
-                }
+                // REGRESAMOS AL HILO PRINCIPAL ANTES DE LLAMAR AL CALLBACK
+                activity.runOnUiThread(() -> {
+                    if (code == 200 || code == 201) {
+                        call.onResult(true);
+                    } else {
+                        call.onResult(false);
+                    }
+                });
 
             }catch (Exception e) {
                 activity.runOnUiThread(() ->
-                        Toast.makeText(activity, "Error de conexión", Toast.LENGTH_SHORT).show()
-                );
+                        call.onResult(false));
             }
         }).start();
     }
@@ -267,14 +271,15 @@ public class Api {
 
                     Usuario u = mapUsuario(obj);
 
-                    call.onLoginResult(true, u);
+                    activity.runOnUiThread(() -> call.onLoginResult(true, u));
+                } else {
+                    activity.runOnUiThread(() -> call.onLoginResult(false, null));
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
                 activity.runOnUiThread(() -> call.onLoginResult(false, null));
             }
-            call.onLoginResult(false, null);
 
         }).start();
     }
@@ -336,7 +341,7 @@ public class Api {
             ArrayList<Publicacion> publis = new ArrayList<>();
 
             try {
-                URL url = new URL("http://10.0.2.2:8080/api/wikz/operaciones/getPublicacionesUsuario");
+                URL url = new URL("http://10.0.2.2:8080/api/wikz/operaciones/getPublicacionesUsuario?idUsuario=" + idUsuario);
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
@@ -422,6 +427,66 @@ public class Api {
                 activity.runOnUiThread(() -> call.onLoginResult(false, colec));
             }
             call.onLoginResult(false, colec);
+        }).start();
+    }
+
+    public void updateUsuario(Activity activity, Usuario u, ApiCallback call){
+
+        new Thread(() -> {
+
+            HttpURLConnection con = null;
+
+            try {
+                URL url = new URL(
+                        "http://10.0.2.2:8080/api/wikz/operaciones/updateUsuario");
+
+                con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("POST");
+                con.setRequestProperty(
+                        "Content-Type",
+                        "application/json; charset=UTF-8"
+                );
+                con.setDoOutput(true);
+                con.setDoInput(true);
+                con.setConnectTimeout(15000);
+                con.setReadTimeout(15000);
+
+                //Construimos el JSON del usuario completo
+                JSONObject json = new JSONObject();
+                json.put("id", u.getId());
+                json.put("nombre", u.getNombre());
+                json.put("biografia", u.getBiografia());
+
+                // Imagen (si existe)
+                if (u.getFotoPerfil() != null) {
+                    String base64 = bitmapToBase64(u.getFotoPerfil());
+                    json.put("fotoPerfilBase64", base64);
+                }
+
+                // Enviar JSON
+                try (OutputStream os = con.getOutputStream()) {
+                    byte[] input = json.toString()
+                            .getBytes(StandardCharsets.UTF_8);
+                    os.write(input);
+                    os.flush();
+                }
+
+                int code = con.getResponseCode();
+                Log.i("API", "updateUsuario code: " + code);
+
+                activity.runOnUiThread(() -> {
+                    if (code == 200 || code == 201) {
+                        call.onResult(true);
+                    } else {
+                        call.onResult(false);
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                activity.runOnUiThread(() -> call.onResult(false));
+            }
+
         }).start();
     }
 }

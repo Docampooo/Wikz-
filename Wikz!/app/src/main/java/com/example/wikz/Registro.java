@@ -71,7 +71,6 @@ public class Registro extends AppCompatActivity {
                     api.getUsuarioNombrePass(Registro.this, nombreUsuario, pass, (success, usu) -> {
 
                         if(success){
-                            System.out.println("Usuario encontrado");
                             u = usu;
 
                             // LOGIN OK
@@ -84,22 +83,22 @@ public class Registro extends AppCompatActivity {
                             // LOGIN ERROR
                             txtNombreUsuario.setText("");
                             txtPassUsuario.setText("");
+
+                            Toast toast = Toast.makeText(
+                                    getApplicationContext(),
+                                    "El usuario y la contraseña no coinciden",
+                                    Toast.LENGTH_SHORT
+                            );
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+
+                            View view = toast.getView();
+                            view.setBackgroundResource(R.drawable.toast_background);
+
+                            TextView text = view.findViewById(android.R.id.message);
+                            text.setTextColor(Color.WHITE);
+                            toast.show();
                         }
                     });
-
-                    Toast toast = Toast.makeText(
-                            getApplicationContext(),
-                            "El usuario y la contraseña no coinciden",
-                            Toast.LENGTH_SHORT
-                    );
-
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    View view = toast.getView();
-                    view.setBackgroundResource(R.drawable.toast_background);
-
-                    TextView text = view.findViewById(android.R.id.message);
-                    text.setTextColor(Color.WHITE);
-                    toast.show();
                 }
             }
         });
