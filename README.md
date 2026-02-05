@@ -35,3 +35,10 @@ Validaciones de usuarios ya establecidas, usuarios añadidos correctamente y ins
 
 02/02/2026
 Base de datos ya operativa! la api funciona a la perfeccion y se han probado las funciones con el RESTER, se ha empezado la depuración de añadido de usuarios desde el móvil y falta gestionar el tráfico de datos compartido, todo va viento en popa
+
+03/02/2026
+Se ha reiniciado el proyecto de web, inicio desde cero para una base más fuerte y mayor claridad de código, las clases están montadas y queda probar todo y establecer el frontend, en móviles se han pulido muchas funcines y se ha optimizado el uso de la API
+
+04/02/2026
+Primeros avances en la introduccion de imagenes en la base de datos, la aplicacion movil esta cada vez mas cerca de estar terminada, falta probar los nuevos cambios y confirmar su validez
+
