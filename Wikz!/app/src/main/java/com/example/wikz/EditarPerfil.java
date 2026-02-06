@@ -62,12 +62,11 @@ public class EditarPerfil extends AppCompatActivity {
 
         ivfotoPerfil = findViewById(R.id.ivActualizarFotoPerfil);
 
-        if(u.getFotoPerfil() == null){
-            Bitmap fotoDefecto = BitmapFactory.decodeResource(getResources(), R.drawable.fotoperfil);
-            ivfotoPerfil.setImageBitmap(fotoDefecto);
-        }else{
-            ivfotoPerfil.setImageBitmap(u.getFotoPerfil());
-        }
+        api.getFotoPerfil(this, u.getId(), bitmap -> {
+            if (bitmap != null) {
+                ivfotoPerfil.setImageBitmap(bitmap);
+            }
+        });
 
         ivfotoPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,10 +88,7 @@ public class EditarPerfil extends AppCompatActivity {
 
             u.setNombre(txtNombre.getText().toString().trim());
             u.setBiografia(txtBio.getText().toString().trim());
-
-            if (nuevaFoto != null) {
-                u.setFotoPerfil(nuevaFoto);
-            }
+            u.setFotoPerfil(null);
 
             api.updateUsuario(this, u, success -> {
                 if (success) {

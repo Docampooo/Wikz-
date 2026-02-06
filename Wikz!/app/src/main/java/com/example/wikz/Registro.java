@@ -66,8 +66,6 @@ public class Registro extends AppCompatActivity {
                     
                 }else{
 
-                    System.out.println(nombreUsuario + " " + pass);
-                    //Probar!
                     api.getUsuarioNombrePass(Registro.this, nombreUsuario, pass, (success, usu) -> {
 
                         if(success){

@@ -45,6 +45,7 @@ public class fr_perfil extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             u = (Usuario) getArguments().getSerializable("usuario");
+
         }
     }
 
@@ -56,12 +57,16 @@ public class fr_perfil extends Fragment {
 
         ivFotoPerfil = view.findViewById(R.id.ivFotoPerfil);
 
-        //Añadir la foto de perfil
-        if(u.getFotoPerfil() == null){
-            Bitmap fotoDefecto = BitmapFactory.decodeResource(getResources(), R.drawable.fotoperfil);
-            ivFotoPerfil.setImageBitmap(fotoDefecto);
-        }else{
-            ivFotoPerfil.setImageBitmap(u.getFotoPerfil());
+        api = new Api();
+
+        if (u != null) {
+            api.getFotoPerfil(getActivity(), u.getId(), bitmap -> {
+                // isAdded() comprueba que el fragmento sigue en pantalla
+                if (isAdded() && bitmap != null) {
+                    ivFotoPerfil.setImageBitmap(bitmap);
+                    u.setFotoPerfil(bitmap);
+                }
+            });
         }
 
         tvNombrePerfil = view.findViewById(R.id.tvNombrePerfil);
@@ -73,6 +78,8 @@ public class fr_perfil extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), EditarPerfil.class);
+
+                u.setFotoPerfil(null);
                 intent.putExtra("usuario", u);
                 startActivityForResult(intent, 200);
             }
@@ -83,7 +90,6 @@ public class fr_perfil extends Fragment {
 
         tvDescripcionPerfil.setText(u.getBiografia());
 
-        api = new Api();
         //Rv Publicaciones
         //Añadir publicaciones para probar el codigo
         publicacionesPerfil = new ArrayList<>();
@@ -119,15 +125,18 @@ public class fr_perfil extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 200 && resultCode == getActivity().RESULT_OK && data != null) {
-
+            // Recibimos los nuevos textos (nombre, bio)
             u = (Usuario) data.getSerializableExtra("usuario");
 
             tvNombrePerfil.setText(u.getNombre());
             tvDescripcionPerfil.setText(u.getBiografia());
 
-            if (u.getFotoPerfil() != null) {
-                ivFotoPerfil.setImageBitmap(u.getFotoPerfil());
-            }
+            // Volvemos a pedir la foto a la API para refrescar
+            api.getFotoPerfil(getActivity(), u.getId(), bitmap -> {
+                if (isAdded() && bitmap != null) {
+                    ivFotoPerfil.setImageBitmap(bitmap);
+                }
+            });
         }
     }
 }

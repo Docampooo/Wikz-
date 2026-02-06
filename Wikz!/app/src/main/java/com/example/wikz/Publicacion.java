@@ -24,7 +24,7 @@ public class Publicacion implements Serializable {
     private int id_usuario;
     private String titulo;
     private String descripcion;
-    private Bitmap imagen;
+    private transient Bitmap imagen;
     private Date fechaCreacion;
 
     // Getters y setters

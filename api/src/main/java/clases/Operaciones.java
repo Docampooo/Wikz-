@@ -782,4 +782,80 @@ public class Operaciones {
                     .build();
         }
     }
+
+    @GET
+    @Path("/fotoPerfil")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response getFotoPerfil(@QueryParam("id") int idUsuario) {
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+            try (Connection con = DriverManager.getConnection(ruta, user, pass)) {
+
+                String sql = "SELECT foto_perfil FROM usuarios WHERE id = ?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, idUsuario);
+
+                ResultSet rs = ps.executeQuery();
+
+                if (rs.next()) {
+
+                    byte[] foto = rs.getBytes("foto_perfil");
+
+                    if (foto == null) {
+                        return Response.status(Response.Status.NO_CONTENT).build();
+                    }
+
+                    return Response.ok(foto)
+                            .type("image/jpeg")
+                            .build();
+                }
+
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.serverError().build();
+        }
+    }
+
+    @GET
+    @Path("/getImagenPublicacion")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Response getImagenPublicacion(@QueryParam("id") int idPublicacion) {
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+            try (Connection con = DriverManager.getConnection(ruta, user, pass)) {
+
+                String sql = "SELECT imagen FROM publicaciones WHERE id = ?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, idPublicacion);
+
+                ResultSet rs = ps.executeQuery();
+
+                if (rs.next()) {
+
+                    byte[] foto = rs.getBytes("imagen");
+
+                    if (foto == null) {
+                        return Response.status(Response.Status.NO_CONTENT).build();
+                    }
+
+                    return Response.ok(foto)
+                            .type("image/jpeg")
+                            .build();
+                }
+
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.serverError().build();
+        }
+    }
 }

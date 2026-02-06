@@ -71,7 +71,7 @@ public class Usuario implements Serializable {
         return biografia;
     }
 
-    private Bitmap fotoPerfil;
+    private transient Bitmap fotoPerfil;
 
     public Bitmap getFotoPerfil() {
         return fotoPerfil;

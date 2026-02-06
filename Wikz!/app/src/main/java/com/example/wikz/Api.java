@@ -1,11 +1,9 @@
 package com.example.wikz;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
@@ -27,7 +25,11 @@ import java.util.Date;
 
 public class Api {
 
-    public interface ApiCallback {
+    public interface  ApiCallbackBitmap{
+        void onResult(Bitmap bitmap);
+    }
+
+    public interface UpdateCallBackUsuario {
         void onResult(boolean success);
     }
 
@@ -96,7 +98,13 @@ public class Api {
         Publicacion p = new Publicacion();
 
         p.setId(obj.getInt("id"));
-        p.setIdUsuario(obj.getInt("id_usuario"));
+        int idUsuario = obj.has("id_usuario")
+                ? obj.getInt("id_usuario")
+                : obj.has("usuario_id")
+                ? obj.getInt("usuario_id")
+                : obj.getInt("id");
+
+        p.setIdUsuario(idUsuario);
         p.setTitulo(obj.getString("titulo"));
         p.setDescripcion(obj.getString("descripcion"));
 
@@ -148,7 +156,7 @@ public class Api {
         return c;
     }
 
-    public void addUsuario(Activity activity, String nombre, String email, String pass, String bio, ApiCallback call){
+    public void addUsuario(Activity activity, String nombre, String email, String pass, String bio, UpdateCallBackUsuario call){
 
         new Thread(() -> {
 
@@ -236,6 +244,135 @@ public class Api {
                         Toast.makeText(activity, "Error de conexión", Toast.LENGTH_SHORT).show()
                 );
             }
+        }).start();
+    }
+
+    public void getFotoPerfil(Activity activity, int idUsuario, ApiCallbackBitmap call) {
+
+        new Thread(() -> {
+            HttpURLConnection conn = null;
+
+            try {
+                URL url = new URL(
+                        "http://10.0.2.2:8080/api/wikz/operaciones/fotoPerfil?id=" + idUsuario
+                );
+
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setConnectTimeout(15000);
+                conn.setReadTimeout(15000);
+                conn.setDoInput(true);
+
+                int responseCode = conn.getResponseCode();
+                Log.i("API", "fotoPerfil code: " + responseCode);
+
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+
+                    InputStream stream = conn.getInputStream();
+                    Bitmap bitmap = BitmapFactory.decodeStream(stream);
+                    stream.close();
+
+                    activity.runOnUiThread(() -> call.onResult(bitmap));
+
+                } else {
+                    // 404, 204, etc → no hay foto
+                    activity.runOnUiThread(() -> call.onResult(null));
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                activity.runOnUiThread(() -> call.onResult(null));
+
+            } finally {
+                if (conn != null) conn.disconnect();
+            }
+        }).start();
+    }
+
+    public void getFotoPublicacion(Activity activity, int idPublicacion, ApiCallbackBitmap call) {
+
+        new Thread(() -> {
+            HttpURLConnection conn = null;
+
+            try {
+                URL url = new URL(
+                        "http://10.0.2.2:8080/api/wikz/operaciones/getImagenPublicacion?id=" + idPublicacion
+                );
+
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setConnectTimeout(15000);
+                conn.setReadTimeout(15000);
+                conn.setDoInput(true);
+
+                int responseCode = conn.getResponseCode();
+                Log.i("API", "Imagen publicacion code: " + responseCode);
+
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+
+                    InputStream stream = conn.getInputStream();
+                    Bitmap bitmap = BitmapFactory.decodeStream(stream);
+                    stream.close();
+
+                    activity.runOnUiThread(() -> call.onResult(bitmap));
+
+                } else {
+                    // 404, 204, etc → no hay foto
+                    activity.runOnUiThread(() -> call.onResult(null));
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                activity.runOnUiThread(() -> call.onResult(null));
+
+            } finally {
+                if (conn != null) conn.disconnect();
+            }
+        }).start();
+    }
+
+    public void getUsuarioId(Activity activity, int idUs, LoginCallBackUsuario call) {
+
+        new Thread(() -> {
+
+            HttpURLConnection con = null;
+
+            try {
+                URL url = new URL("http://10.0.2.2:8080/api/wikz/operaciones/getUsuarioId?id="+idUs);
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
+
+                int code = conn.getResponseCode();
+                System.out.println("Código HTTP: " + code);
+
+                InputStream stream = conn.getInputStream();
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+
+                StringBuilder response = new StringBuilder();
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    response.append(line.trim());
+                }
+
+                if (code == 200) {
+                    JSONObject obj = new JSONObject(response.toString());
+
+                    Usuario u = mapUsuario(obj);
+
+                    activity.runOnUiThread(() -> call.onLoginResult(true, u));
+                } else {
+                    activity.runOnUiThread(() -> call.onLoginResult(false, null));
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                activity.runOnUiThread(() -> call.onLoginResult(false, null));
+            }
+
         }).start();
     }
 
@@ -430,7 +567,7 @@ public class Api {
         }).start();
     }
 
-    public void updateUsuario(Activity activity, Usuario u, ApiCallback call){
+    public void updateUsuario(Activity activity, Usuario u, UpdateCallBackUsuario call){
 
         new Thread(() -> {
 

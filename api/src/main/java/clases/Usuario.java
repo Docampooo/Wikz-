@@ -15,7 +15,7 @@ public class Usuario {
     }
 
     public Usuario() {
-        this("", "", "", null, new Date());
+        
     }
 
     private String nombre;
