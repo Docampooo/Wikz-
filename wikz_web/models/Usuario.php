@@ -27,6 +27,18 @@ class Usuario
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Obtener usuario por nombre
+    public function getByNombre($nombre)
+    {
+        $stmt = $this->pdo->prepare(
+            "SELECT id, nombre, email, pass, bio, foto_perfil, creacion 
+         FROM usuarios 
+         WHERE nombre = ?"
+        );
+        $stmt->execute([$nombre]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     // Crear nuevo usuario
     public function crear($nombre, $email, $pass, $bio = '', $foto = null)
     {
