@@ -42,3 +42,6 @@ Se ha reiniciado el proyecto de web, inicio desde cero para una base más fuerte
 04/02/2026
 Primeros avances en la introduccion de imagenes en la base de datos, la aplicacion movil esta cada vez mas cerca de estar terminada, falta probar los nuevos cambios y confirmar su validez
 
+05/02/2026
+Las imagenes por fin se han subido a la base de datos, la aplicacion movil ya es capaz de subir fotos de perfil y almacenarlas correctamente, tambien es capaz de recogerlas, da fallos por motivos de memoria pero el resultado es positvio, un gran avance
+
