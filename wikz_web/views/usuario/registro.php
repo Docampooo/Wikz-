@@ -116,7 +116,8 @@
             <input type="text" name="nombre" placeholder="Nombre de usuario" required>
             <input type="email" name="email" placeholder="Correo electrónico" required>
             <input type="password" name="pass" placeholder="Contraseña" required>
-            <input type="password" id="pass2" placeholder="Repetir contraseña" required>
+            <input type="password" name="pass2" id="pass2" placeholder="Repetir contraseña" required>
+
 
             <div id="errorPass" class="error">
                 Las contraseñas no coinciden

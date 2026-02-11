@@ -1,5 +1,7 @@
 package com.example.wikz;
 
+import android.app.Activity;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 
 public class AdaptadorPublicaciones extends  RecyclerView.Adapter<AdaptadorPublicaciones.MyViewHolder>{
     ArrayList<Publicacion> publicaciones;
+
+    Api api = new Api();
 
     //Constructor
     public AdaptadorPublicaciones(ArrayList<Publicacion> publicaciones){
@@ -31,14 +35,32 @@ public class AdaptadorPublicaciones extends  RecyclerView.Adapter<AdaptadorPubli
     }
 
     public void onBindViewHolder(@NonNull AdaptadorPublicaciones.MyViewHolder holder, int position) {
-
         Publicacion pu = this.publicaciones.get(position);
 
-        holder.imagenPublicacion.setImageBitmap(pu.getImagen());
+        // Configuración inicial de la celda
+        holder.imagenPublicacion.setImageResource(R.drawable.fotoperfil);
 
-        if (selectedPos == position)
-            holder.itemView.setBackgroundResource(R.color.moradoLogo);
-        else holder.itemView.setBackgroundResource(R.color.white);
+        api.getFotoPublicacion((Activity) holder.itemView.getContext(), pu.getId(), bitmap -> {
+            if (bitmap != null) {
+                holder.imagenPublicacion.setImageBitmap(bitmap);
+            }
+        });
+
+        // Gestión del color de selección
+        holder.itemView.setBackgroundResource(selectedPos == position ? R.color.moradoLogo : R.color.white);
+
+        // CUANDO HAGAS CLIC, NO USES "position"
+        holder.itemView.setOnClickListener(v -> {
+            // Guardamos la posición antigua para refrescarla
+            int oldPos = selectedPos;
+
+            // ¡AQUÍ USAMOS holder.getAdapterPosition()!
+            selectedPos = holder.getAdapterPosition();
+
+            // Notificamos los cambios para que se repinten solo esas dos celdas
+            notifyItemChanged(oldPos);
+            notifyItemChanged(selectedPos);
+        });
     }
 
     public int getItemCount() {

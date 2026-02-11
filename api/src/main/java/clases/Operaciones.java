@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.OPTIONS;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -19,20 +20,15 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.Base64;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Path("/operaciones")
 public class Operaciones {
 
-    // Hassear contraseña
-    public static String hashPassword(String password) throws Exception {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        byte[] hash = md.digest(password.getBytes("UTF-8"));
-
-        StringBuilder sb = new StringBuilder();
-        for (byte b : hash) {
-            sb.append(String.format("%02x", b));
-        }
-        return sb.toString();
+    // Hassear contraseña con jBcrypt
+    public static String hashPassword(String password) {
+        // Genera el hash compatible con PHP
+        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     // Rutas
@@ -226,7 +222,9 @@ public class Operaciones {
                 int filasAfectadas = ps.executeUpdate();
 
                 if (filasAfectadas == 1) {
-                    return Response.ok("Se ha añadido la publicacion").build();
+                    return Response.ok("Se ha añadido la publicacion")
+                            .header("Access-Control-Allow-Origin", "*")
+                            .build();
                 } else {
                     return Response.status(Response.Status.NOT_IMPLEMENTED).entity("No se ha añadido la publicacion")
                             .build();
@@ -241,6 +239,16 @@ public class Operaciones {
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en los drivers").build();
         }
+    }
+
+    @OPTIONS
+    @Path("/addPublicacion")
+    public Response optionsAddPublicacion() {
+        return Response.ok()
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With")
+                .build();
     }
 
     // Añadir colecciones --> bien
@@ -421,46 +429,49 @@ public class Operaciones {
     // path:http://localhost:8080/api/wikz/operaciones/getUsuarioNombrePass?nombreUs=iago&passUs=34
     @GET
     @Path("/getUsuarioNombrePass")
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getUsuarioNombrePass(@QueryParam("nombreUs") String nombreUs, @QueryParam("passUs") String passUs) {
-
-        Usuario u = new Usuario();
 
         try {
             Class.forName("org.mariadb.jdbc.Driver");
 
-            String hash = hashPassword(passUs);
-
             try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
 
-                String consulta = "SELECT * FROM usuarios WHERE nombre = ? AND  pass = ?";
-
+                String consulta = "SELECT * FROM usuarios WHERE nombre = ?";
                 PreparedStatement ps = conexion.prepareStatement(consulta);
-
                 ps.setString(1, nombreUs);
-                ps.setString(2, hash);
 
-                ResultSet rs = ps.executeQuery();
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        // Extraemos el hash PRIMERO
+                        String hashBD = rs.getString("pass");
 
-                if (!rs.next()) {
-                    System.out.println("No encontrado");
-                    return Response.status(Response.Status.NOT_FOUND)
-                            .entity("Usuario no encontrado")
+                        // Verificamos si es BCrypt
+                        if (hashBD != null && hashBD.startsWith("$2")) {
+                            String hashParaValidar = hashBD.startsWith("$2y$")
+                                    ? hashBD.replaceFirst("\\$2y\\$", "\\$2a\\$")
+                                    : hashBD;
+
+                            if (BCrypt.checkpw(passUs, hashParaValidar)) {
+                                // SI LA CONTRASEÑA ES CORRECTA, MAPEAMOS
+                                // Invocamos a mapUsuario solo si la validación es exitosa
+                                Usuario u = mapUsuario(rs);
+                                return Response.ok(u).build();
+                            }
+                        }
+                    }
+
+                    // Si no hay usuario o la contraseña no coincide
+                    return Response.status(Response.Status.UNAUTHORIZED)
+                            .entity("{\"error\":\"Usuario o contraseña incorrectos\"}")
                             .build();
                 }
-
-                u = mapUsuario(rs);
-
-                return Response.ok(u).build();
-
-            } catch (Exception e) {
-                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en la base de datos")
-                        .build();
-
             }
-
         } catch (Exception e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en el Driver").build();
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("{\"error\":\"" + e.getMessage() + "\"}")
+                    .build();
         }
     }
 

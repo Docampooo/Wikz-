@@ -48,19 +48,21 @@ public class EditarPerfil extends AppCompatActivity {
         api = new Api();
 
         intentUsuario = getIntent();
+        Usuario u = (Usuario) intentUsuario.getSerializableExtra("usuario");
 
-        Usuario u = (Usuario)intentUsuario.getSerializableExtra("usuario");
+        if (u == null) {
+            Toast.makeText(this, "Error cargando usuario", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
 
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("usuario", u);
-
-        txtNombre = findViewById(R.id.txtNombre);
+        txtNombre = findViewById(R.id.txtTitulo);
         txtNombre.setText(u.getNombre());
 
-        txtBio = findViewById(R.id.txtBio);
+        txtBio = findViewById(R.id.txtDescripcion);
         txtBio.setText(u.getBiografia());
 
-        ivfotoPerfil = findViewById(R.id.ivActualizarFotoPerfil);
+        ivfotoPerfil = findViewById(R.id.ivFotoPerfil);
 
         api.getFotoPerfil(this, u.getId(), bitmap -> {
             if (bitmap != null) {
@@ -88,9 +90,8 @@ public class EditarPerfil extends AppCompatActivity {
 
             u.setNombre(txtNombre.getText().toString().trim());
             u.setBiografia(txtBio.getText().toString().trim());
-            u.setFotoPerfil(null);
 
-            api.updateUsuario(this, u, success -> {
+            api.updateUsuario(this, u, nuevaFoto,success -> {
                 if (success) {
 
                     Intent result = new Intent();

@@ -174,14 +174,12 @@
         <form action="index.php?controller=Usuario&action=login" method="post">
             <input
                 type="text"
-                name="nombre"
-                placeholder="Nombre de usuario"
+                name="nombreUs" placeholder="Nombre de usuario"
                 required>
 
             <input
                 type="password"
-                name="password"
-                placeholder="Contraseña"
+                name="passUs" placeholder="Contraseña"
                 required>
 
             <button type="submit" class="btn btn-login">

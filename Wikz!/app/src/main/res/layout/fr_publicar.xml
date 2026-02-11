@@ -2,62 +2,76 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    android:backgroundTint="@color/black"
-    android:padding="50px"
+    android:background="@drawable/decorado"
+    android:padding="24dp"
     tools:context=".fr_publicar">
 
     <ImageView
-        android:id="@+id/ivTematica"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginTop="12dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/numetal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvTematica"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="Nu Metal"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/svBuscador"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@color/grisClaro"
-        android:hint="Buscar"
-        android:iconifiedByDefault="false"
-        android:queryHint="Buscar..."
-        app:backgroundTint="@color/grisClaro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivTematica" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvExplorar"
+        android:id="@+id/ivImagenPublicar"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/txtTitulo"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@drawable/fotoperfil" />
+
+    <EditText
+        android:id="@+id/txtTitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/transparent"
+        android:hint="Título"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/moradoLogo"
+        android:textColorHint="@color/grisClaro"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txtDescripcion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivImagenPublicar" />
+
+    <EditText
+        android:id="@+id/txtDescripcion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/transparent"
+        android:hint="Añade una descripción..."
+        android:inputType="textMultiLine"
+        android:textAlignment="center"
+        android:textColor="@color/moradoLogo"
+        android:textColorHint="@color/grisClaro"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnPublicar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
+
+    <Button
+        android:id="@+id/btnPublicar"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/moradoLogo"
+        android:text="Confirmar"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:cornerRadius="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/svBuscador"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDescripcion"
+        app:layout_constraintWidth_percent="0.6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

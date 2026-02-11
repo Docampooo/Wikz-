@@ -13,12 +13,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuPrincipal extends AppCompatActivity {
 
+    public Usuario uPrincipal;
 
+    public Usuario getUsuario() {
+        return uPrincipal;
+    }
+
+    public void setUsuario(Usuario u) {
+        this.uPrincipal = u;
+    }
     Intent intentUsuario;
     BottomNavigationView navMenu;
 
-    fr_contenido frHome;
-    fr_publicar frExp;
+    fr_publicar frHome;
+    fr_content frExp;
 
     fr_perfil frPerf;
 
@@ -36,22 +44,16 @@ public class MenuPrincipal extends AppCompatActivity {
 
         intentUsuario = getIntent();
 
-        Usuario u = (Usuario)intentUsuario.getSerializableExtra("usuario");
-
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("usuario", u);
+        uPrincipal = (Usuario)intentUsuario.getSerializableExtra("usuario");
 
         navMenu = findViewById(R.id.navMenu);
         navMenu.setItemIconTintList(null);
 
-        frHome = new fr_contenido();
-        frHome.setArguments(bundle);
+        frHome = new fr_publicar();
 
-        frExp = new fr_publicar();
-        frExp.setArguments(bundle);
+        frExp = new fr_content();
 
         frPerf = new fr_perfil();
-        frPerf.setArguments(bundle);
 
         getSupportFragmentManager()
                 .beginTransaction()

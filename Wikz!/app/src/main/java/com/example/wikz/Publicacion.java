@@ -8,23 +8,21 @@ import java.util.Date;
 
 public class Publicacion implements Serializable {
 
-    public Publicacion(int id_usuario, String titulo, Bitmap imagenBase64, String descripcion, Date fechaCreacion) {
+    public Publicacion(int id_usuario, String titulo, String descripcion, Date fechaCreacion) {
         this.id_usuario = id_usuario;
         this.titulo = titulo != null ? titulo : "";
-        this.imagen = imagenBase64;
         this.descripcion = descripcion != null ? descripcion : "";
         this.fechaCreacion = fechaCreacion != null ? fechaCreacion : new Date();
     }
 
     public Publicacion() {
-        this(0, "", null, "", new Date());
+        this(0, "", "", new Date());
     }
 
     private int id;
     private int id_usuario;
     private String titulo;
     private String descripcion;
-    private transient Bitmap imagen;
     private Date fechaCreacion;
 
     // Getters y setters
@@ -58,14 +56,6 @@ public class Publicacion implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public Bitmap getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(Bitmap imagen) {
-        this.imagen = imagen;
     }
 
     public void setFechaCreacion(Date fechaCreacion) {

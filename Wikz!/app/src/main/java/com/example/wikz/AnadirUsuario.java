@@ -50,9 +50,9 @@ public class AnadirUsuario extends AppCompatActivity {
             return insets;
         });
 
-        txtRegistrarNombre = findViewById(R.id.txtNombre);
+        txtRegistrarNombre = findViewById(R.id.txtTitulo);
 
-        txtRegistrarPass = findViewById(R.id.txtBio);
+        txtRegistrarPass = findViewById(R.id.txtDescripcion);
 
         txtRepetirPass = findViewById(R.id.txtRepetirPass);
 

@@ -1,8 +1,7 @@
 package com.example.wikz;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -43,10 +42,9 @@ public class fr_perfil extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            u = (Usuario) getArguments().getSerializable("usuario");
 
-        }
+        MenuPrincipal activity = (MenuPrincipal) getActivity();
+        u = activity.getUsuario();
     }
 
     @Override
@@ -64,7 +62,6 @@ public class fr_perfil extends Fragment {
                 // isAdded() comprueba que el fragmento sigue en pantalla
                 if (isAdded() && bitmap != null) {
                     ivFotoPerfil.setImageBitmap(bitmap);
-                    u.setFotoPerfil(bitmap);
                 }
             });
         }
@@ -74,15 +71,11 @@ public class fr_perfil extends Fragment {
 
         btnEditar = view.findViewById(R.id.btnEditarPerfil);
 
-        btnEditar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), EditarPerfil.class);
+        btnEditar.setOnClickListener(v -> {
 
-                u.setFotoPerfil(null);
-                intent.putExtra("usuario", u);
-                startActivityForResult(intent, 200);
-            }
+            Intent intent = new Intent(getActivity(), EditarPerfil.class);
+            intent.putExtra("usuario", u);
+            startActivityForResult(intent, 200);
         });
 
 
@@ -124,14 +117,19 @@ public class fr_perfil extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 200 && resultCode == getActivity().RESULT_OK && data != null) {
-            // Recibimos los nuevos textos (nombre, bio)
-            u = (Usuario) data.getSerializableExtra("usuario");
+        if (requestCode == 200 && resultCode == Activity.RESULT_OK && data != null) {
+
+            Usuario actualizado = (Usuario) data.getSerializableExtra("usuario");
+
+            //actualizar usuario GLOBAL
+            MenuPrincipal activity = (MenuPrincipal) getActivity();
+            activity.setUsuario(actualizado);
+
+            u = actualizado;
 
             tvNombrePerfil.setText(u.getNombre());
             tvDescripcionPerfil.setText(u.getBiografia());
 
-            // Volvemos a pedir la foto a la API para refrescar
             api.getFotoPerfil(getActivity(), u.getId(), bitmap -> {
                 if (isAdded() && bitmap != null) {
                     ivFotoPerfil.setImageBitmap(bitmap);
