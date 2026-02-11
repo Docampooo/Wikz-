@@ -45,3 +45,5 @@ Primeros avances en la introduccion de imagenes en la base de datos, la aplicaci
 05/02/2026
 Las imagenes por fin se han subido a la base de datos, la aplicacion movil ya es capaz de subir fotos de perfil y almacenarlas correctamente, tambien es capaz de recogerlas, da fallos por motivos de memoria pero el resultado es positvio, un gran avance
 
+07/02/2026
+Muchas mejoras en web, el login y el registro funcionan a la perfeccion, no dan fallos y el aspecto se ve muy bien, el proximo paso es establecer un estandar de hasheo de contraseñas en la Api con jBcrypt
