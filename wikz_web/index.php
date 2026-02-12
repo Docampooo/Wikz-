@@ -87,19 +87,26 @@ if ($action !== 'main') {
         const usuarioDesdePHP = <?php echo $userSesion ? json_encode($userSesion) : 'null'; ?>;
 
         if (usuarioDesdePHP) {
-            const nuevaSesion = {
-                id: usuarioDesdePHP.id,
-                nombre: usuarioDesdePHP.nombre,
-                timestamp: Date.now()
-            };
-            // Actualizamos el localStorage con los datos reales que trajo el login
-            localStorage.setItem('wikz_session', JSON.stringify(nuevaSesion));
+            const sesionLocal = JSON.parse(localStorage.getItem('wikz_session'));
+
+            // Solo actualizamos el localStorage si NO existe una sesión previa 
+            // o si el ID es diferente (cambio de cuenta)
+            if (!sesionLocal || sesionLocal.id !== usuarioDesdePHP.id) {
+                const nuevaSesion = {
+                    id: usuarioDesdePHP.id,
+                    nombre: usuarioDesdePHP.nombre,
+                    biografia: usuarioDesdePHP.biografia,
+                    timestamp: Date.now()
+                };
+                localStorage.setItem('wikz_session', JSON.stringify(nuevaSesion));
+            }
         }
 
         // 3. Crear la variable global que usará tu app.js
         const WIKZ_USER = JSON.parse(localStorage.getItem('wikz_session')) || {
             id: 0,
-            nombre: 'Invitado'
+            nombre: 'Invitado',
+            biografia: ''
         };
 
         console.log("Sesión activa de Wikz:", WIKZ_USER);

@@ -1,4 +1,7 @@
-clases\Publicacion.class
+clases\CORSFilter.class
 clases\Operaciones.class
+clases\Guardado.class
 clases\Usuario.class
+clases\Publicacion.class
 clases\Coleccion.class
+clases\UsuarioRegistro.class

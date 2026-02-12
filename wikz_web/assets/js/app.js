@@ -28,6 +28,9 @@ function navegar(seccion, elemento) {
         case 'perfil':
             cargarPerfil(contenedor);
             break;
+        case 'editar-perfil':
+            cargarEditarPerfil(contenedor);
+            break;
         default:
             contenedor.innerHTML = '<h2>Sección no encontrada</h2>';
     }
@@ -35,32 +38,50 @@ function navegar(seccion, elemento) {
 
 async function cargarExplorar(contenedor) {
     try {
+        contenedor.innerHTML = "<div class='loading'>Cargando publicaciones...</div>";
+
         const response = await fetch(`${API_URL}/getPublicaciones`);
         if (!response.ok) throw new Error("Error en API");
 
         const publicaciones = await response.json();
-        let html = '<div class="feed">';
+
+        if (!publicaciones || publicaciones.length === 0) {
+            contenedor.innerHTML = "<p style='text-align:center; padding:20px;'>No hay publicaciones disponibles.</p>";
+            return;
+        }
+
+        // Cambiamos 'feed-vertical' por 'explorar-grid'
+        let html = '<div class="explorar-grid">';
 
         publicaciones.forEach(pub => {
-            // Usamos el endpoint de imagen que tienes en Java para mayor fluidez
             const imgUrl = `${API_URL}/getImagenPublicacion?id=${pub.id}`;
 
             html += `
-                <div class="card">
-                    <img src="${imgUrl}" class="card-img" onerror="this.src='assets/img/default.jpg'">
-                    <div class="card-body">
-                        <h3>${pub.titulo}</h3>
-                        <p>${pub.descripcion}</p>
+                <div class="post-card">
+                    <div class="post-image-container">
+                        <img 
+                            src="${imgUrl}" 
+                            loading="lazy"
+                            onerror="this.src='assets/img/default.jpg'"
+                        >
                     </div>
-                </div>`;
+                    <div class="post-info">
+                        <h3>${pub.titulo}</h3>
+                        <p>${pub.descripcion ?? ""}</p>
+                    </div>
+                </div>
+            `;
         });
-        contenedor.innerHTML = html + '</div>';
+
+        html += "</div>";
+        contenedor.innerHTML = html;
+
     } catch (e) {
-        contenedor.innerHTML = "<p>Servidor de contenido fuera de línea.</p>";
+        console.error(e);
+        contenedor.innerHTML = "<p style='text-align:center; color:red;'>Servidor de contenido fuera de línea.</p>";
     }
 }
 
-ipt
 function cargarFormularioCrear(contenedor) {
     contenedor.innerHTML = `
         <div class="viewport-center">
@@ -104,110 +125,314 @@ async function enviarPublicacion() {
     const fileInput = document.getElementById('input-file');
     const btn = document.getElementById('btn-publicar');
 
-    //VALIDACIÓN
-    const titulo = tituloInput.value.trim();
-    const descripcion = descInput.value.trim(); // Puede estar vacía
-    const imagenFile = fileInput.files[0];
-
-    if (!titulo) {
-        alert("⚠️ El título es obligatorio.");
+    if (!tituloInput.value.trim() || !fileInput.files[0]) {
+        alert("⚠️ El título y la imagen son obligatorios.");
         return;
     }
 
-    if (!imagenFile) {
-        alert("⚠️ Debes seleccionar una imagen para hacer una publicacion!.");
-        return;
-    }
-
-    // Desactivar botón para evitar múltiples clics
     btn.disabled = true;
-    btn.innerHTML = `<span class="material-icons animate-spin">sync</span> Publicando...`;
+    btn.innerHTML = `Publicando...`;
 
     try {
-        //CONVERSIÓN DE IMAGEN A BASE64
-        const base64String = await imageToBase64(imagenFile);
+        const base64String = await imageToBase64(fileInput.files[0]);
         const datos = {
-            idUsuario: WIKZ_USER.id, 
-            titulo: titulo,
-            descripcion: descripcion,
+            idUsuario: WIKZ_USER.id,
+            titulo: tituloInput.value.trim(),
+            descripcion: descInput.value.trim(),
             imagenBase64: base64String
         };
 
-        //LLAMADA A LA API
         const response = await fetch(`${API_URL}/addPublicacion`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(datos)
         });
 
-        //MANEJO DE RESPUESTA
         if (response.ok) {
-            const mensaje = await response.text();
-            alert("✅ " + mensaje);
-            // Redirigir a explorar para ver la nueva publicación
+            alert("✅ Publicado con éxito");
             navegar('explorar', document.getElementById('nav-explorar'));
         } else {
-            const errorTexto = await response.text();
-            throw new Error(errorTexto || "Error desconocido en el servidor");
+            throw new Error(await response.text());
         }
-
     } catch (error) {
-        console.error("Error en la publicación:", error);
         alert("❌ Error: " + error.message);
     } finally {
         btn.disabled = false;
-        btn.innerHTML = "Confirmar y publicar";
+        btn.innerHTML = "Publicar ahora";
     }
 }
 
 function previsualizar(input) {
     if (input.files && input.files[0]) {
         const reader = new FileReader();
-
-        reader.onload = function(e) {
-            const imgPreview = document.getElementById('img-preview');
+        reader.onload = (e) => {
+            const preview = document.getElementById('img-preview');
             const placeholder = document.getElementById('upload-placeholder');
-
-            // Establecemos la imagen cargada como fuente
-            imgPreview.src = e.target.result;
-            
-            // Mostramos la imagen y ocultamos el texto/icono de ayuda
-            imgPreview.style.display = 'block';
-            placeholder.style.display = 'none';
+            if (preview) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+            if (placeholder) placeholder.style.display = 'none';
         }
-
         reader.readAsDataURL(input.files[0]);
     }
 }
-
-/*Función auxiliar para convertir archivos a Base64 de forma asíncrona*/
 
 function imageToBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = () => {
-            // El resultado viene como "data:image/png;base64,iVBORw..."
-            // Necesitamos quitar el prefijo para enviarlo a Java
-            const base64 = reader.result.split(',')[1];
-            resolve(base64);
-        };
+        reader.onload = () => resolve(reader.result.split(',')[1]);
         reader.onerror = error => reject(error);
     });
 }
 
-function cargarPerfil(contenedor) {
-    // Usamos el objeto WIKZ_USER que creamos en el index.php
+/**
+ * Carga la vista de perfil de forma segura
+ */
+async function cargarPerfil(contenedor) {
+    // 1. Cargando...
+    contenedor.innerHTML = `<div class="viewport-center"><div class="loading">Cargando perfil...</div></div>`;
+
+    let publicaciones = [];
+
+    try {
+        const [respUser, respPosts] = await Promise.all([
+            fetch(`${API_URL}/getUsuario?id=${WIKZ_USER.id}`).catch(e => ({ ok: false })),
+            fetch(`${API_URL}/getPublicacionesUsuario?idUsuario=${WIKZ_USER.id}`).catch(e => ({ ok: false }))
+        ]);
+
+        if (respUser && respUser.ok) {
+            const datosFrescos = await respUser.json();
+            WIKZ_USER.nombre = datosFrescos.nombre || WIKZ_USER.nombre;
+            WIKZ_USER.biografia = datosFrescos.biografia || "";
+        }
+
+        if (respPosts && respPosts.ok) {
+            publicaciones = await respPosts.json();
+        }
+
+    } catch (error) {
+        console.warn("Nota: Algunos datos se cargaron desde la sesión local.");
+    }
+
+    // 2. Pintamos la vista
     contenedor.innerHTML = `
-        <div style="text-align:center; padding: 40px;">
-            <span class="material-icons" style="font-size: 100px; color: #9d4edd;">account_circle</span>
-            <h2 style="margin-top:10px;">${WIKZ_USER.nombre}</h2>
-            <p style="color: #b1a7a6;">ID de Usuario: #${WIKZ_USER.id}</p>
-            <button onclick="cerrarSesion()" class="wikz-btn-outline">Cerrar Sesión</button>
+        <div class="perfil-container" style="padding: 20px;">
+            <div class="perfil-header" style="text-align: center;">
+                <div class="perfil-foto-wrapper">
+                    <div class="avatar-glow-wrapper" style="width: 110px; height: 110px; margin: 0 auto; border-radius: 50%; padding: 3px; background: linear-gradient(135deg, #6a1bb1, #9b5de5); box-shadow: 0 0 20px rgba(155, 48, 255, 0.3);">
+                        <img src="${API_URL}/getImagenUsuario?id=${WIKZ_USER.id}" onerror="this.onerror=null; this.src='assets/img/fotoperfil.jpg';"style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    </div>
+                </div>
+
+                <h2 class="titulo-gradient" style="margin-top:15px; font-weight: 700;">${WIKZ_USER.nombre}</h2>
+                
+                <p class="bio-text" style="color: #d6b9ff; margin: 10px auto; text-align: center; max-width: 85%; font-size: 14px; line-height: 1.4;">
+                    ${WIKZ_USER.biografia || "Sin biografía aún..."}
+                </p>
+                
+                <button onclick="navegar('editar-perfil', this)" style="background: rgba(199, 125, 255, 0.1); border: 1px solid rgba(199, 125, 255, 0.4); color: white; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-top: 10px; font-family: 'Montserrat', sans-serif; transition: all 0.3s;">
+                    <span class="material-icons" style="vertical-align: middle; font-size: 18px; margin-right: 5px;">edit</span> Editar Perfil
+                </button>
+            </div>
+
+            <div class="perfil-divider" style="height: 1px; background: rgba(199, 125, 255, 0.2); margin: 30px 0;"></div>
+
+            <div id="perfil-posts-grid" class="explorar-grid">
+                ${publicaciones.length > 0 ?
+            publicaciones.map(pub => `
+                        <div class="post-card">
+                            <div class="post-image-container">
+                                <img src="${API_URL}/getImagenPublicacion?id=${pub.id}" onerror="this.src='assets/img/default.jpg'">
+                            </div>
+                            <div class="post-info">
+                                <h3>${pub.titulo}</h3>
+                            </div>
+                        </div>
+                    `).join('')
+            : `<p style="text-align:center; color: #888; grid-column: 1/-1;">Aún no has publicado nada.</p>`
+        }
+            </div>
+            
+            <button onclick="cerrarSesion()" 
+                style="width: 100%; max-width: 250px; padding: 14px; margin: 40px auto; display: block; 
+                border: none; border-radius: 14px; font-family: 'Montserrat', sans-serif; font-size: 16px; 
+                font-weight: 600; cursor: pointer; color: #fff; 
+                background: linear-gradient(135deg, #2a0845, #5a189a); 
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.25s ease;"
+                onmouseover="this.style.transform='translateY(-2px)'; this.style.background='linear-gradient(135deg, #3a0a6a, #6a1bb1)'; this.style.boxShadow='0 0 20px rgba(155, 48, 255, 0.4)';"
+                onmouseout="this.style.transform='translateY(0)'; this.style.background='linear-gradient(135deg, #2a0845, #5a189a)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.3)';"
+            >
+                Cerrar Sesión
+            </button>
         </div>
     `;
+}
+
+/**
+ * Función auxiliar para generar el HTML de las cards en el perfil
+ */
+function generarHtmlPosts(publicaciones) {
+    if (publicaciones.length === 0) {
+        return `<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #888;">Aún no has compartido ninguna obra.</p>`;
+    }
+
+    return publicaciones.map(pub => {
+        const imgUrl = `${API_URL}/getImagenPublicacion?id=${pub.id}`;
+        return `
+            <div class="post-card">
+                <div class="post-image-container">
+                    <img src="${imgUrl}" loading="lazy" onerror="this.src='assets/img/default.jpg'">
+                </div>
+                <div class="post-info">
+                    <h3>${pub.titulo}</h3>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Función para el botón de actualización (puedes crear un modal o un simple prompt para empezar)
+async function mostrarModalUpdate() {
+    const nuevoNombre = prompt("Nuevo nombre de usuario:", WIKZ_USER.nombre);
+    const nuevaBio = prompt("Nueva biografía:", WIKZ_USER.biografia || "");
+
+    if (nuevoNombre) {
+        try {
+            const response = await fetch(`${API_URL}/updateUsuario`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    id: WIKZ_USER.id,
+                    nombre: nuevoNombre,
+                    biografia: nuevaBio
+                })
+            });
+
+            if (response.ok) {
+                alert("✅ Perfil actualizado");
+                // Actualizamos el objeto en memoria y recargamos
+                WIKZ_USER.nombre = nuevoNombre;
+                WIKZ_USER.biografia = nuevaBio;
+                navegar('perfil', document.getElementById('nav-perfil'));
+            }
+        } catch (e) {
+            alert("Error al actualizar");
+        }
+    }
+}
+
+function cargarEditarPerfil(contenedor) {
+    const currentAvatar = `${API_URL}/getImagenUsuario?id=${WIKZ_USER.id}`;
+
+    contenedor.innerHTML = `
+        <div class="viewport-center">
+            <div class="login-container" style="max-width: 400px; margin: auto;">
+                <h2 class="titulo-gradient">Editar Perfil</h2>
+                
+                <div class="edit-avatar-section" id="area-foto-perfil" style="cursor:pointer; text-align:center;">
+                    <div class="avatar-glow-wrapper" style="width: 110px; height: 110px; margin: 0 auto; border-radius: 50%; padding: 3px; background: linear-gradient(135deg, #6a1bb1, #9b5de5);">
+                        <img id="avatar-preview-edit" 
+                             src="${currentAvatar}" 
+                             onerror="this.onerror=null; this.src='assets/img/fotoperfil.jpg';"
+                             style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #12001f;">
+                    </div>
+                    <p style="font-size: 12px; color: #d6b9ff; margin-top: 10px;">Click para cambiar foto</p>
+                </div>
+                
+                <input type="file" id="edit-file-input" accept="image/*" style="display:none">
+
+                <div style="text-align: left; margin-top: 20px;">
+                    <label style="font-size: 13px; color: #b98bff; margin-left: 5px;">Nombre de usuario</label>
+                    <input type="text" id="edit-nombre-val" value="${WIKZ_USER.nombre}" class="wikz-input-glass">
+                    
+                    <label style="font-size: 13px; color: #b98bff; margin-left: 5px; display:block; margin-top:10px;">Biografía</label>
+                    <textarea id="edit-bio-val" class="wikz-input-glass" rows="4" style="resize:none;">${WIKZ_USER.biografia || ""}</textarea>
+                </div>
+
+                <button class="btn-publish-glow" id="btn-save-perfil" style="width:100%; margin-top:20px;" onclick="ejecutarActualizacion()">
+                    Guardar Cambios
+                </button>
+                
+                <button class="btn-register" onclick="navegar('perfil', document.getElementById('nav-perfil'))" style="width:100%; background:none; border:none; color:#888; cursor:pointer; margin-top:10px;">
+                    Cancelar y volver
+                </button>
+            </div>
+        </div>
+    `;
+
+    // Eventos para la carga de imagen
+    const fotoArea = document.getElementById('area-foto-perfil');
+    const inputFile = document.getElementById('edit-file-input');
+
+    fotoArea.onclick = () => inputFile.click();
+
+    inputFile.onchange = function () {
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById('avatar-preview-edit').src = e.target.result;
+            };
+            reader.readAsDataURL(this.files[0]);
+        }
+    };
+}
+
+// Función principal de actualización
+async function ejecutarActualizacion() {
+    const btn = document.getElementById('btn-save-perfil');
+    const nuevoNombre = document.getElementById('edit-nombre-val').value;
+    const nuevaBio = document.getElementById('edit-bio-val').value;
+    const fileInput = document.getElementById('edit-file-input');
+
+    if (!nuevoNombre.trim()) return alert("El nombre es obligatorio");
+
+    btn.disabled = true;
+    btn.innerHTML = "Procesando...";
+
+    try {
+        let base64Image = null;
+        if (fileInput.files[0]) {
+            base64Image = await imageToBase64(fileInput.files[0]);
+        }
+
+        const datos = {
+            id: WIKZ_USER.id,
+            nombre: nuevoNombre,
+            biografia: nuevaBio,
+            imagenBase64: base64Image
+        };
+
+        const response = await fetch(`${API_URL}/updateUsuario`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(datos)
+        });
+
+        if (response.ok) {
+            // Actualizar objeto global
+            WIKZ_USER.nombre = nuevoNombre;
+            WIKZ_USER.biografia = nuevaBio;
+
+            // Actualizar LocalStorage
+            localStorage.setItem('wikz_session', JSON.stringify(WIKZ_USER));
+
+            alert("✅ ¡Perfil actualizado!");
+            // Volver al perfil
+            navegar('perfil', document.getElementById('nav-perfil'));
+        } else {
+            alert("❌ El servidor rechazó la actualización");
+        }
+    } catch (e) {
+        console.error(e);
+        alert("❌ Error de conexión");
+    } finally {
+        if (btn) {
+            btn.disabled = false;
+            btn.innerHTML = "Guardar Cambios";
+        }
+    }
 }
 
 function cerrarSesion() {

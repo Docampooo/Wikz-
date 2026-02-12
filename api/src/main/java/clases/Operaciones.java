@@ -196,16 +196,12 @@ public class Operaciones {
     @POST
     @Path("/addPublicacion")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces(MediaType.APPLICATION_JSON)
     public Response addPublicacion(Publicacion p) {
-
         try {
             Class.forName("org.mariadb.jdbc.Driver");
-
             try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
-
                 String consulta = "INSERT INTO publicaciones (id_usuario, titulo, imagen, descripcion) VALUES(?, ?, ?, ?)";
-
                 PreparedStatement ps = conexion.prepareStatement(consulta);
 
                 ps.setInt(1, p.getIdUsuario());
@@ -213,6 +209,8 @@ public class Operaciones {
 
                 byte[] foto = null;
                 if (p.getImagenBase64() != null) {
+                    // Importante: El JS debe enviar solo el string Base64 sin el prefijo
+                    // "data:image..."
                     foto = Base64.getDecoder().decode(p.getImagenBase64());
                 }
 
@@ -222,33 +220,22 @@ public class Operaciones {
                 int filasAfectadas = ps.executeUpdate();
 
                 if (filasAfectadas == 1) {
-                    return Response.ok("Se ha añadido la publicacion")
-                            .header("Access-Control-Allow-Origin", "*")
-                            .build();
+                    return Response.ok("{\"mensaje\":\"Se ha añadido la publicacion\"}").build();
                 } else {
-                    return Response.status(Response.Status.NOT_IMPLEMENTED).entity("No se ha añadido la publicacion")
-                            .build();
+                    return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                            .entity("{\"error\":\"No se insertó la fila\"}").build();
                 }
-
-            } catch (SQLException e) {
-                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en la base de datos")
-                        .build();
-
             }
-
         } catch (Exception e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error en los drivers").build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("{\"error\":\"" + e.getMessage() + "\"}").build();
         }
     }
 
     @OPTIONS
     @Path("/addPublicacion")
     public Response optionsAddPublicacion() {
-        return Response.ok()
-                .header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-                .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With")
-                .build();
+        return Response.ok().build();
     }
 
     // Añadir colecciones --> bien
@@ -535,7 +522,7 @@ public class Operaciones {
 
             try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
 
-                String consulta = "SELECT * FROM publicaciones";
+                String consulta = "SELECT * FROM publicaciones ORDER BY RAND()";
 
                 PreparedStatement ps = conexion.prepareStatement(consulta);
 
