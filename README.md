@@ -47,3 +47,6 @@ Las imagenes por fin se han subido a la base de datos, la aplicacion movil ya es
 
 07/02/2026
 Muchas mejoras en web, el login y el registro funcionan a la perfeccion, no dan fallos y el aspecto se ve muy bien, el proximo paso es establecer un estandar de hasheo de contraseñas en la Api con jBcrypt
+
+11/02/2026
+Se ha vindulado por fin la api y la base de datos con la aplicacion web, las contraseñas están globalizadas con jBctypt y ya funciona todo correctamente, el programa movil y web están listos para las funciones basicas 
