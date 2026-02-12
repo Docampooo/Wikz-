@@ -50,3 +50,6 @@ Muchas mejoras en web, el login y el registro funcionan a la perfeccion, no dan 
 
 11/02/2026
 Se ha vindulado por fin la api y la base de datos con la aplicacion web, las contraseñas están globalizadas con jBctypt y ya funciona todo correctamente, el programa movil y web están listos para las funciones basicas 
+
+12/02/2026
+Las imagenes ya se suben sin probelas en web, se han añadido una buena cantidad de publicaciones para llenar la página y la base de datos y la api responden correctamente, se ha añadido tambien el diseño del perfil de usuario y de la seccion de explorar publicaciones de los usuarios
