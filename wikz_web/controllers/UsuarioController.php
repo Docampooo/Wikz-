@@ -82,25 +82,21 @@ class UsuarioController
             . "nombreUs=" . urlencode($nombreUs)
             . "&passUs=" . urlencode($passUs);
 
-        $json = file_get_contents($url, false, stream_context_create([
+        $json = @file_get_contents($url, false, stream_context_create([
             'http' => ['ignore_errors' => true]
         ]));
 
         $status = $this->getHttpStatus($http_response_header);
         $user = json_decode($json, true);
 
-        // VALIDACIÓN CRÍTICA: Si el status es 200 pero el JSON no tiene los datos esperados
         if ($status === 200 && isset($user['id']) && $user['id'] > 0) {
             if (session_status() === PHP_SESSION_NONE) session_start();
-
-            $_SESSION['usuario'] = $user; // Guardamos todo el array del usuario
-
+            $_SESSION['usuario'] = $user;
             header("Location: index.php?controller=Usuario&action=main");
             exit;
         } else {
-            // Si falló la obtención de datos, NO vamos a main. Vamos a login con error.
-            header("Location: index.php?controller=Usuario&action=login&error=data_error");
-            exit;
+            // En lugar de redirigir aquí, devolvemos el mensaje de error
+            return "Usuario o contraseña incorrectos";
         }
     }
 
@@ -109,13 +105,21 @@ class UsuarioController
        ========================= */
     public function login()
     {
+        $error = null;
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombreUs = $_POST['nombreUs'] ?? '';
             $passUs   = $_POST['passUs'] ?? '';
 
-            // En lugar de repetir código, usamos la función que ya tenemos
-            return $this->procesarLoginAutomatico($nombreUs, $passUs);
+            // Intentamos el login y capturamos si devuelve un error string
+            $resultado = $this->procesarLoginAutomatico($nombreUs, $passUs);
+
+            if (is_string($resultado)) {
+                $error = $resultado;
+            }
         }
+
+        // Cargamos la vista. Si $error tiene algo, el HTML que me pasaste lo mostrará.
         require 'views/usuario/login.php';
     }
 
@@ -144,5 +148,16 @@ class UsuarioController
         if (!isset($headers[0])) return 500;
         preg_match('{HTTP\/\S*\s(\d{3})}', $headers[0], $match);
         return (int)($match[1] ?? 500);
+    }
+
+    public function actualizarSesionJS()
+    {
+        if (session_status() === PHP_SESSION_NONE) session_start(); // Aseguramos sesión
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $_SESSION['usuario']['nombre'] = $_POST['nombre'] ?? $_SESSION['usuario']['nombre'];
+            $_SESSION['usuario']['biografia'] = $_POST['biografia'] ?? $_SESSION['usuario']['biografia'];
+            echo "ok";
+        }
+        exit; // Importante para que no cargue vistas por accidente
     }
 }

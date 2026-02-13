@@ -103,7 +103,7 @@
 <body>
 
     <div class="register-container">
-        <img src="/img/logosinfondo.png" alt="WIKZ">
+        <img src="/assets/img/logosinfondo.png" alt="WIKZ">
         <h2>Crear cuenta</h2>
 
         <?php if (!empty($error)): ?>
@@ -126,8 +126,8 @@
             <button type="submit">Crear cuenta</button>
         </form>
 
-        <a class="login-link" href="index.php?controller=Usuario&action=login">
-            ¿Ya tienes cuenta? Inicia sesión
+        <a class="login-link" href="../../index.php?controller=Usuario&action=login">
+             ¿Ya tienes cuenta? Inicia sesión
         </a>
     </div>
 

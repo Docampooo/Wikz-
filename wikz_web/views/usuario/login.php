@@ -160,7 +160,7 @@
 <body>
 
     <div class="login-container">
-        <img src="/img/logosinfondo.png" alt="WIKZ logo">
+        <img src="/assets/img/logosinfondo.png" alt="WIKZ logo">
 
         <h2>Iniciar sesión</h2>
 
@@ -188,7 +188,7 @@
         </form>
 
         <!-- REDIRECCIÓN A REGISTRO -->
-        <a href="index.php?controller=Usuario&action=registro">
+        <a href="../../index.php?controller=Usuario&action=registro">
             <button type="button" class="btn btn-register">
                 Crear cuenta
             </button>

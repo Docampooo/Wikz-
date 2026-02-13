@@ -50,7 +50,7 @@ async function cargarExplorar(contenedor) {
             return;
         }
 
-        // Cambiamos 'feed-vertical' por 'explorar-grid'
+        // Inicio del grid de 3 columnas
         let html = '<div class="explorar-grid">';
 
         publicaciones.forEach(pub => {
@@ -59,15 +59,11 @@ async function cargarExplorar(contenedor) {
             html += `
                 <div class="post-card">
                     <div class="post-image-container">
-                        <img 
-                            src="${imgUrl}" 
-                            loading="lazy"
-                            onerror="this.src='assets/img/default.jpg'"
-                        >
+                        <img src="${imgUrl}" loading="lazy" onerror="this.src='assets/img/default.jpg'">
                     </div>
                     <div class="post-info">
                         <h3>${pub.titulo}</h3>
-                        <p>${pub.descripcion ?? ""}</p>
+                        <p>${pub.descripcion ?? ""}</p> 
                     </div>
                 </div>
             `;
@@ -89,9 +85,9 @@ function cargarFormularioCrear(contenedor) {
                 
                 <div class="card-visual" onclick="document.getElementById('input-file').click()">
                     <img id="img-preview" src="" style="display:none;">
-                    <div id="upload-placeholder">
-                        <span class="material-icons">cloud_upload</span>
-                        <p>Arrastra o selecciona tu imagen</p>
+                    <div id="upload-placeholder" style="text-align:center;">
+                        <span class="material-icons" style="font-size:48px; color:var(--morado-principal);">cloud_upload</span>
+                        <p style="font-size:12px; color:var(--texto-gris);">Selecciona tu obra</p>
                     </div>
                 </div>
                 <input type="file" id="input-file" accept="image/*" style="display:none" onchange="previsualizar(this)">
@@ -99,15 +95,11 @@ function cargarFormularioCrear(contenedor) {
                 <div class="card-info">
                     <h2 class="titulo-gradient">Nueva Publicación</h2>
                     
-                    <div class="input-wrapper">
-                        <label><span class="material-icons">title</span> Título</label>
-                        <input type="text" id="pub-titulo" placeholder="¿Cómo se llama tu obra?" class="wikz-input-glass">
-                    </div>
+                    <label style="font-size:12px; color:var(--morado-suave);">Título</label>
+                    <input type="text" id="pub-titulo" placeholder="Título de la obra..." class="wikz-input-glass">
 
-                    <div class="input-wrapper">
-                        <label><span class="material-icons">description</span> Descripción</label>
-                        <textarea id="pub-desc" placeholder="Cuéntanos más sobre esto..." class="wikz-input-glass" rows="5"></textarea>
-                    </div>
+                    <label style="font-size:12px; color:var(--morado-suave);">Descripción</label>
+                    <textarea id="pub-desc" placeholder="¿Qué significa para ti?" class="wikz-input-glass" rows="4" style="resize:none;"></textarea>
 
                     <button class="btn-publish-glow" id="btn-publicar" onclick="enviarPublicacion()">
                         Publicar ahora
@@ -188,89 +180,6 @@ function imageToBase64(file) {
 }
 
 /**
- * Carga la vista de perfil de forma segura
- */
-async function cargarPerfil(contenedor) {
-    // 1. Cargando...
-    contenedor.innerHTML = `<div class="viewport-center"><div class="loading">Cargando perfil...</div></div>`;
-
-    let publicaciones = [];
-
-    try {
-        const [respUser, respPosts] = await Promise.all([
-            fetch(`${API_URL}/getUsuario?id=${WIKZ_USER.id}`).catch(e => ({ ok: false })),
-            fetch(`${API_URL}/getPublicacionesUsuario?idUsuario=${WIKZ_USER.id}`).catch(e => ({ ok: false }))
-        ]);
-
-        if (respUser && respUser.ok) {
-            const datosFrescos = await respUser.json();
-            WIKZ_USER.nombre = datosFrescos.nombre || WIKZ_USER.nombre;
-            WIKZ_USER.biografia = datosFrescos.biografia || "";
-        }
-
-        if (respPosts && respPosts.ok) {
-            publicaciones = await respPosts.json();
-        }
-
-    } catch (error) {
-        console.warn("Nota: Algunos datos se cargaron desde la sesión local.");
-    }
-
-    // 2. Pintamos la vista
-    contenedor.innerHTML = `
-        <div class="perfil-container" style="padding: 20px;">
-            <div class="perfil-header" style="text-align: center;">
-                <div class="perfil-foto-wrapper">
-                    <div class="avatar-glow-wrapper" style="width: 110px; height: 110px; margin: 0 auto; border-radius: 50%; padding: 3px; background: linear-gradient(135deg, #6a1bb1, #9b5de5); box-shadow: 0 0 20px rgba(155, 48, 255, 0.3);">
-                        <img src="${API_URL}/getImagenUsuario?id=${WIKZ_USER.id}" onerror="this.onerror=null; this.src='assets/img/fotoperfil.jpg';"style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-                    </div>
-                </div>
-
-                <h2 class="titulo-gradient" style="margin-top:15px; font-weight: 700;">${WIKZ_USER.nombre}</h2>
-                
-                <p class="bio-text" style="color: #d6b9ff; margin: 10px auto; text-align: center; max-width: 85%; font-size: 14px; line-height: 1.4;">
-                    ${WIKZ_USER.biografia || "Sin biografía aún..."}
-                </p>
-                
-                <button onclick="navegar('editar-perfil', this)" style="background: rgba(199, 125, 255, 0.1); border: 1px solid rgba(199, 125, 255, 0.4); color: white; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-top: 10px; font-family: 'Montserrat', sans-serif; transition: all 0.3s;">
-                    <span class="material-icons" style="vertical-align: middle; font-size: 18px; margin-right: 5px;">edit</span> Editar Perfil
-                </button>
-            </div>
-
-            <div class="perfil-divider" style="height: 1px; background: rgba(199, 125, 255, 0.2); margin: 30px 0;"></div>
-
-            <div id="perfil-posts-grid" class="explorar-grid">
-                ${publicaciones.length > 0 ?
-            publicaciones.map(pub => `
-                        <div class="post-card">
-                            <div class="post-image-container">
-                                <img src="${API_URL}/getImagenPublicacion?id=${pub.id}" onerror="this.src='assets/img/default.jpg'">
-                            </div>
-                            <div class="post-info">
-                                <h3>${pub.titulo}</h3>
-                            </div>
-                        </div>
-                    `).join('')
-            : `<p style="text-align:center; color: #888; grid-column: 1/-1;">Aún no has publicado nada.</p>`
-        }
-            </div>
-            
-            <button onclick="cerrarSesion()" 
-                style="width: 100%; max-width: 250px; padding: 14px; margin: 40px auto; display: block; 
-                border: none; border-radius: 14px; font-family: 'Montserrat', sans-serif; font-size: 16px; 
-                font-weight: 600; cursor: pointer; color: #fff; 
-                background: linear-gradient(135deg, #2a0845, #5a189a); 
-                box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.25s ease;"
-                onmouseover="this.style.transform='translateY(-2px)'; this.style.background='linear-gradient(135deg, #3a0a6a, #6a1bb1)'; this.style.boxShadow='0 0 20px rgba(155, 48, 255, 0.4)';"
-                onmouseout="this.style.transform='translateY(0)'; this.style.background='linear-gradient(135deg, #2a0845, #5a189a)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.3)';"
-            >
-                Cerrar Sesión
-            </button>
-        </div>
-    `;
-}
-
-/**
  * Función auxiliar para generar el HTML de las cards en el perfil
  */
 function generarHtmlPosts(publicaciones) {
@@ -287,6 +196,7 @@ function generarHtmlPosts(publicaciones) {
                 </div>
                 <div class="post-info">
                     <h3>${pub.titulo}</h3>
+                    <p>${pub.descripcion ?? ""}</p>
                 </div>
             </div>
         `;
@@ -323,8 +233,95 @@ async function mostrarModalUpdate() {
     }
 }
 
+/**
+ * Carga la vista de perfil de forma segura adaptada a la API Java
+ */
+async function cargarPerfil(contenedor) {
+    // 1. Cargando...
+    contenedor.innerHTML = `<div class="viewport-center"><div class="loading">Cargando perfil...</div></div>`;
+
+    let publicaciones = [];
+
+    try {
+        const [respUser, respPosts] = await Promise.all([
+            fetch(`${API_URL}/getUsuarioId?id=${WIKZ_USER.id}`).catch(() => ({ ok: false })),
+            fetch(`${API_URL}/getPublicacionesUsuario?idUsuario=${WIKZ_USER.id}`).catch(() => ({ ok: false }))
+        ]);
+
+        if (respUser && respUser.ok) {
+            const datosFrescos = await respUser.json();
+            WIKZ_USER.nombre = datosFrescos.nombre || WIKZ_USER.nombre;
+            WIKZ_USER.biografia = datosFrescos.biografia || "";
+            localStorage.setItem('wikz_session', JSON.stringify(WIKZ_USER));
+        }
+
+        if (respPosts && respPosts.ok) {
+            publicaciones = await respPosts.json();
+        }
+
+    } catch (error) {
+        console.warn("Se están usando datos locales por error de conexión.");
+    }
+
+    // 2. Pintamos la vista
+    contenedor.innerHTML = `
+        <div class="perfil-container" style="padding: 20px;">
+            <div class="perfil-header" style="text-align: center;">
+               <div class="perfil-foto-wrapper">
+                <div class="avatar-glow-wrapper" style="width: 110px; height: 110px; margin: 0 auto; border-radius: 50%; padding: 3px; background: linear-gradient(135deg, #6a1bb1, #9b5de5); box-shadow: 0 0 20px rgba(155, 48, 255, 0.3);">
+                    <img id="avatar-preview-main" 
+                        src="${WIKZ_USER.id > 0 ? API_URL + '/fotoPerfil?id=' + WIKZ_USER.id : 'assets/img/fotoperfil.jpg'}" 
+                            onerror="this.onerror=null; this.src='assets/img/fotoperfil.jpg';" 
+                            style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    </div>
+                </div>
+
+                <h2 class="titulo-gradient" style="margin-top:15px; font-weight: 700;">${WIKZ_USER.nombre}</h2>
+                
+                <p class="bio-text" style="color: #d6b9ff; margin: 10px auto; text-align: center; max-width: 85%; font-size: 14px;">
+                    ${WIKZ_USER.biografia || "Sin biografía aún..."}
+                </p>
+                
+                <button onclick="navegar('editar-perfil', this)" style="background: rgba(199, 125, 255, 0.1); border: 1px solid rgba(199, 125, 255, 0.4); color: white; padding: 10px 20px; border-radius: 20px; cursor: pointer;">
+                    <span class="material-icons" style="vertical-align: middle; font-size: 18px;">edit</span> Editar Perfil
+                </button>
+            </div>
+
+            <div class="perfil-divider" style="height: 1px; background: rgba(199, 125, 255, 0.2); margin: 30px 0;"></div>
+
+            <div id="perfil-posts-grid" class="explorar-grid">
+                ${publicaciones.length > 0 ?
+                    publicaciones.map(pub => `
+                        <div class="post-card">
+                            <div class="post-image-container">
+                                <img src="${API_URL}/getImagenPublicacion?id=${pub.id}" onerror="this.src='assets/img/default.jpg'">
+                            </div>
+                            <div class="post-info">
+                                <h3>${pub.titulo}</h3>
+                            </div>
+                        </div>
+                    `).join('')
+                    : `<p style="text-align:center; color: #888; grid-column: 1/-1;">Aún no has publicado nada.</p>`
+                }
+            </div>
+            
+            <button class="btn-logout" onclick="cerrarSesion()" 
+                style="width: 100%; max-width: 250px; margin: 40px auto; display: block; background: rgba(155, 93, 229, 0.1); border: 1px solid rgba(155, 93, 229, 0.5); color: #d6b9ff; padding: 12px; border-radius: 25px; cursor: pointer; font-weight: 600; transition: 0.3s;">
+                <span class="material-icons" style="vertical-align: middle; font-size: 18px; margin-right: 5px;">logout</span>
+                Cerrar Sesión
+            </button>
+        </div>
+    `;
+}
+
+/**
+ * Vista de edición también actualizada con /fotoPerfil
+ */
 function cargarEditarPerfil(contenedor) {
-    const currentAvatar = `${API_URL}/getImagenUsuario?id=${WIKZ_USER.id}`;
+    // Ajuste de ruta de imagen para la vista de edición
+    const fotoUrl = WIKZ_USER.id > 0
+        ? `${API_URL}/fotoPerfil?id=${WIKZ_USER.id}`
+        : 'assets/img/fotoperfil.jpg';
 
     contenedor.innerHTML = `
         <div class="viewport-center">
@@ -334,9 +331,9 @@ function cargarEditarPerfil(contenedor) {
                 <div class="edit-avatar-section" id="area-foto-perfil" style="cursor:pointer; text-align:center;">
                     <div class="avatar-glow-wrapper" style="width: 110px; height: 110px; margin: 0 auto; border-radius: 50%; padding: 3px; background: linear-gradient(135deg, #6a1bb1, #9b5de5);">
                         <img id="avatar-preview-edit" 
-                             src="${currentAvatar}" 
-                             onerror="this.onerror=null; this.src='assets/img/fotoperfil.jpg';"
-                             style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #12001f;">
+                             src="${fotoUrl}" 
+                             onerror="this.onerror=null; this.src='assets/img/fotoperfil.jpg';" 
+                             style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                     </div>
                     <p style="font-size: 12px; color: #d6b9ff; margin-top: 10px;">Click para cambiar foto</p>
                 </div>
@@ -344,36 +341,28 @@ function cargarEditarPerfil(contenedor) {
                 <input type="file" id="edit-file-input" accept="image/*" style="display:none">
 
                 <div style="text-align: left; margin-top: 20px;">
-                    <label style="font-size: 13px; color: #b98bff; margin-left: 5px;">Nombre de usuario</label>
+                    <label>Nombre de usuario</label>
                     <input type="text" id="edit-nombre-val" value="${WIKZ_USER.nombre}" class="wikz-input-glass">
                     
-                    <label style="font-size: 13px; color: #b98bff; margin-left: 5px; display:block; margin-top:10px;">Biografía</label>
-                    <textarea id="edit-bio-val" class="wikz-input-glass" rows="4" style="resize:none;">${WIKZ_USER.biografia || ""}</textarea>
+                    <label style="display:block; margin-top:10px;">Biografía</label>
+                    <textarea id="edit-bio-val" class="wikz-input-glass" rows="4">${WIKZ_USER.biografia || ""}</textarea>
                 </div>
 
                 <button class="btn-publish-glow" id="btn-save-perfil" style="width:100%; margin-top:20px;" onclick="ejecutarActualizacion()">
                     Guardar Cambios
                 </button>
-                
-                <button class="btn-register" onclick="navegar('perfil', document.getElementById('nav-perfil'))" style="width:100%; background:none; border:none; color:#888; cursor:pointer; margin-top:10px;">
-                    Cancelar y volver
-                </button>
             </div>
         </div>
     `;
 
-    // Eventos para la carga de imagen
+    // Eventos de selección de imagen
     const fotoArea = document.getElementById('area-foto-perfil');
     const inputFile = document.getElementById('edit-file-input');
-
     fotoArea.onclick = () => inputFile.click();
-
     inputFile.onchange = function () {
         if (this.files && this.files[0]) {
             const reader = new FileReader();
-            reader.onload = (e) => {
-                document.getElementById('avatar-preview-edit').src = e.target.result;
-            };
+            reader.onload = (e) => { document.getElementById('avatar-preview-edit').src = e.target.result; };
             reader.readAsDataURL(this.files[0]);
         }
     };
@@ -389,7 +378,7 @@ async function ejecutarActualizacion() {
     if (!nuevoNombre.trim()) return alert("El nombre es obligatorio");
 
     btn.disabled = true;
-    btn.innerHTML = "Procesando...";
+    btn.innerHTML = `<span class="material-icons rotating">sync</span> Procesando...`;
 
     try {
         let base64Image = null;
@@ -397,13 +386,15 @@ async function ejecutarActualizacion() {
             base64Image = await imageToBase64(fileInput.files[0]);
         }
 
+        // ¡ATENCIÓN AQUÍ!: He cambiado el nombre del campo a 'fotoPerfilBase64'
         const datos = {
             id: WIKZ_USER.id,
             nombre: nuevoNombre,
             biografia: nuevaBio,
-            imagenBase64: base64Image
+            fotoPerfilBase64: base64Image // Antes decía imagenBase64
         };
 
+        // 1. Enviamos a la API de Java
         const response = await fetch(`${API_URL}/updateUsuario`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -411,22 +402,29 @@ async function ejecutarActualizacion() {
         });
 
         if (response.ok) {
-            // Actualizar objeto global
+            // 2. Sincronizar con la sesión de PHP
+            await fetch(`index.php?controller=Usuario&action=actualizarSesionJS`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `nombre=${encodeURIComponent(nuevoNombre)}&biografia=${encodeURIComponent(nuevaBio)}`
+            });
+
+            // 3. Actualizar objeto global y LocalStorage
             WIKZ_USER.nombre = nuevoNombre;
             WIKZ_USER.biografia = nuevaBio;
-
-            // Actualizar LocalStorage
             localStorage.setItem('wikz_session', JSON.stringify(WIKZ_USER));
 
-            alert("✅ ¡Perfil actualizado!");
-            // Volver al perfil
+            alert("✅ ¡Perfil actualizado con éxito!");
+
+            // 4. Volver al perfil
             navegar('perfil', document.getElementById('nav-perfil'));
         } else {
-            alert("❌ El servidor rechazó la actualización");
+            const errorText = await response.text();
+            alert("❌ Error del servidor: " + errorText);
         }
     } catch (e) {
-        console.error(e);
-        alert("❌ Error de conexión");
+        console.error("Error en update:", e);
+        alert("❌ Error de conexión con el servidor");
     } finally {
         if (btn) {
             btn.disabled = false;
