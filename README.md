@@ -53,3 +53,6 @@ Se ha vindulado por fin la api y la base de datos con la aplicacion web, las con
 
 12/02/2026
 Las imagenes ya se suben sin probelas en web, se han añadido una buena cantidad de publicaciones para llenar la página y la base de datos y la api responden correctamente, se ha añadido tambien el diseño del perfil de usuario y de la seccion de explorar publicaciones de los usuarios
+
+13/02/2026
+La web ha avanzado mucho, está casi completa como primera versión, cuenta con publicaciones, usuarios, modificacion de perfiles y añadido de publicaciones a la base de datos, todo funcional y sin errores visibles, le queda un último paso y es el de eliminar publicaciones 
