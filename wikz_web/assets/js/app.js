@@ -55,9 +55,11 @@ async function cargarExplorar(contenedor) {
 
         publicaciones.forEach(pub => {
             const imgUrl = `${API_URL}/getImagenPublicacion?id=${pub.id}`;
+            // Convertimos el objeto a string para pasarlo por la función (escapando comillas)
+            const pubData = JSON.stringify(pub).replace(/"/g, '&quot;');
 
             html += `
-                <div class="post-card">
+                <div class="post-card" onclick="abrirModalPost(${pubData})">
                     <div class="post-image-container">
                         <img src="${imgUrl}" loading="lazy" onerror="this.src='assets/img/default.jpg'">
                     </div>
@@ -237,12 +239,13 @@ async function mostrarModalUpdate() {
  * Carga la vista de perfil de forma segura adaptada a la API Java
  */
 async function cargarPerfil(contenedor) {
-    // 1. Cargando...
+    // 1. Estado de carga
     contenedor.innerHTML = `<div class="viewport-center"><div class="loading">Cargando perfil...</div></div>`;
 
     let publicaciones = [];
 
     try {
+        // Peticiones paralelas para optimizar tiempo
         const [respUser, respPosts] = await Promise.all([
             fetch(`${API_URL}/getUsuarioId?id=${WIKZ_USER.id}`).catch(() => ({ ok: false })),
             fetch(`${API_URL}/getPublicacionesUsuario?idUsuario=${WIKZ_USER.id}`).catch(() => ({ ok: false }))
@@ -260,17 +263,17 @@ async function cargarPerfil(contenedor) {
         }
 
     } catch (error) {
-        console.warn("Se están usando datos locales por error de conexión.");
+        console.warn("Error de conexión, usando datos locales.");
     }
 
-    // 2. Pintamos la vista
+    // 2. Construcción del HTML
     contenedor.innerHTML = `
         <div class="perfil-container" style="padding: 20px;">
             <div class="perfil-header" style="text-align: center;">
-               <div class="perfil-foto-wrapper">
-                <div class="avatar-glow-wrapper" style="width: 110px; height: 110px; margin: 0 auto; border-radius: 50%; padding: 3px; background: linear-gradient(135deg, #6a1bb1, #9b5de5); box-shadow: 0 0 20px rgba(155, 48, 255, 0.3);">
-                    <img id="avatar-preview-main" 
-                        src="${WIKZ_USER.id > 0 ? API_URL + '/fotoPerfil?id=' + WIKZ_USER.id : 'assets/img/fotoperfil.jpg'}" 
+                <div class="perfil-foto-wrapper">
+                    <div class="avatar-glow-wrapper" style="width: 110px; height: 110px; margin: 0 auto; border-radius: 50%; padding: 3px; background: linear-gradient(135deg, #6a1bb1, #9b5de5); box-shadow: 0 0 20px rgba(155, 48, 255, 0.3);">
+                        <img id="avatar-preview-main" 
+                            src="${WIKZ_USER.id > 0 ? API_URL + '/fotoPerfil?id=' + WIKZ_USER.id : 'assets/img/fotoperfil.jpg'}" 
                             onerror="this.onerror=null; this.src='assets/img/fotoperfil.jpg';" 
                             style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                     </div>
@@ -291,18 +294,23 @@ async function cargarPerfil(contenedor) {
 
             <div id="perfil-posts-grid" class="explorar-grid">
                 ${publicaciones.length > 0 ?
-                    publicaciones.map(pub => `
-                        <div class="post-card">
-                            <div class="post-image-container">
-                                <img src="${API_URL}/getImagenPublicacion?id=${pub.id}" onerror="this.src='assets/img/default.jpg'">
+            publicaciones.map(pub => {
+                const pubData = JSON.stringify(pub).replace(/"/g, '&quot;');
+                const imgUrl = `${API_URL}/getImagenPublicacion?id=${pub.id}`;
+
+                return `
+                            <div class="post-card" onclick="abrirModalPost(${pubData}, true)" style="cursor:pointer;">
+                                <div class="post-image-container">
+                                    <img src="${imgUrl}" onerror="this.src='assets/img/default.jpg'">
+                                </div>
+                                <div class="post-info">
+                                    <h3>${pub.titulo}</h3>
+                                </div>
                             </div>
-                            <div class="post-info">
-                                <h3>${pub.titulo}</h3>
-                            </div>
-                        </div>
-                    `).join('')
-                    : `<p style="text-align:center; color: #888; grid-column: 1/-1;">Aún no has publicado nada.</p>`
-                }
+                        `;
+            }).join('')
+            : `<p style="text-align:center; color: #888; grid-column: 1/-1;">Aún no has publicado nada.</p>`
+        }
             </div>
             
             <button class="btn-logout" onclick="cerrarSesion()" 
@@ -313,9 +321,8 @@ async function cargarPerfil(contenedor) {
         </div>
     `;
 }
-
 /**
- * Vista de edición también actualizada con /fotoPerfil
+ * Vista de edición también actualizada con fotoPerfil
  */
 function cargarEditarPerfil(contenedor) {
     // Ajuste de ruta de imagen para la vista de edición
@@ -386,15 +393,14 @@ async function ejecutarActualizacion() {
             base64Image = await imageToBase64(fileInput.files[0]);
         }
 
-        // ¡ATENCIÓN AQUÍ!: He cambiado el nombre del campo a 'fotoPerfilBase64'
         const datos = {
             id: WIKZ_USER.id,
             nombre: nuevoNombre,
             biografia: nuevaBio,
-            fotoPerfilBase64: base64Image // Antes decía imagenBase64
+            fotoPerfilBase64: base64Image
         };
 
-        // 1. Enviamos a la API de Java
+        //Enviar a la API de Java
         const response = await fetch(`${API_URL}/updateUsuario`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -402,21 +408,21 @@ async function ejecutarActualizacion() {
         });
 
         if (response.ok) {
-            // 2. Sincronizar con la sesión de PHP
+            //Sincronizar con la sesión de PHP
             await fetch(`index.php?controller=Usuario&action=actualizarSesionJS`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: `nombre=${encodeURIComponent(nuevoNombre)}&biografia=${encodeURIComponent(nuevaBio)}`
             });
 
-            // 3. Actualizar objeto global y LocalStorage
+            //Actualizar objeto global y LocalStorage
             WIKZ_USER.nombre = nuevoNombre;
             WIKZ_USER.biografia = nuevaBio;
             localStorage.setItem('wikz_session', JSON.stringify(WIKZ_USER));
 
             alert("✅ ¡Perfil actualizado con éxito!");
 
-            // 4. Volver al perfil
+            //Volver al perfil
             navegar('perfil', document.getElementById('nav-perfil'));
         } else {
             const errorText = await response.text();
@@ -430,6 +436,116 @@ async function ejecutarActualizacion() {
             btn.disabled = false;
             btn.innerHTML = "Guardar Cambios";
         }
+    }
+}
+
+async function abrirModalPost(pub, esMio = false) {
+    const modal = document.createElement('div');
+    modal.className = 'wikz-modal-overlay';
+    modal.id = 'modal-publicacion';
+    modal.innerHTML = `<div class="loading" style="color:white;">Cargando detalles...</div>`;
+    document.body.appendChild(modal);
+
+    let nombreAutor = "Usuario de Wikz";
+
+    try {
+        const response = await fetch(`${API_URL}/getUsuarioId?id=${pub.idUsuario}`);
+        if (response.ok) {
+            const datosUsuario = await response.json();
+            nombreAutor = datosUsuario.nombre;
+        }
+    } catch (e) {
+        console.error("No se pudo obtener el autor", e);
+    }
+
+    const imgUrl = `${API_URL}/getImagenPublicacion?id=${pub.id}`;
+    const userImg = `${API_URL}/fotoPerfil?id=${pub.idUsuario}`;
+
+    // LÓGICA DE LA FECHA
+    const fechaRaw = pub.fechaCreacion;
+    let fechaFormateada = 'Reciente';
+    if (fechaRaw) {
+        const d = new Date(fechaRaw);
+        if (!isNaN(d.getTime())) {
+            fechaFormateada = d.toLocaleDateString('es-ES', {
+                day: '2-digit', month: '2-digit', year: 'numeric'
+            });
+        }
+    }
+
+    // BOTÓN ELIMINAR (Solo si esMio es true)
+    const botonEliminarHTML = esMio ? `
+        <button onclick="confirmarEliminar(${pub.id})" 
+            style="width: 100%; margin-top: 20px; padding: 12px; border: none; border-radius: 8px; 
+            background: linear-gradient(135deg, #8b0000 0%, #4a0000 100%); 
+            color: white; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <span class="material-icons" style="font-size: 18px;">delete_forever</span> Eliminar
+        </button>
+    ` : '';
+
+    modal.innerHTML = `
+        <div class="wikz-modal-card">
+            <span class="material-icons btn-close-modal" onclick="this.parentElement.parentElement.remove()">close</span>
+            
+            <div style="padding: 15px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <img src="${userImg}" onerror="this.src='assets/img/fotoperfil.jpg'" 
+                     style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--morado-principal);">
+                <div>
+                    <span style="font-weight: 700; color: white; display: block; font-size: 15px;">${nombreAutor}</span>
+                    <span style="font-size: 10px; color: var(--morado-suave); text-transform: uppercase; letter-spacing: 1px;">Autor</span>
+                </div>
+            </div>
+
+            <div style="width: 100%; background: #000; display: flex; align-items: center; justify-content: center; min-height: 300px;">
+                <img src="${imgUrl}" style="max-width: 100%; max-height: 60vh; display: block;">
+            </div>
+
+            <div style="padding: 20px 20px 30px 20px;"> 
+                <h2 class="titulo-gradient" style="margin: 0 0 8px 0; font-size: 24px; letter-spacing: -0.5px;">${pub.titulo}</h2>
+                <p style="color: #d6b9ff; font-size: 14px; line-height: 1.6; margin-bottom: 20px; font-weight: 300;">
+                    ${pub.descripcion || 'Sin descripción disponible.'}
+                </p>
+                
+                <div style="display: flex; flex-direction: column; gap: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                    <div style="display: flex; align-items: center; gap: 5px; color: #b1a7a6;">
+                        <span class="material-icons" style="font-size: 16px; color: var(--morado-suave);">calendar_today</span>
+                        <span style="font-size: 13px; font-weight: 500;">Publicado el ${fechaFormateada}</span>
+                    </div>
+                    ${botonEliminarHTML}
+                </div>
+            </div>
+        </div>
+    `;
+
+    modal.onclick = (e) => { if (e.target.id === 'modal-publicacion') modal.remove(); };
+}
+
+async function confirmarEliminar(idPublicacion) {
+    if (!confirm("¿Estás seguro de que quieres borrar esta publicación?")) return;
+
+    try {
+        const url = `${API_URL}/eliminarPublicacion?idPublicacion=${idPublicacion}`;
+
+        const response = await fetch(url, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            alert("✅ Publicación eliminada con éxito.");
+
+            //Quitar el modal
+            const modal = document.getElementById('modal-publicacion');
+            if (modal) modal.remove();
+
+            //Recargar la sección de perfil para que ya no salga la foto
+            navegar('perfil', document.getElementById('nav-perfil'));
+        } else {
+            const msg = await response.text();
+            alert("Error del servidor: " + msg);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Error de red o CORS. Revisa que tu servidor Java permita el método DELETE.");
     }
 }
 

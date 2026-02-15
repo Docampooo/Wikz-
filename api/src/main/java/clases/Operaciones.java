@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.OPTIONS;
 import jakarta.ws.rs.POST;
@@ -856,4 +857,53 @@ public class Operaciones {
             return Response.serverError().build();
         }
     }
+
+    @DELETE
+    @Path("/eliminarPublicacion")
+    public Response eliminarPublicacion(@QueryParam("idPublicacion") int idPublicacion) {
+
+        if (idPublicacion <= 0) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("ID de publicación inválido")
+                    .build();
+        }
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+
+            try (Connection conexion = DriverManager.getConnection(ruta, user, pass)) {
+
+                // Eliminar relaciones manuales si existen
+                String sqlGuardados = "DELETE FROM guardados WHERE id_publicacion = ?";
+                PreparedStatement psGuardados = conexion.prepareStatement(sqlGuardados);
+                psGuardados.setInt(1, idPublicacion);
+                psGuardados.executeUpdate();
+
+                // Luego eliminamos la publicación
+                String sql = "DELETE FROM publicaciones WHERE id = ?";
+                PreparedStatement ps = conexion.prepareStatement(sql);
+                ps.setInt(1, idPublicacion);
+
+                int filas = ps.executeUpdate();
+
+                if (filas == 1) {
+                    return Response.ok("Publicación eliminada correctamente").build();
+                } else {
+                    return Response.status(Response.Status.NOT_FOUND).entity("No encontrada").build();
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                        .entity("Error en la base de datos")
+                        .build();
+            }
+
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Error en los drivers")
+                    .build();
+        }
+    }
+
 }
