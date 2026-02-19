@@ -56,3 +56,6 @@ Las imagenes ya se suben sin probelas en web, se han añadido una buena cantidad
 
 13/02/2026
 La web ha avanzado mucho, está casi completa como primera versión, cuenta con publicaciones, usuarios, modificacion de perfiles y añadido de publicaciones a la base de datos, todo funcional y sin errores visibles, le queda un último paso y es el de eliminar publicaciones 
+
+14/02/2026
+Web terminada, el primer escalon superado, todo funciona, no da errores y va fluido, queda terminar moviles y comenzar escritorio! 
