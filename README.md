@@ -59,3 +59,6 @@ La web ha avanzado mucho, está casi completa como primera versión, cuenta con 
 
 14/02/2026
 Web terminada, el primer escalon superado, todo funciona, no da errores y va fluido, queda terminar moviles y comenzar escritorio! 
+
+18/02/2026
+La aplicacion móviles está lista! solo queda la parte de escritorio, viento en popa
