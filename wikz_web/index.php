@@ -1,6 +1,6 @@
 <?php
 // =========================================================================
-// 1. CONFIGURACIÓN Y AUTOCARGA
+// CONFIGURACIÓN Y AUTOCARGA
 // =========================================================================
 require_once 'config/Database.php';
 
@@ -13,7 +13,7 @@ spl_autoload_register(function ($className) {
 });
 
 // =========================================================================
-// 2. ENRUTADOR (Lógica de Controladores)
+// ENRUTADOR (Lógica de Controladores)
 // =========================================================================
 $controller = $_GET['controller'] ?? 'Usuario';
 $action     = $_GET['action'] ?? 'login';

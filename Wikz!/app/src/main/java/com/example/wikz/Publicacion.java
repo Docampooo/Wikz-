@@ -12,7 +12,7 @@ public class Publicacion implements Serializable {
         this.id_usuario = id_usuario;
         this.titulo = titulo != null ? titulo : "";
         this.descripcion = descripcion != null ? descripcion : "";
-        this.fechaCreacion = fechaCreacion != null ? fechaCreacion : new Date();
+        this.fechaCreacion = System.currentTimeMillis();
     }
 
     public Publicacion() {
@@ -23,7 +23,7 @@ public class Publicacion implements Serializable {
     private int id_usuario;
     private String titulo;
     private String descripcion;
-    private Date fechaCreacion;
+    private long fechaCreacion;
 
     // Getters y setters
     public int getId() {
@@ -58,8 +58,21 @@ public class Publicacion implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public Date getFechaCreacion() {
+        return new Date(this.fechaCreacion);
+    }
+
+    // --- SETTERS (Sobrecarga) ---
+
+    public void setFechaCreacion(Date fecha) {
+        if (fecha != null) {
+            this.fechaCreacion = fecha.getTime();
+        }
+    }
+
+    //Por si acaso en algún lugar quiero pasar el long directamente
+    public void setFechaCreacion(long millis) {
+        this.fechaCreacion = millis;
     }
 
     @Override

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using wikz_escritorio.Modelos;
 
 namespace wikz_escritorio
 {
@@ -18,10 +19,7 @@ namespace wikz_escritorio
         {
             InitializeComponent();
 
-            pbPublicacion.Image = p.FotoPublicacion;
-
-            lblNombre.Text = p.Nombre;
-            lblCreacion.Text = p.FechaCreacion.ToString("dd/MM/yyyy");
+            lblCreacion.Text = p.FechaCreacion.ToString();
             lblDescripcion.Text = p.Descripcion;
         }
 

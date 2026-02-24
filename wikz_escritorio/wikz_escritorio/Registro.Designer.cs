@@ -53,11 +53,11 @@
             // txtRegistroNombre
             // 
             this.txtRegistroNombre.BackColor = System.Drawing.Color.Black;
-            this.txtRegistroNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRegistroNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRegistroNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
             this.txtRegistroNombre.Location = new System.Drawing.Point(97, 329);
             this.txtRegistroNombre.Name = "txtRegistroNombre";
-            this.txtRegistroNombre.Size = new System.Drawing.Size(388, 22);
+            this.txtRegistroNombre.Size = new System.Drawing.Size(388, 38);
             this.txtRegistroNombre.TabIndex = 1;
             this.txtRegistroNombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -92,12 +92,12 @@
             // txtRegistroPass
             // 
             this.txtRegistroPass.BackColor = System.Drawing.Color.Black;
-            this.txtRegistroPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRegistroPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRegistroPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.txtRegistroPass.Location = new System.Drawing.Point(97, 401);
+            this.txtRegistroPass.Location = new System.Drawing.Point(97, 449);
             this.txtRegistroPass.Name = "txtRegistroPass";
             this.txtRegistroPass.PasswordChar = '•';
-            this.txtRegistroPass.Size = new System.Drawing.Size(388, 22);
+            this.txtRegistroPass.Size = new System.Drawing.Size(388, 38);
             this.txtRegistroPass.TabIndex = 4;
             this.txtRegistroPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtRegistroPass.UseSystemPasswordChar = true;
@@ -106,10 +106,11 @@
             // 
             this.lblNombreRegistro.AutoSize = true;
             this.lblNombreRegistro.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblNombreRegistro.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombreRegistro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.lblNombreRegistro.Location = new System.Drawing.Point(220, 301);
+            this.lblNombreRegistro.Location = new System.Drawing.Point(164, 285);
             this.lblNombreRegistro.Name = "lblNombreRegistro";
-            this.lblNombreRegistro.Size = new System.Drawing.Size(142, 16);
+            this.lblNombreRegistro.Size = new System.Drawing.Size(275, 32);
             this.lblNombreRegistro.TabIndex = 5;
             this.lblNombreRegistro.Text = "Nombre de Usuario";
             // 
@@ -117,10 +118,11 @@
             // 
             this.lblRegistroPass.AutoSize = true;
             this.lblRegistroPass.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblRegistroPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRegistroPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.lblRegistroPass.Location = new System.Drawing.Point(245, 369);
+            this.lblRegistroPass.Location = new System.Drawing.Point(205, 405);
             this.lblRegistroPass.Name = "lblRegistroPass";
-            this.lblRegistroPass.Size = new System.Drawing.Size(86, 16);
+            this.lblRegistroPass.Size = new System.Drawing.Size(171, 32);
             this.lblRegistroPass.TabIndex = 6;
             this.lblRegistroPass.Text = "Contraseña";
             // 

@@ -131,10 +131,8 @@ class UsuarioController
             exit;
         }
 
+        //Volver al index con el usuario
         $usuarioActivo = $_SESSION['usuario'];
-
-        // Cargamos la vista principal que contiene el esqueleto de la SPA
-        require 'views/usuario/principal.php';
     }
 
     /* =========================

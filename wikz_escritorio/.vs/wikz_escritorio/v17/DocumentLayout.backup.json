@@ -3,83 +3,147 @@
   "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|c:\\users\\usuario\\desktop\\wikz!\\wikz_escritorio\\wikz_escritorio\\form1.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\form1.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|wikz_escritorio||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|c:\\users\\usuario\\desktop\\wikz!\\wikz_escritorio\\wikz_escritorio\\verpublicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\verpublicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\verpublicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\verpublicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\publicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\publicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\registro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\registro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\registro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\registro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\recyclerview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\recyclerview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\recyclerview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\recyclerview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\recyclerview.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\recyclerview.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\coleccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\coleccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\servicio\\api.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\servicio\\api.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\registrar_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\registrar_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\registrar_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\registrar_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registrar_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\Registrar_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\registro.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\registro.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\Registro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\registro.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
-      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\registro.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\registro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\registro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\Registro.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\recyclerview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\recyclerview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\modelos\\publicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\modelos\\publicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\recyclerview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\recyclerview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\principal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\modelos\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\modelos\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|c:\\users\\usuario\\desktop\\wikz!\\wikz_escritorio\\wikz_escritorio\\verpublicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\verpublicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\recyclerview.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\recyclerview.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\verpublicacion.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\verpublicacion.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\verpublicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\verpublicacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\formpublicar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\formpublicar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|c:\\users\\usuario\\desktop\\wikz!\\wikz_escritorio\\wikz_escritorio\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\Registro.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\formpublicar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\formpublicar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|wikz_escritorio||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\formpublicar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\formpublicar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\principal.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\principal.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\recyclerview.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\recyclerview.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\resources\\logosinfondo.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\resources\\logosinfondo.ico||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\resources\\monster.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\resources\\monster.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\resources\\registro.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\resources\\registro.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\resources\\ic_explorarmorado.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\resources\\ic_explorarmorado.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\resources\\ic_likesmorado.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\resources\\ic_likesmorado.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\resources\\cora.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\resources\\cora.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\resources\\logosinfondo.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\resources\\logosinfondo.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\resources\\ic_perfilmorado.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\resources\\ic_perfilmorado.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\resources\\ic_publicarmorado.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\resources\\ic_publicarmorado.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\resources\\ic_guardarmorado.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\resources\\ic_guardarmorado.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\principal.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|solutionrelative:wikz_escritorio\\principal.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5A1041A-4895-46B4-B1EE-88B123F20E7B}|wikz_escritorio\\wikz_escritorio.csproj|c:\\users\\usuario\\desktop\\wikz!\\wikz_escritorio\\wikz_escritorio\\properties\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
@@ -93,48 +157,193 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 5,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Form1.resx",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Form1.resx",
-              "RelativeDocumentMoniker": "wikz_escritorio\\Form1.resx",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Form1.resx",
-              "RelativeToolTip": "wikz_escritorio\\Form1.resx",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2026-01-22T21:06:10.133Z",
+              "DocumentIndex": 1,
+              "Title": "Registrar_usuario.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registrar_usuario.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Registrar_usuario.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registrar_usuario.cs [Dise\u00F1o]",
+              "RelativeToolTip": "wikz_escritorio\\Registrar_usuario.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T12:29:34.369Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Modelos\\Usuario.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Modelos\\Usuario.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Modelos\\Usuario.cs",
+              "RelativeToolTip": "wikz_escritorio\\Modelos\\Usuario.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAA/wBwAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T15:36:35.265Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "wikz_escritorio",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\wikz_escritorio.csproj",
-              "RelativeDocumentMoniker": "wikz_escritorio\\wikz_escritorio.csproj",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\wikz_escritorio.csproj",
-              "RelativeToolTip": "wikz_escritorio\\wikz_escritorio.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-01-22T20:40:16.899Z",
+              "DocumentIndex": 3,
+              "Title": "Registrar_usuario.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registrar_usuario.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Registrar_usuario.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registrar_usuario.cs",
+              "RelativeToolTip": "wikz_escritorio\\Registrar_usuario.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAGoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T17:05:36.573Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "Registro.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.Designer.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Registro.Designer.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.Designer.cs",
+              "RelativeToolTip": "wikz_escritorio\\Registro.Designer.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAAD4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T16:55:06.52Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Api.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Servicio\\Api.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Servicio\\Api.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Servicio\\Api.cs*",
+              "RelativeToolTip": "wikz_escritorio\\Servicio\\Api.cs*",
+              "ViewState": "AgIAACsAAAAAAAAAAAAAADMAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T11:32:44.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Registro.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Registro.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.cs [Dise\u00F1o]",
+              "RelativeToolTip": "wikz_escritorio\\Registro.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T12:29:19.32Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Principal.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Principal.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Principal.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Principal.cs [Dise\u00F1o]",
+              "RelativeToolTip": "wikz_escritorio\\Principal.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T12:28:07.984Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Registro.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Registro.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.cs",
+              "RelativeToolTip": "wikz_escritorio\\Registro.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAuwFIAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T12:39:36.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RecyclerView.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\RecyclerView.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.cs",
+              "RelativeToolTip": "wikz_escritorio\\RecyclerView.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAqwFkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T16:56:07.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RecyclerView.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\RecyclerView.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.cs [Dise\u00F1o]",
+              "RelativeToolTip": "wikz_escritorio\\RecyclerView.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T16:55:51.588Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "VerPublicacion.cs",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\VerPublicacion.cs",
               "RelativeDocumentMoniker": "wikz_escritorio\\VerPublicacion.cs",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\VerPublicacion.cs",
               "RelativeToolTip": "wikz_escritorio\\VerPublicacion.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAASwCQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-22T16:41:48.834Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
+              "Title": "Publicacion.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Modelos\\Publicacion.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Modelos\\Publicacion.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Modelos\\Publicacion.cs",
+              "RelativeToolTip": "wikz_escritorio\\Modelos\\Publicacion.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAADwvxkAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T15:47:35.362Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Principal.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Principal.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Principal.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Principal.cs",
+              "RelativeToolTip": "wikz_escritorio\\Principal.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwDEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T17:08:17.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RecyclerView.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.Designer.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\RecyclerView.Designer.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.Designer.cs",
+              "RelativeToolTip": "wikz_escritorio\\RecyclerView.Designer.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAhwE4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T16:56:05.554Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "VerPublicacion.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\VerPublicacion.cs",
               "RelativeDocumentMoniker": "wikz_escritorio\\VerPublicacion.cs",
@@ -146,194 +355,250 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Form1.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\Form1.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Form1.cs [Dise\u00F1o]*",
-              "RelativeToolTip": "wikz_escritorio\\Form1.cs [Dise\u00F1o]*",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-15T12:28:07.984Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Usuario.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\Usuario.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Usuario.cs",
-              "RelativeToolTip": "wikz_escritorio\\Usuario.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAzwCAAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T15:36:35.265Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Form1.Designer.cs",
-              "RelativeToolTip": "wikz_escritorio\\Form1.Designer.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwIkAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T17:07:59.897Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Form1.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\Form1.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Form1.cs*",
-              "RelativeToolTip": "wikz_escritorio\\Form1.cs*",
-              "ViewState": "AgIAAMYAAAAAAAAAAAAwwNIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T17:08:17.176Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Registro.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\Registro.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.cs [Dise\u00F1o]",
-              "RelativeToolTip": "wikz_escritorio\\Registro.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-15T12:29:19.32Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Publicacion.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Publicacion.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\Publicacion.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Publicacion.cs",
-              "RelativeToolTip": "wikz_escritorio\\Publicacion.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA1wCkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T15:47:35.362Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "RecyclerView.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\RecyclerView.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.cs [Dise\u00F1o]",
-              "RelativeToolTip": "wikz_escritorio\\RecyclerView.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T16:55:51.588Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Registro.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\Registro.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.cs",
-              "RelativeToolTip": "wikz_escritorio\\Registro.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAgwGoAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-15T12:39:36.471Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "RecyclerView.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\RecyclerView.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.cs",
-              "RelativeToolTip": "wikz_escritorio\\RecyclerView.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAD4v0MAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T16:56:07.514Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "Coleccion.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Coleccion.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\Coleccion.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Coleccion.cs",
-              "RelativeToolTip": "wikz_escritorio\\Coleccion.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwB8AAAA1AAAAAAAAAA==",
+              "Title": "VerPublicacion.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\VerPublicacion.Designer.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\VerPublicacion.Designer.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\VerPublicacion.Designer.cs",
+              "RelativeToolTip": "wikz_escritorio\\VerPublicacion.Designer.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAhwGMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T15:50:46.957Z"
+              "WhenOpened": "2026-02-19T12:08:58.772Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 16,
-              "Title": "Registrar_usuario.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registrar_usuario.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\Registrar_usuario.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registrar_usuario.cs",
-              "RelativeToolTip": "wikz_escritorio\\Registrar_usuario.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAWwDMAAAAMAAAAAAAAAA==",
+              "Title": "FormPublicar.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\FormPublicar.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\FormPublicar.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\FormPublicar.cs [Dise\u00F1o]",
+              "RelativeToolTip": "wikz_escritorio\\FormPublicar.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-15T17:05:36.573Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "RecyclerView.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.Designer.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\RecyclerView.Designer.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.Designer.cs",
-              "RelativeToolTip": "wikz_escritorio\\RecyclerView.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T16:56:05.554Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Registrar_usuario.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registrar_usuario.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\Registrar_usuario.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registrar_usuario.cs [Dise\u00F1o]",
-              "RelativeToolTip": "wikz_escritorio\\Registrar_usuario.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-15T12:29:34.369Z"
+              "WhenOpened": "2026-02-19T12:46:56.229Z",
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 17,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Program.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\Program.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Program.cs",
-              "RelativeToolTip": "wikz_escritorio\\Program.cs",
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\App.config",
+              "RelativeDocumentMoniker": "wikz_escritorio\\App.config",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\App.config",
+              "RelativeToolTip": "wikz_escritorio\\App.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T16:58:27.943Z"
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-02-23T15:08:09.77Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 18,
-              "Title": "Registro.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.Designer.cs",
-              "RelativeDocumentMoniker": "wikz_escritorio\\Registro.Designer.cs",
-              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.Designer.cs",
-              "RelativeToolTip": "wikz_escritorio\\Registro.Designer.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-15T16:55:06.52Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
               "Title": "Registro.resx",
               "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.resx",
               "RelativeDocumentMoniker": "wikz_escritorio\\Registro.resx",
               "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Registro.resx",
               "RelativeToolTip": "wikz_escritorio\\Registro.resx",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2026-01-15T16:55:09.198Z"
+              "WhenOpened": "2026-01-15T16:55:09.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "FormPublicar.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\FormPublicar.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\FormPublicar.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\FormPublicar.cs",
+              "RelativeToolTip": "wikz_escritorio\\FormPublicar.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T12:47:07.328Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "wikz_escritorio",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\wikz_escritorio.csproj",
+              "RelativeDocumentMoniker": "wikz_escritorio\\wikz_escritorio.csproj",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\wikz_escritorio.csproj",
+              "RelativeToolTip": "wikz_escritorio\\wikz_escritorio.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-02-19T11:58:17.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "FormPublicar.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\FormPublicar.Designer.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\FormPublicar.Designer.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\FormPublicar.Designer.cs",
+              "RelativeToolTip": "wikz_escritorio\\FormPublicar.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T12:52:47.199Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Principal.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Principal.Designer.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Principal.Designer.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Principal.Designer.cs",
+              "RelativeToolTip": "wikz_escritorio\\Principal.Designer.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAHIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T17:07:59.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "RecyclerView.resx",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.resx",
+              "RelativeDocumentMoniker": "wikz_escritorio\\RecyclerView.resx",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\RecyclerView.resx",
+              "RelativeToolTip": "wikz_escritorio\\RecyclerView.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2026-02-19T11:28:36.423Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "logosinfondo.ico - Icon [256x216, 32 bits, BMP]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\logosinfondo.ico",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Resources\\logosinfondo.ico",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\logosinfondo.ico - Icon [256x216, 32 bits, BMP]",
+              "RelativeToolTip": "wikz_escritorio\\Resources\\logosinfondo.ico - Icon [256x216, 32 bits, BMP]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001525|",
+              "WhenOpened": "2026-02-19T12:04:36.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "monster.jpg - Bitmap [736x736, 24 bits, JPG]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\monster.jpg",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Resources\\monster.jpg",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\monster.jpg - Bitmap [736x736, 24 bits, JPG]",
+              "RelativeToolTip": "wikz_escritorio\\Resources\\monster.jpg - Bitmap [736x736, 24 bits, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-02-19T12:04:27.734Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "registro.jpg - Bitmap [736x1308, 24 bits, JPG]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\registro.jpg",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Resources\\registro.jpg",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\registro.jpg - Bitmap [736x1308, 24 bits, JPG]",
+              "RelativeToolTip": "wikz_escritorio\\Resources\\registro.jpg - Bitmap [736x1308, 24 bits, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-02-19T12:07:33.333Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "ic_explorarmorado.png - PNG [1024x1024, 24 bits, PNG]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\ic_explorarmorado.png",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Resources\\ic_explorarmorado.png",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\ic_explorarmorado.png - PNG [1024x1024, 24 bits, PNG]",
+              "RelativeToolTip": "wikz_escritorio\\Resources\\ic_explorarmorado.png - PNG [1024x1024, 24 bits, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-02-19T12:07:12.607Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ic_likesMorado.png - PNG [173x143, 32 bits, PNG]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\ic_likesMorado.png",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Resources\\ic_likesMorado.png",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\ic_likesMorado.png - PNG [173x143, 32 bits, PNG]",
+              "RelativeToolTip": "wikz_escritorio\\Resources\\ic_likesMorado.png - PNG [173x143, 32 bits, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-02-19T12:07:16.312Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "cora.jpg - Bitmap [736x708, 24 bits, JPG]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\cora.jpg",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Resources\\cora.jpg",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\cora.jpg - Bitmap [736x708, 24 bits, JPG]",
+              "RelativeToolTip": "wikz_escritorio\\Resources\\cora.jpg - Bitmap [736x708, 24 bits, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-02-19T12:07:38.676Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "logosinfondo.png - PNG [535x452, 32 bits, PNG]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\logosinfondo.png",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Resources\\logosinfondo.png",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\logosinfondo.png - PNG [535x452, 32 bits, PNG]",
+              "RelativeToolTip": "wikz_escritorio\\Resources\\logosinfondo.png - PNG [535x452, 32 bits, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-02-19T12:04:34.725Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "ic_perfilMorado.png - PNG [178x141, 32 bits, PNG]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\ic_perfilMorado.png",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Resources\\ic_perfilMorado.png",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\ic_perfilMorado.png - PNG [178x141, 32 bits, PNG]",
+              "RelativeToolTip": "wikz_escritorio\\Resources\\ic_perfilMorado.png - PNG [178x141, 32 bits, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-02-19T12:07:21.278Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "ic_publicarMorado.png - PNG [235x200, 32 bits, PNG]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\ic_publicarMorado.png",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Resources\\ic_publicarMorado.png",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\ic_publicarMorado.png - PNG [235x200, 32 bits, PNG]",
+              "RelativeToolTip": "wikz_escritorio\\Resources\\ic_publicarMorado.png - PNG [235x200, 32 bits, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-02-19T12:07:21.902Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ic_guardarMorado.png - PNG [222x192, 32 bits, PNG]",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\ic_guardarMorado.png",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Resources\\ic_guardarMorado.png",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Resources\\ic_guardarMorado.png - PNG [222x192, 32 bits, PNG]",
+              "RelativeToolTip": "wikz_escritorio\\Resources\\ic_guardarMorado.png - PNG [222x192, 32 bits, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-02-19T12:07:13.238Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Program.cs",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Program.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Program.cs",
+              "RelativeToolTip": "wikz_escritorio\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T16:58:27.943Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Principal.resx",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Principal.resx",
+              "RelativeDocumentMoniker": "wikz_escritorio\\Principal.resx",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Wikz!\\wikz_escritorio\\wikz_escritorio\\Principal.resx",
+              "RelativeToolTip": "wikz_escritorio\\Principal.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2026-01-22T21:06:10.133Z",
+              "EditorCaption": ""
             }
           ]
         }

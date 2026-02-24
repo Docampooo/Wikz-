@@ -32,7 +32,6 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.pbImagen = new System.Windows.Forms.PictureBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -64,27 +63,15 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(75, 10);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(68, 16);
-            this.linkLabel1.TabIndex = 2;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
-            // 
             // RecyclerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.pbImagen);
             this.Name = "RecyclerView";
             this.Size = new System.Drawing.Size(225, 250);
-            this.Click += new System.EventHandler(this.RecyclerView_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
@@ -97,6 +84,5 @@
         private System.Windows.Forms.PictureBox pbImagen;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

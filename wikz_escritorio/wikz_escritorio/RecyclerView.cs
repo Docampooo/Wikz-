@@ -1,39 +1,67 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using wikz_escritorio.Modelos;
+using Wikz.Services; // Donde tengas tu clase Api
 
 namespace wikz_escritorio
 {
     public partial class RecyclerView : UserControl
     {
+        private Publicacion publicacion;
+        private Api api = new Api();
 
+        // Colores Wikz
         Color moradoLogo = Color.FromArgb(163, 73, 164);
-        public RecyclerView(Coleccion c)
+        Color fondoTarjeta = Color.FromArgb(26, 0, 43); // El morado oscuro de tu móvil #1A002B
+
+        public RecyclerView(Publicacion p)
         {
             InitializeComponent();
+            this.publicacion = p;
 
-            //modificar tamaño
-            this.BackColor = Color.FromArgb(30, 30, 30);
+            ConfigurarDiseno();
+            CargarDatos();
 
-            pbImagen.Dock = DockStyle.Top;
+            // Eventos de clic vinculados a la imagen, el label y el fondo
+            pbImagen.Click += (s, e) => verDatosPublicacion();
+            lblNombre.Click += (s, e) => verDatosPublicacion();
+            this.Click += (s, e) => verDatosPublicacion();
+        }
+
+        private void verDatosPublicacion()
+        {
+            // Ahora mostrará el ID de autor que arreglamos con el JsonProperty
+            MessageBox.Show($"Publicación: {publicacion.Titulo}\n" +
+                            $"Autor ID: {publicacion.IdUsuario}\n" +
+                            $"Fecha: {publicacion.FechaCreacion}", "Detalles de Wikz");
+        }
+
+        private void ConfigurarDiseno()
+        {
+            // 1. Estilo General de la Tarjeta
+            this.BackColor = fondoTarjeta;
+            this.Padding = new Padding(8);
+            this.Cursor = Cursors.Hand;
+
+            // 2. Configurar el Título (Centrado absoluto)
+            lblNombre.Dock = DockStyle.Bottom;
+            lblNombre.AutoSize = false; // Importante para que TextAlign funcione
+            lblNombre.Height = 40;
+            lblNombre.ForeColor = Color.FromArgb(224, 179, 255); // #E0B3FF (Morado clarito)
+            lblNombre.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            lblNombre.TextAlign = ContentAlignment.MiddleCenter; // Centrado horizontal y vertical
+            lblNombre.BackColor = Color.Transparent;
+
+            // 3. Configurar la Imagen
+            pbImagen.Dock = DockStyle.Fill;
             pbImagen.SizeMode = PictureBoxSizeMode.Zoom;
             pbImagen.BackColor = Color.Black;
 
-            pbImagen.Width = (int)(this.Width * 0.35);
-            pbImagen.Height = (int)(this.Height * 0.33);
-
-            pbImagen.Cursor = Cursors.Hand;
-
-            //Decoracion del Picture Box, celda con bordes
+            // 4. Redondear bordes de la imagen
             pbImagen.Paint += (s, e) =>
             {
-                var radius = 12;
+                var radius = 25;
                 var rect = pbImagen.ClientRectangle;
                 using (var path = new System.Drawing.Drawing2D.GraphicsPath())
                 {
@@ -46,26 +74,41 @@ namespace wikz_escritorio
                 }
             };
 
-            pbImagen.Image = c.FotoColeccion;
-            lblNombre.Text = establecerTitulo(c.Nombre);
+            // Efecto Hover (Cambio de color al pasar el ratón)
+            this.MouseEnter += (s, e) => { this.BackColor = Color.FromArgb(45, 10, 60); };
+            this.MouseLeave += (s, e) => { this.BackColor = fondoTarjeta; };
+        }
+
+        private async void CargarDatos()
+        {
+            lblNombre.Text = establecerTitulo(publicacion.Titulo.Trim());
+
+            // --- FORMATEO DE FECHA --- // Falla
+            try
+            {
+                if (!string.IsNullOrEmpty(publicacion.FechaCreacion))
+                {
+                    DateTime dt = DateTime.Parse(publicacion.FechaCreacion);
+
+                    string fechaFormateada = dt.ToString("yyyy-MM-dd HH:mm:ss");
+
+                    publicacion.FechaCreacion = fechaFormateada;
+                }
+            }
+            catch
+            {
+                publicacion.FechaCreacion = "Fecha no válida";
+            }
+
+            // Carga de la foto
+            Image img = await api.GetFotoPublicacionAsync(publicacion.Id);
+            pbImagen.Image = img ?? Properties.Resources.cora;
         }
 
         public string establecerTitulo(string cad)
         {
-
-            if (cad.Length >= 10)
-            {
-                return $"{cad.Substring(0, 7)}...";
-            }
-            else
-            {
-                return cad;
-            }
-        }
-
-        private void RecyclerView_Click(object sender, EventArgs e)
-        {
-
+            if (string.IsNullOrEmpty(cad)) return "";
+            return cad.Length > 18 ? cad.Substring(0, 15).Trim() + "..." : cad;
         }
     }
 }

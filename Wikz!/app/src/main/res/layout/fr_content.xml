@@ -35,20 +35,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/svBuscador"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@color/grisClaro"
-        android:hint="Buscar"
-        android:iconifiedByDefault="false"
-        android:queryHint="Buscar..."
-        app:backgroundTint="@color/grisClaro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivTematica" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvExplorar"
         android:layout_width="0dp"
@@ -57,7 +43,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/svBuscador"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintTop_toBottomOf="@+id/ivTematica" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

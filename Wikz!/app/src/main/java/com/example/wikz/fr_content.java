@@ -76,10 +76,10 @@ public class fr_content extends Fragment {
 
         rvExplorar = view.findViewById(R.id.rvExplorar);
 
-        adaptadorPublicaciones = new AdaptadorPublicaciones(publicacionesExplorar);
+        adaptadorPublicaciones = new AdaptadorPublicaciones(publicacionesExplorar, u.getId());
         rvExplorar.setAdapter(adaptadorPublicaciones);
 
-        GridLayoutManager gridVertical =new GridLayoutManager(getContext(), 4, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager gridVertical = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
         rvExplorar.setLayoutManager(gridVertical);
 
         //Añadir las publicaciones al recyclerView

@@ -87,11 +87,11 @@ public class fr_perfil extends Fragment {
         //Añadir publicaciones para probar el codigo
         publicacionesPerfil = new ArrayList<>();
 
-        adaptadorPublicaciones = new AdaptadorPublicaciones(publicacionesPerfil);
+        adaptadorPublicaciones = new AdaptadorPublicaciones(publicacionesPerfil, u.getId());
         rvPublicacionesPerfil = view.findViewById(R.id.rvPublicacionesPerfil);
         rvPublicacionesPerfil.setAdapter(adaptadorPublicaciones);
 
-        GridLayoutManager gridVertical =new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager gridVertical = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
         rvPublicacionesPerfil.setLayoutManager(gridVertical);
 
         //Añadir las publicaciones al recyclerView

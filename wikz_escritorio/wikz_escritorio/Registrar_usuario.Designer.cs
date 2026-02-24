@@ -44,11 +44,11 @@
             // 
             this.lblAñadirPass.AutoSize = true;
             this.lblAñadirPass.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblAñadirPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAñadirPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAñadirPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.lblAñadirPass.Location = new System.Drawing.Point(236, 236);
+            this.lblAñadirPass.Location = new System.Drawing.Point(218, 261);
             this.lblAñadirPass.Name = "lblAñadirPass";
-            this.lblAñadirPass.Size = new System.Drawing.Size(86, 16);
+            this.lblAñadirPass.Size = new System.Drawing.Size(124, 25);
             this.lblAñadirPass.TabIndex = 13;
             this.lblAñadirPass.Text = "Contraseña";
             // 
@@ -56,23 +56,23 @@
             // 
             this.lblAñadirNombre.AutoSize = true;
             this.lblAñadirNombre.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblAñadirNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAñadirNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAñadirNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.lblAñadirNombre.Location = new System.Drawing.Point(212, 139);
+            this.lblAñadirNombre.Location = new System.Drawing.Point(189, 154);
             this.lblAñadirNombre.Name = "lblAñadirNombre";
-            this.lblAñadirNombre.Size = new System.Drawing.Size(142, 16);
+            this.lblAñadirNombre.Size = new System.Drawing.Size(197, 25);
             this.lblAñadirNombre.TabIndex = 12;
             this.lblAñadirNombre.Text = "Nombre de Usuario";
             // 
             // txtAñadirPass
             // 
             this.txtAñadirPass.BackColor = System.Drawing.Color.Black;
-            this.txtAñadirPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAñadirPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAñadirPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.txtAñadirPass.Location = new System.Drawing.Point(93, 265);
+            this.txtAñadirPass.Location = new System.Drawing.Point(99, 289);
             this.txtAñadirPass.Name = "txtAñadirPass";
             this.txtAñadirPass.PasswordChar = '•';
-            this.txtAñadirPass.Size = new System.Drawing.Size(389, 22);
+            this.txtAñadirPass.Size = new System.Drawing.Size(389, 30);
             this.txtAñadirPass.TabIndex = 11;
             this.txtAñadirPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAñadirPass.UseSystemPasswordChar = true;
@@ -80,11 +80,11 @@
             // txtAñadirNombre
             // 
             this.txtAñadirNombre.BackColor = System.Drawing.Color.Black;
-            this.txtAñadirNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAñadirNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAñadirNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.txtAñadirNombre.Location = new System.Drawing.Point(96, 168);
+            this.txtAñadirNombre.Location = new System.Drawing.Point(102, 192);
             this.txtAñadirNombre.Name = "txtAñadirNombre";
-            this.txtAñadirNombre.Size = new System.Drawing.Size(389, 22);
+            this.txtAñadirNombre.Size = new System.Drawing.Size(389, 30);
             this.txtAñadirNombre.TabIndex = 8;
             this.txtAñadirNombre.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -92,23 +92,23 @@
             // 
             this.lblAñadirRepetirPass.AutoSize = true;
             this.lblAñadirRepetirPass.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblAñadirRepetirPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAñadirRepetirPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAñadirRepetirPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.lblAñadirRepetirPass.Location = new System.Drawing.Point(212, 301);
+            this.lblAñadirRepetirPass.Location = new System.Drawing.Point(189, 337);
             this.lblAñadirRepetirPass.Name = "lblAñadirRepetirPass";
-            this.lblAñadirRepetirPass.Size = new System.Drawing.Size(141, 16);
+            this.lblAñadirRepetirPass.Size = new System.Drawing.Size(198, 25);
             this.lblAñadirRepetirPass.TabIndex = 15;
             this.lblAñadirRepetirPass.Text = "Repetir Contraseña";
             // 
             // txtAñadirRepetirPass
             // 
             this.txtAñadirRepetirPass.BackColor = System.Drawing.Color.Black;
-            this.txtAñadirRepetirPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAñadirRepetirPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAñadirRepetirPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.txtAñadirRepetirPass.Location = new System.Drawing.Point(92, 332);
+            this.txtAñadirRepetirPass.Location = new System.Drawing.Point(98, 376);
             this.txtAñadirRepetirPass.Name = "txtAñadirRepetirPass";
             this.txtAñadirRepetirPass.PasswordChar = '•';
-            this.txtAñadirRepetirPass.Size = new System.Drawing.Size(389, 22);
+            this.txtAñadirRepetirPass.Size = new System.Drawing.Size(389, 30);
             this.txtAñadirRepetirPass.TabIndex = 14;
             this.txtAñadirRepetirPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAñadirRepetirPass.UseSystemPasswordChar = true;
@@ -118,10 +118,10 @@
             this.btnSignUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
             this.btnSignUp.FlatAppearance.BorderSize = 0;
             this.btnSignUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSignUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignUp.Location = new System.Drawing.Point(93, 594);
+            this.btnSignUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSignUp.Location = new System.Drawing.Point(93, 576);
             this.btnSignUp.Name = "btnSignUp";
-            this.btnSignUp.Size = new System.Drawing.Size(389, 30);
+            this.btnSignUp.Size = new System.Drawing.Size(389, 48);
             this.btnSignUp.TabIndex = 10;
             this.btnSignUp.Text = "Entrar";
             this.btnSignUp.UseVisualStyleBackColor = false;
@@ -131,26 +131,24 @@
             // 
             this.lblAñadirCorreo.AutoSize = true;
             this.lblAñadirCorreo.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblAñadirCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAñadirCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAñadirCorreo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.lblAñadirCorreo.Location = new System.Drawing.Point(212, 416);
+            this.lblAñadirCorreo.Location = new System.Drawing.Point(189, 433);
             this.lblAñadirCorreo.Name = "lblAñadirCorreo";
-            this.lblAñadirCorreo.Size = new System.Drawing.Size(136, 16);
+            this.lblAñadirCorreo.Size = new System.Drawing.Size(191, 25);
             this.lblAñadirCorreo.TabIndex = 17;
             this.lblAñadirCorreo.Text = "Correo Electronico";
             // 
             // txtAñadirCorreo
             // 
             this.txtAñadirCorreo.BackColor = System.Drawing.Color.Black;
-            this.txtAñadirCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAñadirCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAñadirCorreo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
-            this.txtAñadirCorreo.Location = new System.Drawing.Point(92, 446);
+            this.txtAñadirCorreo.Location = new System.Drawing.Point(98, 470);
             this.txtAñadirCorreo.Name = "txtAñadirCorreo";
-            this.txtAñadirCorreo.PasswordChar = '•';
-            this.txtAñadirCorreo.Size = new System.Drawing.Size(389, 22);
+            this.txtAñadirCorreo.Size = new System.Drawing.Size(389, 30);
             this.txtAñadirCorreo.TabIndex = 16;
             this.txtAñadirCorreo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtAñadirCorreo.UseSystemPasswordChar = true;
             // 
             // Registrar_usuario
             // 
@@ -172,6 +170,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Registrar_usuario";
             this.Text = "Registrar Usuario";
+            this.Load += new System.EventHandler(this.Registrar_usuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -8,8 +8,11 @@ C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_es
 C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.csproj.CoreCompileInputs.cache
 C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.exe
 C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.pdb
-C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.exe.config
 C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.Registrar_usuario.resources
 C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.Principal.resources
 C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.RecyclerView.resources
 C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.VerPublicacion.resources
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_esc.24CC0120.Up2Date
+C:\Users\Usuario\Desktop\Wikz!\wikz_escritorio\wikz_escritorio\obj\Debug\wikz_escritorio.exe.config

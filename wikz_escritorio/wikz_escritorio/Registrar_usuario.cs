@@ -8,122 +8,114 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Wikz.Services;
+using wikz_escritorio.Modelos;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace wikz_escritorio
 {
     public partial class Registrar_usuario : Form
     {
-        Registro reg;
+        private Registro reg;
+        private Api api = new Api(); // Instancia de la API
+
         public Registrar_usuario(Registro reg)
         {
             InitializeComponent();
-
             this.reg = reg;
+
+            // Evento para cuando cierren la ventana con la "X"
+            this.FormClosed += (s, e) => reg.Show();
         }
 
-        //funcion optima para comprobar la validez del correo electronico
         private bool comprobarCorreo(string correo)
         {
-
-            if (string.IsNullOrWhiteSpace(correo))
-            {
-                return false;
-
-            }
-
+            if (string.IsNullOrWhiteSpace(correo)) return false;
             string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-
             return Regex.IsMatch(correo, patron);
         }
 
-        string nombreUsuario = "";
-
-        string passUsuario = "";
-        string repPassUsuario = "";
-        bool igual = false;
-
-        string correo = "";
-
-        bool usuarioValido = true;
-
-        private void btnSignUp_Click(object sender, EventArgs e)
+        private async void btnSignUp_Click(object sender, EventArgs e)
         {
-            //Nombre de usuario
-            if (!string.IsNullOrEmpty(txtAñadirNombre.Text))
-            {
-                nombreUsuario = txtAñadirNombre.Text;
+            // 1. Recoger datos y limpiar espacios
+            string nombreUsuario = txtAñadirNombre.Text.Trim();
+            string passUsuario = txtAñadirPass.Text;
+            string repPassUsuario = txtAñadirRepetirPass.Text;
+            string correo = txtAñadirCorreo.Text.Trim();
+            bool usuarioValido = true;
 
-            }
-            else
+            // 2. Validaciones de UI
+            if (string.IsNullOrEmpty(nombreUsuario))
             {
-                reg.MostrarToast("El campo del nombre ha de estar cubierto");
-                txtAñadirNombre.Text = "";
-                nombreUsuario = "";
+                reg.MostrarToast("El nombre es obligatorio");
                 usuarioValido = false;
             }
-
-            //Contraseña
-            if (!string.IsNullOrEmpty(txtAñadirPass.Text) && !string.IsNullOrEmpty(txtAñadirRepetirPass.Text))
+            else if (string.IsNullOrEmpty(passUsuario) || string.IsNullOrEmpty(repPassUsuario))
             {
-                passUsuario = txtAñadirPass.Text;
-                repPassUsuario = txtAñadirRepetirPass.Text;
-            }
-            else
-            {
-                reg.MostrarToast("El campo de la contraseña ha de estar cubierto");
-                txtAñadirPass.Text = "";
-                txtAñadirRepetirPass.Text = "";
-
-                passUsuario = "";
-                repPassUsuario = "";
+                reg.MostrarToast("Cubra ambos campos de contraseña");
                 usuarioValido = false;
             }
-
-            if (passUsuario == repPassUsuario)
+            else if (passUsuario != repPassUsuario)
             {
-                igual = true;
-            }
-            else
-            {
-
                 reg.MostrarToast("Las contraseñas no coinciden");
-                txtAñadirPass.Text = "";
-                txtAñadirRepetirPass.Text = "";
-
-                passUsuario = "";
-                repPassUsuario = "";
+                usuarioValido = false;
+            }
+            else if (string.IsNullOrEmpty(correo) || !comprobarCorreo(correo))
+            {
+                reg.MostrarToast("El correo es incorrecto u obligatorio");
                 usuarioValido = false;
             }
 
-            //Correo electrónico
-            if (string.IsNullOrEmpty(txtAñadirCorreo.Text))
+            if (usuarioValido)
             {
-                if (comprobarCorreo(txtAñadirCorreo.Text))
+                try
                 {
-                    correo = txtAñadirNombre.Text;
+                    this.Cursor = Cursors.WaitCursor;
+                    btnSignUp.Enabled = false;
 
+                    bool exito = await api.AddUsuarioAsync(nombreUsuario, correo, passUsuario, "");
+
+                    if (exito)
+                    {
+                        Usuario usuarioRecienCreado = await api.GetUsuarioNombrePassAsync(nombreUsuario, passUsuario);
+
+                        if (usuarioRecienCreado != null)
+                        {
+                            reg.MostrarToast("¡Bienvenido a Wikz!");
+
+                            Principal pantallaPrincipal = new Principal(usuarioRecienCreado);
+                            pantallaPrincipal.Show();
+
+                            this.Hide();
+                            reg.Hide();
+                        }
+                        else
+                        {
+                            // Si por algo falla el login automático, volvemos al login normal
+                            reg.MostrarToast("Usuario creado. Por favor, inicia sesión.");
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        reg.MostrarToast("Error: El nombre o correo ya están en uso");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    reg.MostrarToast("El correo es incorrecto");
-                    txtAñadirCorreo.Text = "";
-                    correo = "";
-                    usuarioValido = false;
-
+                    MessageBox.Show("Error al conectar con Wikz: " + ex.Message);
+                }
+                finally
+                {
+                    this.Cursor = Cursors.Default;
+                    btnSignUp.Enabled = true;
                 }
             }
-            else
-            {
-                reg.MostrarToast("El campo del correo Electronico ha de estar cubierto");
-                usuarioValido = false;
-            }
+        }
 
-            Usuario u = new Usuario(nombreUsuario, passUsuario, correo, "", null);
-            //Añadir consulta SQL para comprobar si hay algún usuario con los mismos datos, si da true, boolean usuariovalido a true
-            usuarioValido = true;
-
-            
+        private void Registrar_usuario_Load(object sender, EventArgs e)
+        {
+            // Aquí puedes inicializar colores o focos de texto si quieres
         }
     }
 }
