@@ -57,6 +57,9 @@ Las imagenes ya se suben sin probelas en web, se han añadido una buena cantidad
 13/02/2026
 La web ha avanzado mucho, está casi completa como primera versión, cuenta con publicaciones, usuarios, modificacion de perfiles y añadido de publicaciones a la base de datos, todo funcional y sin errores visibles, le queda un último paso y es el de eliminar publicaciones 
 
+23/02/2026
+Una vez acabos el desarrollo principal de moviles y web, he empezado bien con escritorio, he desarrollado las clases, componente del RecyclerView y he gestionado la API y inicio de sesion y creacion del usuario, ya puede entrar en la actividad principal y ver las publicaciones generales publicadas
+
 14/02/2026
 Web terminada, el primer escalon superado, todo funciona, no da errores y va fluido, queda terminar moviles y comenzar escritorio! 
 
