@@ -23,7 +23,6 @@ namespace wikz_escritorio.Modelos
             Email = correo;
             Biografia = biografia;
             FotoPerfilBase64 = fotoPerfil;
-            // Si fechaCreacion es nulo, usamos la fecha actual
             FechaCreacion = fechaCreacion;
         }
         public override string ToString()

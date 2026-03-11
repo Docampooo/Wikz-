@@ -76,17 +76,32 @@ namespace Wikz.Services
                         return null;
                     }
                 }
-                else
-                {
-                    MessageBox.Show(
-                        $"Error HTTP {(int)response.StatusCode}:\n{contenido}",
-                        "Error API"
-                    );
-                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Excepción al llamar a la API:\n" + ex.Message);
+            }
+
+            return null;
+        }
+
+        public async Task<Usuario> GetUsuarioByIdAsync(int idUsuario)
+        {
+            try
+            {
+                string url = $"{BASE_URL}getUsuarioId?id={idUsuario}";
+
+                var response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string json = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<Usuario>(json);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error obteniendo usuario: " + ex.Message);
             }
 
             return null;
@@ -102,7 +117,7 @@ namespace Wikz.Services
                     email = email,
                     pass = pass,
                     biografia = bio,
-                    fotoPerfilBase64 = "" // Enviamos vacío por ahora para que no sea null
+                    fotoPerfilBase64 = ""
                 };
 
                 string json = JsonConvert.SerializeObject(datos);
@@ -220,52 +235,47 @@ namespace Wikz.Services
         {
             try
             {
-                // Llamamos al endpoint: getImagenPublicacion?id=X
                 string url = $"{BASE_URL}getImagenPublicacion?id={idPublicacion}";
 
                 var response = await client.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    // Obtenemos el flujo de datos (bytes de la imagen)
                     using (var stream = await response.Content.ReadAsStreamAsync())
                     {
-                        // Creamos el objeto Image a partir del stream
-                        // Esto es el equivalente a BitmapFactory.decodeStream en Android
                         return Image.FromStream(stream);
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Log de error en consola para depuración
                 Console.WriteLine("Error al descargar imagen de publicación: " + ex.Message);
             }
 
-            return null; // Si algo falla, devolvemos null como en tu Java
+            return null;
         }
 
         public async Task<List<Publicacion>> GetPublicacionesUsuarioAsync(int idUsuario)
         {
             try
             {
-                // Petición GET con el idUsuario en la URL
-                var response = await client.GetAsync($"{BASE_URL}getPublicacionesUsuario?idUsuario={idUsuario}");
+                var response = await client.GetAsync(BASE_URL + "getPublicacionesUsuario?idUsuario=" + idUsuario);
 
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
-
-                    // Deserializa automáticamente el array JSON a una Lista de objetos Publicacion
                     return JsonConvert.DeserializeObject<List<Publicacion>>(json);
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return new List<Publicacion>();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al obtener publicaciones del usuario: " + ex.Message);
+                System.Diagnostics.Debug.WriteLine("Error al obtener publicaciones del perfil: " + ex.Message);
             }
 
-            // Si falla o no hay datos, devolvemos una lista vacía para evitar errores de null
             return new List<Publicacion>();
         }
 

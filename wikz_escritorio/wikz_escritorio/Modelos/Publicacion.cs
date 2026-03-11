@@ -27,7 +27,6 @@ namespace wikz_escritorio.Modelos
         {
             Titulo = "";
             Descripcion = "";
-            FechaCreacion = DateTime.Now.ToString();
         }
 
         public override string ToString()

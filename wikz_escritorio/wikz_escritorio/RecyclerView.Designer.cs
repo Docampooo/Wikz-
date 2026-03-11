@@ -45,9 +45,9 @@
             this.lblNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(73)))), ((int)(((byte)(164)))));
             this.lblNombre.Location = new System.Drawing.Point(0, 0);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(89, 22);
+            this.lblNombre.Size = new System.Drawing.Size(48, 22);
             this.lblNombre.TabIndex = 1;
-            this.lblNombre.Text = "Coleccion";
+            this.lblNombre.Text = "label";
             this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbImagen

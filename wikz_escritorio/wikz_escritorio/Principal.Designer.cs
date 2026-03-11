@@ -1,4 +1,6 @@
-﻿namespace wikz_escritorio
+﻿using System.Windows.Forms;
+
+namespace wikz_escritorio
 {
     partial class Principal
     {
@@ -39,21 +41,27 @@
             // 
             // floPublicaciones
             // 
+            this.floPublicaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.floPublicaciones.AutoScroll = true;
             this.floPublicaciones.BackColor = System.Drawing.Color.Black;
-            this.floPublicaciones.Location = new System.Drawing.Point(23, 25);
+            this.floPublicaciones.Location = new System.Drawing.Point(12, 12);
             this.floPublicaciones.Name = "floPublicaciones";
-            this.floPublicaciones.Size = new System.Drawing.Size(533, 636);
+            this.floPublicaciones.Size = new System.Drawing.Size(558, 653);
             this.floPublicaciones.TabIndex = 1;
             // 
             // pnNavegador
             // 
+            this.pnNavegador.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnNavegador.BackColor = System.Drawing.Color.Black;
             this.pnNavegador.Controls.Add(this.btnPerfil);
             this.pnNavegador.Controls.Add(this.btnPublicar);
             this.pnNavegador.Controls.Add(this.btnExplorar);
-            this.pnNavegador.Location = new System.Drawing.Point(23, 679);
+            this.pnNavegador.Location = new System.Drawing.Point(12, 673);
             this.pnNavegador.Name = "pnNavegador";
-            this.pnNavegador.Size = new System.Drawing.Size(533, 58);
+            this.pnNavegador.Size = new System.Drawing.Size(558, 68);
             this.pnNavegador.TabIndex = 2;
             // 
             // btnPerfil
@@ -65,6 +73,7 @@
             this.btnPerfil.Size = new System.Drawing.Size(85, 47);
             this.btnPerfil.TabIndex = 3;
             this.btnPerfil.UseVisualStyleBackColor = true;
+            this.btnPerfil.Click += new System.EventHandler(this.btnPerfil_Click);
             // 
             // btnPublicar
             // 
@@ -75,6 +84,7 @@
             this.btnPublicar.Size = new System.Drawing.Size(85, 47);
             this.btnPublicar.TabIndex = 2;
             this.btnPublicar.UseVisualStyleBackColor = true;
+            this.btnPublicar.Click += new System.EventHandler(this.btnPublicar_Click);
             // 
             // btnExplorar
             // 
@@ -85,16 +95,17 @@
             this.btnExplorar.Size = new System.Drawing.Size(85, 47);
             this.btnExplorar.TabIndex = 1;
             this.btnExplorar.UseVisualStyleBackColor = true;
+            this.btnExplorar.Click += new System.EventHandler(this.btnExplorar_Click);
             // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(578, 749);
+            this.ClientSize = new System.Drawing.Size(582, 753);
             this.Controls.Add(this.pnNavegador);
             this.Controls.Add(this.floPublicaciones);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Principal";
             this.Text = "Wikz!";

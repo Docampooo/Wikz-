@@ -37,14 +37,14 @@ namespace wikz_escritorio
 
         private async void btnSignUp_Click(object sender, EventArgs e)
         {
-            // 1. Recoger datos y limpiar espacios
+            // Recoger datos y limpiar espacios
             string nombreUsuario = txtAñadirNombre.Text.Trim();
             string passUsuario = txtAñadirPass.Text;
             string repPassUsuario = txtAñadirRepetirPass.Text;
             string correo = txtAñadirCorreo.Text.Trim();
             bool usuarioValido = true;
 
-            // 2. Validaciones de UI
+            // Validacion de UI
             if (string.IsNullOrEmpty(nombreUsuario))
             {
                 reg.MostrarToast("El nombre es obligatorio");
@@ -91,7 +91,7 @@ namespace wikz_escritorio
                         }
                         else
                         {
-                            // Si por algo falla el login automático, volvemos al login normal
+                            // Si por algo falla el login automático, vuelve al login normal
                             reg.MostrarToast("Usuario creado. Por favor, inicia sesión.");
                             this.Close();
                         }
@@ -111,11 +111,6 @@ namespace wikz_escritorio
                     btnSignUp.Enabled = true;
                 }
             }
-        }
-
-        private void Registrar_usuario_Load(object sender, EventArgs e)
-        {
-            // Aquí puedes inicializar colores o focos de texto si quieres
         }
     }
 }

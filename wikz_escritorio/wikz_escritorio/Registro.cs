@@ -52,7 +52,7 @@ namespace wikz_escritorio
             t.Start();
         }
 
-        // 1. Cambiamos a async para usar la API
+        //cambio a async para usar la API
         private async void btnLogIn_Click(object sender, EventArgs e)
         {
             string nombre = txtRegistroNombre.Text.Trim();
