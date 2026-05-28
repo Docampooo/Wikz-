@@ -215,8 +215,7 @@ public class Operaciones {
 
                 byte[] foto = null;
                 if (p.getImagenBase64() != null) {
-                    // Importante: El JS debe enviar solo el string Base64 sin el prefijo
-                    // "data:image..."
+                    // El JS debe enviar solo el string Base64 sin el prefijo
                     foto = Base64.getDecoder().decode(p.getImagenBase64());
                 }
 

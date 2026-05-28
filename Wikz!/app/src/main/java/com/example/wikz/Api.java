@@ -31,9 +31,10 @@ public class Api {
     // --- CONFIGURACIÓN DE RED CENTRALIZADA ---
     // Emulador: "10.0.2.2"
     // Casa: "192.168.1.64"
+    // Universidad: "193.146.35.169"
     // Clase: "192.130.0.157"
     // movil: 10.84.193.100
-    private static final String IP_SERVIDOR = "10.84.193.100";
+    private static final String IP_SERVIDOR = "193.146.35.169";
     private static final String BASE_URL = "http://" + IP_SERVIDOR + ":8080/api/wikz/operaciones/";
     // -----------------------------------------
 
