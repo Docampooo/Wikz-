@@ -65,3 +65,9 @@ Web terminada, el primer escalon superado, todo funciona, no da errores y va flu
 
 18/02/2026
 La aplicacion móviles está lista! solo queda la parte de escritorio, viento en popa
+
+10/03/26
+Intenso desarrollo de wikz en escritorio despues de un paron, grandes cambios y gran avance, quedan unas cuentas cosas por añadir y el proyecto estaría terminado
+
+11/03/26
+Proyecto terminado, he vaciado y rellenado la base de datos y la he exportado al proyecto, las tres partes del proyecto están terminadas y le he dado las últimas pinceladas a wikz en escritorio
